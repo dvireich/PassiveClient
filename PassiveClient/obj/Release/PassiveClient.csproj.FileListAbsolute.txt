@@ -1,0 +1,11 @@
+C:\Users\dvireich\Documents\Visual Studio 2015\Projects\PassiveClient\PassiveClient\bin\Release\PassiveClient.exe.config
+C:\Users\dvireich\Documents\Visual Studio 2015\Projects\PassiveClient\PassiveClient\bin\Release\PassiveClient.exe
+C:\Users\dvireich\Documents\Visual Studio 2015\Projects\PassiveClient\PassiveClient\bin\Release\PassiveClient.pdb
+C:\Users\dvireich\Documents\Visual Studio 2015\Projects\PassiveClient\PassiveClient\obj\Release\PassiveClient.exe
+C:\Users\dvireich\Documents\Visual Studio 2015\Projects\PassiveClient\PassiveClient\obj\Release\PassiveClient.pdb
+C:\Users\dvireich\Documents\Visual Studio 2015\Projects\PassiveClient\PassiveClient\obj\Release\PassiveClient.csprojResolveAssemblyReference.cache
+C:\Users\dvireich\Documents\Visual Studio 2015\Projects\PassiveClient\PassiveClient\bin\Release\PassiveClient.exe.manifest
+C:\Users\dvireich\Documents\Visual Studio 2015\Projects\PassiveClient\PassiveClient\bin\Release\PassiveClient.application
+C:\Users\dvireich\Documents\Visual Studio 2015\Projects\PassiveClient\PassiveClient\obj\Release\PassiveClient.TrustInfo.xml
+C:\Users\dvireich\Documents\Visual Studio 2015\Projects\PassiveClient\PassiveClient\obj\Release\PassiveClient.exe.manifest
+C:\Users\dvireich\Documents\Visual Studio 2015\Projects\PassiveClient\PassiveClient\obj\Release\PassiveClient.application
