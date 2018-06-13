@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using PassiveClient.Authentication;
 using PassiveClient.ServiceReference1;
 using System;
 using System.Diagnostics;
@@ -28,9 +29,16 @@ namespace PassiveClient
         static StatusCallBack status = null;
         private static string _passiveClientNickName = string.Empty;
         private static bool shouldRestartConnections = false;
+        private static string _wcfServicesPathId;
+        private static string _username = string.Empty;
+        private static string _password = string.Empty;
 
-        private static IPassiveShell initializeServiceReferences()
+        private static object initializeServiceReferences<T>(string path = null)
         {
+            if(string.IsNullOrEmpty(path))
+            {
+                path = string.Format("PassiveShell/{0}", _wcfServicesPathId);
+            }
             //Confuguring the Shell service
             var shellBinding = new BasicHttpBinding();
             shellBinding.Security.Mode = BasicHttpSecurityMode.None;
@@ -42,13 +50,12 @@ namespace PassiveClient
             shellBinding.MaxBufferPoolSize = int.MaxValue;
             shellBinding.MaxBufferSize = int.MaxValue;
             //Put Public ip of the server copmuter
-            var shellAdress = string.Format("http://localhost:80/ShellTrasferServer/PassiveShell");
+            var shellAdress = string.Format("http://localhost:80/ShellTrasferServer/{0}", path);
             var shellUri = new Uri(shellAdress);
             var shellEndpointAddress = new EndpointAddress(shellUri);
-            var shellChannel = new ChannelFactory<IPassiveShell>(shellBinding, shellEndpointAddress);
-            shelService = shellChannel.CreateChannel();
+            var shellChannel = new ChannelFactory<T>(shellBinding, shellEndpointAddress);
+            var shelService = shellChannel.CreateChannel();
             return shelService;
-
         }
 
         private static void downloadFile(string fileName, string directory, string pathToSaveOnServer)
@@ -291,21 +298,48 @@ namespace PassiveClient
         {
             var allowMoreThan1ClientsInParalel = false;
             var hiddenWindow = true;
-            if(args.Length > 2)
+            string username = string.Empty;
+            string password = string.Empty;
+
+            if (args.Length > 0)
             {
-                Console.WriteLine("3 args");
-                _passiveClientNickName = args[2];
+                for(int i = 0; i < args.Length; i ++)
+                {
+                    var arg = args[i].Split('=').First();
+                    var val = args[i].Split('=').Last();
+                    if (arg.ToLower() == "hidden")
+                    {
+                        if (bool.TryParse(val, out hiddenWindow)) continue;
+                        hiddenWindow = true;
+                    }
+                    if (arg.ToLower() == "morethanoneclinet")
+                    {
+                        if (bool.TryParse(val, out allowMoreThan1ClientsInParalel)) continue;
+                        allowMoreThan1ClientsInParalel = false;
+                    }
+                    if (arg.ToLower() == "nickname")
+                    {
+                        _passiveClientNickName = val;
+                    }
+                    if (arg.ToLower() == "username")
+                    {
+                        username = val;
+                        _username = username;
+                    }
+                    if (arg.ToLower() == "password")
+                    {
+                        password = val;
+                        _password = password;
+                    }
+                }
             }
-            if(args.Length > 1)
-            {
-                Console.WriteLine("2 args");
-                allowMoreThan1ClientsInParalel = bool.Parse(args[0]);
-                hiddenWindow = bool.Parse(args[1]);
-                Console.WriteLine(allowMoreThan1ClientsInParalel + " " + hiddenWindow);
-            }
+
+            if (string.IsNullOrEmpty(_username) || string.IsNullOrEmpty(_password))
+                throw new Exception("Cant connect without user name and password. please run with cmd args userName=? password=?");
             var windowHandle = Process.GetCurrentProcess().MainWindowHandle;
             if (hiddenWindow && windowHandle != IntPtr.Zero)
-                OpenHostAsNewProcess(string.Format("{0} {1} {2}", allowMoreThan1ClientsInParalel.ToString(), hiddenWindow.ToString(), _passiveClientNickName));
+                OpenHostAsNewProcess(string.Format("morethanoneclinet={0} hidden={1} nickname={2} username={3} password={4}", 
+                    allowMoreThan1ClientsInParalel.ToString(), hiddenWindow.ToString(), _passiveClientNickName, username, password));
             if (!allowMoreThan1ClientsInParalel)
                 CheckIfOtherClientOpen();
             //setStartUp(true);
@@ -340,7 +374,7 @@ namespace PassiveClient
             }
             catch { }
             Thread.Sleep(1000);
-            OpenHostAsNewProcess(string.Format("True False {0}",_passiveClientNickName));
+            OpenHostAsNewProcess(string.Format("morethanoneclinet=True hidden=False nickname={0} username={1} password={2}", _passiveClientNickName, _username, _password));
         }
 
         private static void CheckIfOtherClientOpen()
@@ -382,7 +416,18 @@ namespace PassiveClient
         {
             try
             {
-                shelService = initializeServiceReferences();
+                var auth = (IAuthentication)initializeServiceReferences<IAuthentication>("Authentication");
+                var resp = auth.Authenticate(new AuthenticateRequest()
+                {
+                    userName = _username,
+                    password = _password
+                });
+
+                if (resp.AuthenticateResult == null) throw new Exception(string.Format("Could not Authenticate username {0} and pssword {1}", _username, _password));
+
+                _wcfServicesPathId = resp.AuthenticateResult;
+                shelService =(IPassiveShell)initializeServiceReferences<IPassiveShell>();
+
                 CleanPrevId();
                 while (!shelService.Subscribe(id.ToString(), Virsion , _passiveClientNickName))
                 {
@@ -765,7 +810,7 @@ namespace PassiveClient
             }
             public void SendServerCallBack()
             {
-                Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack"));
+                Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack/{0}",_wcfServicesPathId));
                 NetTcpBinding wsd = new NetTcpBinding();
                 wsd.Security.Mode = SecurityMode.None;
                 wsd.CloseTimeout = TimeSpan.MaxValue;
@@ -843,7 +888,7 @@ namespace PassiveClient
             public void SendServerCallBack()
             {
                 
-                Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack"));
+                Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack/{0}",_wcfServicesPathId));
                 NetTcpBinding wsd = new NetTcpBinding();
                 wsd.Security.Mode = SecurityMode.None;
                 wsd.CloseTimeout = TimeSpan.MaxValue;
