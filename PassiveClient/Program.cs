@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PassiveClient
 {
-    class Program
+    public class Program
     {
         const string Virsion = "11";
         static IPassiveShell shelService;
@@ -294,13 +294,23 @@ namespace PassiveClient
             return true;
         }
 
-        static void Main(string[] args)
+        private static void PrintArgsUsage()
+        {
+            Console.WriteLine("hidden=True/False");
+            Console.WriteLine("morethanoneclinet=True/False");
+            Console.WriteLine("nickname=<some name>");
+            Console.WriteLine("username=<user name>");
+            Console.WriteLine("password=<password>");
+        }
+
+        public static void Main(string[] args)
         {
             var allowMoreThan1ClientsInParalel = false;
             var hiddenWindow = true;
             string username = string.Empty;
             string password = string.Empty;
 
+            PrintArgsUsage();
             if (args.Length > 0)
             {
                 for(int i = 0; i < args.Length; i ++)
@@ -412,6 +422,23 @@ namespace PassiveClient
             }
         }
 
+        public static bool Authenticate(string userName, string password)
+        {
+            _username = userName;
+            _password = password;
+            var auth = (IAuthentication)initializeServiceReferences<IAuthentication>("Authentication");
+            var resp = auth.Authenticate(new AuthenticateRequest()
+            {
+                userName = _username,
+                password = _password
+            });
+            if (auth != null)
+            {
+                ((ICommunicationObject)auth).Close();
+            }
+            return !string.IsNullOrEmpty(resp.AuthenticateResult);
+        }
+
         private static void MainLoop()
         {
             try
@@ -451,6 +478,11 @@ namespace PassiveClient
                 {
                     ((ICommunicationObject)shelService).Close();
                     shelService = null;
+                }
+                if (auth != null)
+                {
+                    ((ICommunicationObject)auth).Close();
+                    auth = null;
                 }
                 callback.Dispose();
                 status.Dispose();

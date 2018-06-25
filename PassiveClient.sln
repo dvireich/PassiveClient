@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassiveClient", "PassiveClient\PassiveClient.csproj", "{72FE17EA-C44B-46B9-9605-A5C973F6C3F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassiveClientUi", "PassiveClientUi\PassiveClientUi.csproj", "{2CD8CD0E-40BE-4127-B3A4-52841D87F01F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{72FE17EA-C44B-46B9-9605-A5C973F6C3F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72FE17EA-C44B-46B9-9605-A5C973F6C3F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72FE17EA-C44B-46B9-9605-A5C973F6C3F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CD8CD0E-40BE-4127-B3A4-52841D87F01F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CD8CD0E-40BE-4127-B3A4-52841D87F01F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CD8CD0E-40BE-4127-B3A4-52841D87F01F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CD8CD0E-40BE-4127-B3A4-52841D87F01F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4B7CCD0-71A4-47A6-8F77-15083FDA4E79}
 	EndGlobalSection
 EndGlobal
