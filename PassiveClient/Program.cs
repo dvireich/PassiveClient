@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
 using PassiveClient.Authentication;
 using PassiveClient.ServiceReference1;
+using PostSharp.Patterns.Diagnostics;
+using PostSharp.Patterns.Diagnostics.Backends.Log4Net;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -9,6 +11,10 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+
+[assembly: Log]
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
+
 
 namespace PassiveClient
 {
@@ -303,8 +309,10 @@ namespace PassiveClient
             Console.WriteLine("password=<password>");
         }
 
+        [Log(AttributeExclude = true)]
         public static void Main(string[] args)
         {
+            InitializeLoggingBackend();
             var allowMoreThan1ClientsInParalel = false;
             var hiddenWindow = true;
             string username = string.Empty;
@@ -635,7 +643,14 @@ namespace PassiveClient
                     shelService.ErrorUploadDownload(id.ToString(), _currentTasktId, e.Message));
                 }
         }
-        
+
+        [Log(AttributeExclude = true)]
+        public static void InitializeLoggingBackend()
+        {
+            log4net.Config.XmlConfigurator.Configure();
+            var log4NetLoggingBackend = new Log4NetLoggingBackend();
+            LoggingServices.DefaultBackend = log4NetLoggingBackend;
+        }
 
         private static void CleanPrevId()
         {
@@ -956,7 +971,5 @@ namespace PassiveClient
                     proxy.Close();
             }
         }
-
-
     }
 }
