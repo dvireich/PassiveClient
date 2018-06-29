@@ -569,8 +569,17 @@
     <Instance File="C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\\PassiveClient.pssln" Line="5" Column="6">
       <Target Target="#191=A:PassiveClient">
         <JoinPoint Advised="#192=M:[mscorlib]System.Threading.WaitHandle::WaitOne(System.Int32)" Advising="#193=T:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements" Description="#194=Intercepted by WaitOne_Int32" Ordinal="187" LinesAvoided="2" />
-        <JoinPoint Advised="#195=M:[mscorlib]System.Threading.Monitor::Enter(System.Object, ref System.Boolean)" Advising="#196=T:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements" Description="#197=Intercepted by Enter_Object_Bool" Ordinal="188" LinesAvoided="2" />
-        <JoinPoint Advised="#198=M:[mscorlib]System.Threading.Monitor::Exit(System.Object)" Advising="#196" Description="#199=Intercepted by Exit" Ordinal="189" LinesAvoided="2" />
+        <JoinPoint Advised="#195=M:[mscorlib]System.Threading.Monitor::Enter(System.Object, ref System.Boolean)" Advising="#196=T:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements" Description="#197=Intercepted by Enter_Object_Bool" Ordinal="189" LinesAvoided="2" />
+        <JoinPoint Advised="#198=M:[mscorlib]System.Threading.Monitor::Exit(System.Object)" Advising="#196" Description="#199=Intercepted by Exit" Ordinal="191" LinesAvoided="2" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#190">
+    <Instance Declaration="#191" Id="a7e7e010c1bf9967">
+      <Target>
+        <JoinPoint Advised="#192" Advising="#193" Description="#194" Ordinal="188" LinesAvoided="2" />
+        <JoinPoint Advised="#195" Advising="#196" Description="#197" Ordinal="190" LinesAvoided="2" />
+        <JoinPoint Advised="#198" Advising="#196" Description="#199" Ordinal="192" LinesAvoided="2" />
       </Target>
     </Instance>
   </Class>
