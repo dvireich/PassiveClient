@@ -1,10 +1,12 @@
-﻿using System;
+﻿using PassiveClientUi.Authentication;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -31,7 +33,7 @@ namespace PassiveClientUi
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
-                if (!PassiveClient.Program.Authenticate(UserNameTextBox.Text, PasswordTextBox.Text))
+                if (Authenticate(UserNameTextBox.Text, PasswordTextBox.Text))
                 {
                     MessageBox.Show("User Name or Password are incorrent", "Sign in", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -71,6 +73,40 @@ namespace PassiveClientUi
                 MessageBox.Show(e.Message , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
+        }
+
+        private bool Authenticate(string userName, string password)
+        {
+            var auth = (IAuthentication)initializeServiceReferences<IAuthentication>("Authentication");
+            var resp = auth.Authenticate(new AuthenticateRequest()
+            {
+            });
+            if (auth != null)
+            {
+                ((ICommunicationObject)auth).Close();
+            }
+            return !string.IsNullOrEmpty(resp.AuthenticateResult);
+        }
+
+        private object initializeServiceReferences<T>(string path)
+        {
+            //Confuguring the Shell service
+            var shellBinding = new BasicHttpBinding();
+            shellBinding.Security.Mode = BasicHttpSecurityMode.None;
+            shellBinding.CloseTimeout = TimeSpan.MaxValue;
+            shellBinding.ReceiveTimeout = TimeSpan.MaxValue;
+            shellBinding.SendTimeout = new TimeSpan(0, 0, 10, 0, 0);
+            shellBinding.OpenTimeout = TimeSpan.MaxValue;
+            shellBinding.MaxReceivedMessageSize = int.MaxValue;
+            shellBinding.MaxBufferPoolSize = int.MaxValue;
+            shellBinding.MaxBufferSize = int.MaxValue;
+            //Put Public ip of the server copmuter
+            var shellAdress = string.Format("http://localhost:80/ShellTrasferServer/{0}", path);
+            var shellUri = new Uri(shellAdress);
+            var shellEndpointAddress = new EndpointAddress(shellUri);
+            var shellChannel = new ChannelFactory<T>(shellBinding, shellEndpointAddress);
+            var shelService = shellChannel.CreateChannel();
+            return shelService;
         }
 
         private void StartButton_Click(object sender, EventArgs e)

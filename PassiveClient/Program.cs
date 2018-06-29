@@ -41,7 +41,7 @@ namespace PassiveClient
 
         private static object initializeServiceReferences<T>(string path = null)
         {
-            if(string.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(path))
             {
                 path = string.Format("PassiveShell/{0}", _wcfServicesPathId);
             }
@@ -179,7 +179,7 @@ namespace PassiveClient
                     SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                     {
                         shelService.ErrorUploadDownload(id.ToString(), request.taskId, string.Format("Fail to create File in your computer {0}", request.FileName));
-                    }); 
+                    });
                     return;
                 }
 
@@ -207,7 +207,7 @@ namespace PassiveClient
                     SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                     {
                         request = shelService.PassiveGetUploadFile(requestData);
-                    });     
+                    });
                 }
             }
         }
@@ -245,7 +245,7 @@ namespace PassiveClient
 
         private static void setStartUp(bool set)
         {
-                AddToStartup(set);
+            AddToStartup(set);
         }
 
         public static bool AddToStartup(bool set)
@@ -260,11 +260,11 @@ namespace PassiveClient
                         File.Copy(System.Reflection.Assembly.GetExecutingAssembly().Location, path, true);
                         Console.WriteLine("Added to startup");
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
-                        Console.WriteLine("Error: "+e.Message);
+                        Console.WriteLine("Error: " + e.Message);
                     }
-                    
+
                 }
             }
             else
@@ -283,9 +283,9 @@ namespace PassiveClient
                         //Waites 60 sec
                         sw.WriteLine("ping 127.0.0.1 -n 60 > nul");
                         //First enter the directory
-                        sw.WriteLine("cd "+ Environment.GetFolderPath(Environment.SpecialFolder.Startup));
+                        sw.WriteLine("cd " + Environment.GetFolderPath(Environment.SpecialFolder.Startup));
                         //only after that delete the file
-                        sw.WriteLine("del "+ System.Reflection.Assembly.GetExecutingAssembly().Location.Split('\\').Last());
+                        sw.WriteLine("del " + System.Reflection.Assembly.GetExecutingAssembly().Location.Split('\\').Last());
                         //if the in this catch that must be because the file is in startup folder, so delete the newly created delete.bat
                         sw.WriteLine("del delete.bat");
                         sw.Close();
@@ -294,7 +294,7 @@ namespace PassiveClient
                         Info.CreateNoWindow = true;
                         Info.FileName = "delete.bat";
                         Process.Start(Info);
-                    }   
+                    }
                 }
             }
             return true;
@@ -309,10 +309,10 @@ namespace PassiveClient
             Console.WriteLine("password=<password>");
         }
 
-        [Log(AttributeExclude = true)]
-        public static void Main(string[] args)
+
+        public static void StartFunc(string[] args)
         {
-            InitializeLoggingBackend();
+            
             var allowMoreThan1ClientsInParalel = false;
             var hiddenWindow = true;
             string username = string.Empty;
@@ -321,7 +321,7 @@ namespace PassiveClient
             PrintArgsUsage();
             if (args.Length > 0)
             {
-                for(int i = 0; i < args.Length; i ++)
+                for (int i = 0; i < args.Length; i++)
                 {
                     var arg = args[i].Split('=').First();
                     var val = args[i].Split('=').Last();
@@ -356,7 +356,7 @@ namespace PassiveClient
                 throw new Exception("Cant connect without user name and password. please run with cmd args userName=? password=?");
             var windowHandle = Process.GetCurrentProcess().MainWindowHandle;
             if (hiddenWindow && windowHandle != IntPtr.Zero)
-                OpenHostAsNewProcess(string.Format("morethanoneclinet={0} hidden={1} nickname={2} username={3} password={4}", 
+                OpenHostAsNewProcess(string.Format("morethanoneclinet={0} hidden={1} nickname={2} username={3} password={4}",
                     allowMoreThan1ClientsInParalel.ToString(), hiddenWindow.ToString(), _passiveClientNickName, username, password));
             if (!allowMoreThan1ClientsInParalel)
                 CheckIfOtherClientOpen();
@@ -370,7 +370,7 @@ namespace PassiveClient
         private static void OnPowerModeChanged(object sender, PowerModeChangedEventArgs e)
         {
             if (e.Mode == PowerModes.StatusChange || e.Mode == PowerModes.Suspend) return;
-            SystemEvents.PowerModeChanged -= OnPowerModeChanged;   
+            SystemEvents.PowerModeChanged -= OnPowerModeChanged;
             try
             {
                 if (shelService != null)
@@ -397,7 +397,7 @@ namespace PassiveClient
 
         private static void CheckIfOtherClientOpen()
         {
-            for(var i = 0;i<15; i++)
+            for (var i = 0; i < 15; i++)
             {
                 CloseIfDuplicationOfOpenProcess();
                 Thread.Sleep(1000);
@@ -461,10 +461,10 @@ namespace PassiveClient
                 if (resp.AuthenticateResult == null) throw new Exception(string.Format("Could not Authenticate username {0} and pssword {1}", _username, _password));
 
                 _wcfServicesPathId = resp.AuthenticateResult;
-                shelService =(IPassiveShell)initializeServiceReferences<IPassiveShell>();
+                shelService = (IPassiveShell)initializeServiceReferences<IPassiveShell>();
 
                 CleanPrevId();
-                while (!shelService.Subscribe(id.ToString(), Virsion , _passiveClientNickName))
+                while (!shelService.Subscribe(id.ToString(), Virsion, _passiveClientNickName))
                 {
                     Console.WriteLine(string.Format("Wasn't able to connect with {0} id, tring diffrent one...", id));
                     CleanPrevId();
@@ -495,11 +495,11 @@ namespace PassiveClient
                 callback.Dispose();
                 status.Dispose();
                 timerTread.Dispose();
-                if(shouldRestartConnections)
+                if (shouldRestartConnections)
                 {
                     MainLoop();
                 }
-                   
+
                 setStartUp(false);
             }
             catch (Exception e)
@@ -518,7 +518,7 @@ namespace PassiveClient
                 Thread.Sleep(1000);
                 MainLoop();
             }
-            
+
         }
 
         private static Timer StartKeepAliveCallbackThread(CallBack callback, StatusCallBack statusCallback)
@@ -532,7 +532,7 @@ namespace PassiveClient
 
                 var numberOfTries = 3;
                 //maybe the server is down. If so we will close the connection and will reset all the connections;
-                while(numberOfTries > 0)
+                while (numberOfTries > 0)
                 {
                     try
                     {
@@ -546,7 +546,7 @@ namespace PassiveClient
                     }
                 }
 
-                if(numberOfTries == 0 )
+                if (numberOfTries == 0)
                 {
                     shouldRestartConnections = true;
                     lock (endProgram)
@@ -554,7 +554,7 @@ namespace PassiveClient
                         Monitor.PulseAll(endProgram);
                     }
                 }
-                
+
             }, null, startTimeSpan, periodTimeSpan);
             return timer;
         }
@@ -562,14 +562,14 @@ namespace PassiveClient
         private static void RegisterCallBacks()
         {
             try
-            {  
+            {
                 status = new StatusCallBack();
                 callback = new CallBack();
                 callback.SetStatusCallback(status);
                 status.SendServerCallBack();
                 callback.SendServerCallBack();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 if (callback != null)
                     callback.Dispose();
@@ -590,7 +590,7 @@ namespace PassiveClient
                 }
                 catch (Exception e)
                 {
-                    SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => 
+                    SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                         shelService.ErrorNextCommand(id.ToString(), _currentTasktId, string.Format("Error Next-Command: {0}", e.Message)));
                 }
 
@@ -616,7 +616,7 @@ namespace PassiveClient
                 }
                 catch (Exception e)
                 {
-                    SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => 
+                    SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                         shelService.ErrorUploadDownload(id.ToString(), _currentTasktId, e.Message));
                 }
 
@@ -639,18 +639,12 @@ namespace PassiveClient
 
                 catch (Exception e)
                 {
-                    SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => 
+                    SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                     shelService.ErrorUploadDownload(id.ToString(), _currentTasktId, e.Message));
                 }
         }
 
-        [Log(AttributeExclude = true)]
-        public static void InitializeLoggingBackend()
-        {
-            log4net.Config.XmlConfigurator.Configure();
-            var log4NetLoggingBackend = new Log4NetLoggingBackend();
-            LoggingServices.DefaultBackend = log4NetLoggingBackend;
-        }
+        
 
         private static void CleanPrevId()
         {
@@ -675,18 +669,18 @@ namespace PassiveClient
             switch (command.Item1)
             {
                 case run:
-                    SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => 
+                    SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                         shelService.PassiveClientRun(id.ToString(), _currentTasktId, shellHandler.Run()));
                     break;
                 case nextCommand:
-                    SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => 
+                    SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                         shelService.CommandResponse(id.ToString(), _currentTasktId, shellHandler.NextCommand(command.Item2)));
                     break;
                 case closeShell:
                     shellHandler.CloseShell();
-                    SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => 
-                        shelService.CommandResponse(id.ToString(), _currentTasktId,"EndProg"));
-                    lock(endProgram)
+                    SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
+                        shelService.CommandResponse(id.ToString(), _currentTasktId, "EndProg"));
+                    lock (endProgram)
                     {
                         Monitor.PulseAll(endProgram);
                     }
@@ -705,12 +699,12 @@ namespace PassiveClient
 
             public void CloseShell()
             {
-                if(_process != null)
+                if (_process != null)
                 {
                     _process.StandardOutput.Close();
                     _process.StandardInput.Close();
                     _process.Close();
-                } 
+                }
             }
 
 
@@ -754,35 +748,35 @@ namespace PassiveClient
                 while (true)
                 {
                     string line = string.Empty;
-                    if (!WaitforExitAndAbort(() => 
+                    if (!WaitforExitAndAbort(() =>
                     {
                         line = stdout.ReadLine();
                     }, 30 * 1000))
                     {
-                        if(line.Contains("All"))
+                        if (line.Contains("All"))
                         {
                             stdin.WriteLine("All");
                             stdin.WriteLine("echo #WAITING");
                         }
-                        else if(line.Contains("Yes"))
+                        else if (line.Contains("Yes"))
                         {
                             stdin.WriteLine("Yes");
                             stdin.WriteLine("echo #WAITING");
-                            
+
                         }
                         else
                         {
                             break;
                         }
-                        
+
                     }
-                    
+
                     if (line == null)
                     {
                         str.AppendLine("Error using command " + command);
                         break;
                     }
-					//The last line of the PClient command
+                    //The last line of the PClient command
                     if (line == "Wating for command")
                     {
                         str.AppendLine(line);
@@ -857,7 +851,7 @@ namespace PassiveClient
             }
             public void SendServerCallBack()
             {
-                Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack/{0}",_wcfServicesPathId));
+                Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack/{0}", _wcfServicesPathId));
                 NetTcpBinding wsd = new NetTcpBinding();
                 wsd.Security.Mode = SecurityMode.None;
                 wsd.CloseTimeout = TimeSpan.MaxValue;
@@ -881,7 +875,7 @@ namespace PassiveClient
                 {
                     CheckMissions(shellHandler);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Dispose();
                     statusCallBack.Dispose();
@@ -903,8 +897,8 @@ namespace PassiveClient
 
             public void KeppAlive()
             {
-                if(!isDead)
-                     proxy.KeepCallBackAlive(id.ToString());
+                if (!isDead)
+                    proxy.KeepCallBackAlive(id.ToString());
             }
 
             public void KeepCallbackALive()
@@ -934,8 +928,8 @@ namespace PassiveClient
 
             public void SendServerCallBack()
             {
-                
-                Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack/{0}",_wcfServicesPathId));
+
+                Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack/{0}", _wcfServicesPathId));
                 NetTcpBinding wsd = new NetTcpBinding();
                 wsd.Security.Mode = SecurityMode.None;
                 wsd.CloseTimeout = TimeSpan.MaxValue;
@@ -946,16 +940,16 @@ namespace PassiveClient
                 proxy = new AletCallBackClient(new InstanceContext(this), wsd, ea);
                 proxy.InnerDuplexChannel.OperationTimeout = TimeSpan.MaxValue;
                 proxy.InnerChannel.OperationTimeout = TimeSpan.MaxValue;
-                proxy.RegisterCallBackFunction(id.ToString(),"status");
+                proxy.RegisterCallBackFunction(id.ToString(), "status");
             }
 
             public void CallBackFunction(string str)
-            { 
+            {
             }
 
             public void KeppAlive()
             {
-                if(!isDead)
+                if (!isDead)
                     proxy.KeepCallBackAlive(id.ToString());
             }
 
@@ -970,6 +964,25 @@ namespace PassiveClient
                 if (proxy != null && proxy.State == CommunicationState.Opened)
                     proxy.Close();
             }
+        }
+    }
+
+    [Log(AttributeExclude = true)]
+    public class StartClass
+    {
+        
+        public static void Main(string[] args)
+        {
+            InitializeLoggingBackend();
+            Program.StartFunc(args);
+        }
+
+        
+        public static void InitializeLoggingBackend()
+        {
+            log4net.Config.XmlConfigurator.Configure();
+            var log4NetLoggingBackend = new Log4NetLoggingBackend();
+            LoggingServices.DefaultBackend = log4NetLoggingBackend;
         }
     }
 }
