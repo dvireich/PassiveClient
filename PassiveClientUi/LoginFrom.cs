@@ -15,6 +15,7 @@ namespace PassiveClientUi
 {
     public partial class LoginFrom : Form
     {
+        const string _userType = "PassiveClient";
         public LoginFrom()
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace PassiveClientUi
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
-                if (Authenticate(UserNameTextBox.Text, PasswordTextBox.Text))
+                if (!Authenticate(UserNameTextBox.Text, PasswordTextBox.Text))
                 {
                     MessageBox.Show("User Name or Password are incorrent", "Sign in", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -55,7 +56,7 @@ namespace PassiveClientUi
                         FileName = "PassiveClient.exe",
                         Arguments = string.Join(" ", new string[] {
                                                                     "hidden=true",
-                                                                    "morethanoneclinet=false",
+                                                                    "morethanoneclinet=true",
                                                                      string.Format("username={0}",UserNameTextBox.Text),
                                                                      string.Format("password={0}",PasswordTextBox.Text)}),
                         WindowStyle = ProcessWindowStyle.Hidden,
@@ -78,14 +79,25 @@ namespace PassiveClientUi
         private bool Authenticate(string userName, string password)
         {
             var auth = (IAuthentication)initializeServiceReferences<IAuthentication>("Authentication");
-            var resp = auth.Authenticate(new AuthenticateRequest()
+            var resp = auth.AuthenticateAndSignIn(new AuthenticateAndSignInRequest()
             {
+                userName = userName,
+                password = password,
+                userType = _userType
+            });
+            //We do not want the server add this passiveClient yet, when we will open the PassiveClient.exe then 
+            //He will signin. 
+            //So we will logout now
+            auth.Logout(new LogoutRequest()
+            {
+                userName = userName,
+                userType = _userType
             });
             if (auth != null)
             {
                 ((ICommunicationObject)auth).Close();
             }
-            return !string.IsNullOrEmpty(resp.AuthenticateResult);
+            return !string.IsNullOrEmpty(resp.AuthenticateAndSignInResult);
         }
 
         private object initializeServiceReferences<T>(string path)

@@ -130,13 +130,16 @@
     <None Include="Service References\Authentication\Authentication1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Authentication\PassiveClient.Authentication.AuthenticateResponse.datasource">
+    <None Include="Service References\Authentication\PassiveClient.Authentication.AuthenticateAndSignInResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Authentication\PassiveClient.Authentication.ChangeUserPasswordResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Authentication\PassiveClient.Authentication.GetSecurityQuestionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Authentication\PassiveClient.Authentication.LogoutResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Authentication\PassiveClient.Authentication.RestorePasswordFromUserNameAndSecurityQuestionResponse.datasource">

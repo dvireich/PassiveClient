@@ -31,6 +31,7 @@ namespace PassiveClient
         const string closeShell = "CloseShell";
         const string download = "Download";
         const string upload = "Upload";
+        const string userType = "PassiveClient";
         static CallBack callback = null;
         static StatusCallBack status = null;
         private static string _passiveClientNickName = string.Empty;
@@ -430,37 +431,52 @@ namespace PassiveClient
             }
         }
 
-        public static bool Authenticate(string userName, string password)
+        public static bool Authenticate(string userName, string password, out string error, out string result)
         {
-            _username = userName;
-            _password = password;
             var auth = (IAuthentication)initializeServiceReferences<IAuthentication>("Authentication");
-            var resp = auth.Authenticate(new AuthenticateRequest()
+            var resp = auth.AuthenticateAndSignIn(new AuthenticateAndSignInRequest()
             {
-                userName = _username,
-                password = _password
+                userName = userName,
+                password = password,
+                userType = userType
             });
             if (auth != null)
             {
                 ((ICommunicationObject)auth).Close();
             }
-            return !string.IsNullOrEmpty(resp.AuthenticateResult);
+            error = resp.error;
+            result = resp.AuthenticateAndSignInResult;
+            return !string.IsNullOrEmpty(resp.AuthenticateAndSignInResult);
+        }
+
+        public static bool Logout(string userName, out string error)
+        {
+            var auth = (IAuthentication)initializeServiceReferences<IAuthentication>("Authentication");
+            var resp = auth.Logout(new LogoutRequest()
+            {
+                userName = userName,
+                userType = userType
+            });
+            if (auth != null)
+            {
+                ((ICommunicationObject)auth).Close();
+            }
+            error = resp.error;
+
+            return resp.LogoutResult;
         }
 
         private static void MainLoop()
         {
             try
             {
-                var auth = (IAuthentication)initializeServiceReferences<IAuthentication>("Authentication");
-                var resp = auth.Authenticate(new AuthenticateRequest()
+                string error;
+                string result;
+                if(!Authenticate(_username, _password, out error, out _wcfServicesPathId))
                 {
-                    userName = _username,
-                    password = _password
-                });
-
-                if (resp.AuthenticateResult == null) throw new Exception(string.Format("Could not Authenticate username {0} and pssword {1}", _username, _password));
-
-                _wcfServicesPathId = resp.AuthenticateResult;
+                    throw new Exception(string.Format("Could not Authenticate username {0} and pssword {1} with the following error {2}", _username, _password, error));
+                }
+                    
                 shelService = (IPassiveShell)initializeServiceReferences<IPassiveShell>();
 
                 CleanPrevId();
@@ -487,10 +503,9 @@ namespace PassiveClient
                     ((ICommunicationObject)shelService).Close();
                     shelService = null;
                 }
-                if (auth != null)
+                if (!Logout(_username, out error))
                 {
-                    ((ICommunicationObject)auth).Close();
-                    auth = null;
+                    Console.WriteLine($"Could not logout for user name: {_username} and for user type: {userType}");
                 }
                 callback.Dispose();
                 status.Dispose();
@@ -515,6 +530,11 @@ namespace PassiveClient
                     ((ICommunicationObject)shelService).Close();
                     shelService = null;
                 }
+                if(!Logout(_username, out string error))
+                {
+                    Console.WriteLine($"Clould not logout for user name: {_username} and for user type: {userType}");
+                }
+
                 Thread.Sleep(1000);
                 MainLoop();
             }
