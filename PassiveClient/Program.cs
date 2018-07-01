@@ -451,19 +451,28 @@ namespace PassiveClient
 
         public static bool Logout(string userName, out string error)
         {
-            var auth = (IAuthentication)initializeServiceReferences<IAuthentication>("Authentication");
-            var resp = auth.Logout(new LogoutRequest()
+            try
             {
-                userName = userName,
-                userType = userType
-            });
-            if (auth != null)
-            {
-                ((ICommunicationObject)auth).Close();
-            }
-            error = resp.error;
+                var auth = (IAuthentication)initializeServiceReferences<IAuthentication>("Authentication");
+                var resp = auth.Logout(new LogoutRequest()
+                {
+                    userName = userName,
+                    userType = userType
+                });
+                if (auth != null)
+                {
+                    ((ICommunicationObject)auth).Close();
+                }
+                error = resp.error;
 
-            return resp.LogoutResult;
+                return resp.LogoutResult;
+            }
+            catch(Exception e)
+            {
+                error = $"Could not logout for user name: {userName} and user type: {userType}";
+                return false;
+            }
+            
         }
 
         private static void MainLoop()
@@ -472,11 +481,11 @@ namespace PassiveClient
             {
                 string error;
                 string result;
-                if(!Authenticate(_username, _password, out error, out _wcfServicesPathId))
+                if (!Authenticate(_username, _password, out error, out _wcfServicesPathId))
                 {
                     throw new Exception(string.Format("Could not Authenticate username {0} and pssword {1} with the following error {2}", _username, _password, error));
                 }
-                    
+
                 shelService = (IPassiveShell)initializeServiceReferences<IPassiveShell>();
 
                 CleanPrevId();
@@ -505,7 +514,7 @@ namespace PassiveClient
                 }
                 if (!Logout(_username, out error))
                 {
-                    Console.WriteLine($"Could not logout for user name: {_username} and for user type: {userType}");
+                    Console.WriteLine(error);
                 }
                 callback.Dispose();
                 status.Dispose();
@@ -530,9 +539,10 @@ namespace PassiveClient
                     ((ICommunicationObject)shelService).Close();
                     shelService = null;
                 }
-                if(!Logout(_username, out string error))
+
+                if (!Logout(_username, out string error))
                 {
-                    Console.WriteLine($"Clould not logout for user name: {_username} and for user type: {userType}");
+                    Console.WriteLine(error);
                 }
 
                 Thread.Sleep(1000);

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Symbols LinesOfCode="1339" PostSharpLinesOfCode="0" EnhancedTypesCount="26" SchemaVersion="1" PostSharpVersion="5.0.52.0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+<Symbols LinesOfCode="1344" PostSharpLinesOfCode="0" EnhancedTypesCount="26" SchemaVersion="1" PostSharpVersion="5.0.52.0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[PostSharp.Patterns.Diagnostics]PostSharp.Patterns.Diagnostics.LogAttribute">
     <Instance File="C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\\PassiveClient.pssln" Line="4" Column="6">
       <Target Target="#2=M:[PassiveClient]PassiveClient.Program::initializeServiceReferences{T}(System.String)">
@@ -602,7 +602,7 @@
     </Instance>
   </Class>
   <Class Class="#199">
-    <Instance Declaration="#200" Id="a7e7e0102fa5b6c3">
+    <Instance Declaration="#200" Id="a7e7e010630979b3">
       <Target>
         <JoinPoint Advised="#201" Advising="#202" Description="#203" Ordinal="197" LinesAvoided="2" />
         <JoinPoint Advised="#204" Advising="#205" Description="#206" Ordinal="199" LinesAvoided="2" />
