@@ -50,18 +50,7 @@ namespace PassiveClientUi
 
                 try
                 {
-                    Process.Start(new ProcessStartInfo()
-                    {
-                        UseShellExecute = false,
-                        FileName = "PassiveClient.exe",
-                        Arguments = string.Join(" ", new string[] {
-                                                                    "hidden=true",
-                                                                    "morethanoneclinet=true",
-                                                                     string.Format("username={0}",UserNameTextBox.Text),
-                                                                     string.Format("password={0}",PasswordTextBox.Text)}),
-                        WindowStyle = ProcessWindowStyle.Hidden,
-                        CreateNoWindow = true
-                    });
+                    StartAsProcess();
                 }
                 finally
                 {
@@ -74,6 +63,26 @@ namespace PassiveClientUi
                 MessageBox.Show(e.Message , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
+        }
+
+        private void StartAsProcess()
+        {
+            var argsArr = new List<string> {"hidden=true",
+                                            "morethanoneclinet=true",
+                                             string.Format("username={0}",UserNameTextBox.Text),
+                                             string.Format("password={0}",PasswordTextBox.Text)};
+            if (AddToServices.Checked)
+            {
+                argsArr.Add("/Install");
+            }
+            Process.Start(new ProcessStartInfo()
+            {
+                UseShellExecute = false,
+                FileName = "PassiveClient.exe",
+                Arguments = string.Join(" ", argsArr),
+                WindowStyle = ProcessWindowStyle.Hidden,
+                CreateNoWindow = true
+            });
         }
 
         private bool Authenticate(string userName, string password)

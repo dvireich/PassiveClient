@@ -4,10 +4,13 @@ using PassiveClient.ServiceReference1;
 using PostSharp.Patterns.Diagnostics;
 using PostSharp.Patterns.Diagnostics.Backends.Log4Net;
 using System;
+using System.Configuration.Install;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.ServiceModel;
+using System.ServiceProcess;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -115,7 +118,7 @@ namespace PassiveClient
                     op();
                     break;
                 }
-                catch (TimeoutException e)
+                catch (System.TimeoutException e)
                 {
                     if (inTimeOutException != null)
                         inTimeOutException();
@@ -145,7 +148,7 @@ namespace PassiveClient
                 {
                     return op();
                 }
-                catch (TimeoutException e)
+                catch (System.TimeoutException e)
                 {
                     if (inTimeOutException != null)
                         inTimeOutException();
@@ -994,25 +997,6 @@ namespace PassiveClient
                 if (proxy != null && proxy.State == CommunicationState.Opened)
                     proxy.Close();
             }
-        }
-    }
-
-    [Log(AttributeExclude = true)]
-    public class StartClass
-    {
-        
-        public static void Main(string[] args)
-        {
-            InitializeLoggingBackend();
-            Program.StartFunc(args);
-        }
-
-        
-        public static void InitializeLoggingBackend()
-        {
-            log4net.Config.XmlConfigurator.Configure();
-            var log4NetLoggingBackend = new Log4NetLoggingBackend();
-            LoggingServices.DefaultBackend = log4NetLoggingBackend;
         }
     }
 }

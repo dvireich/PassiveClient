@@ -35,6 +35,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.StartButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
+            this.AddToServices = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -82,7 +83,7 @@
             // 
             // StartButton
             // 
-            this.StartButton.Location = new System.Drawing.Point(160, 113);
+            this.StartButton.Location = new System.Drawing.Point(195, 113);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(75, 23);
             this.StartButton.TabIndex = 5;
@@ -100,12 +101,25 @@
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
+            // AddToServices
+            // 
+            this.AddToServices.AutoSize = true;
+            this.AddToServices.Checked = true;
+            this.AddToServices.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AddToServices.Location = new System.Drawing.Point(24, 113);
+            this.AddToServices.Name = "AddToServices";
+            this.AddToServices.Size = new System.Drawing.Size(134, 21);
+            this.AddToServices.TabIndex = 7;
+            this.AddToServices.Text = "Add To Services";
+            this.AddToServices.UseVisualStyleBackColor = true;
+            // 
             // LoginFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 194);
             this.ControlBox = false;
+            this.Controls.Add(this.AddToServices);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.PasswordTextBox);
@@ -133,6 +147,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.CheckBox AddToServices;
     }
 }
 
