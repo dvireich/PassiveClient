@@ -6,9 +6,6 @@ C:\Users\dvireich\Documents\Visual Studio 2015\Projects\PassiveClient\PassiveCli
 C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\bin\Debug\PassiveClient.exe.config
 C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\bin\Debug\PassiveClient.exe
 C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\bin\Debug\PassiveClient.pdb
-C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\obj\Debug\PassiveClient.csproj.CoreCompileInputs.cache
-C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\obj\Debug\PassiveClient.exe
-C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\obj\Debug\PassiveClient.pdb
 C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\bin\Debug\log4net.dll
 C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\bin\Debug\PostSharp.dll
 C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\bin\Debug\PostSharp.Patterns.Aggregation.dll
@@ -24,7 +21,9 @@ C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveCl
 C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\bin\Debug\PostSharp.Patterns.Diagnostics.Backends.Log4Net.xml
 C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\bin\Debug\PostSharp.Patterns.Threading.xml
 C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\bin\Debug\PassiveClient.pssym
+C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\obj\Debug\PassiveClient.csproj.CoreCompileInputs.cache
 C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\obj\Debug\PassiveClient.csproj.CopyComplete
 C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\obj\Debug\PassiveClient.exe.postsharp
+C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\obj\Debug\PassiveClient.exe
+C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\obj\Debug\PassiveClient.pdb
 C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\obj\Debug\PostSharpHost.config
-C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\obj\Debug\PassiveClient.csprojAssemblyReference.cache

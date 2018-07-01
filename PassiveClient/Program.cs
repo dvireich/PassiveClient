@@ -247,62 +247,62 @@ namespace PassiveClient
             }
         }
 
-        private static void setStartUp(bool set)
-        {
-            AddToStartup(set);
-        }
+        //private static void setStartUp(bool set)
+        //{
+        //    AddToStartup(set);
+        //}
 
-        public static bool AddToStartup(bool set)
-        {
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\" + System.Reflection.Assembly.GetExecutingAssembly().Location.Split('\\').Last();
-            if (set)
-            {
-                if (!File.Exists(path))
-                {
-                    try
-                    {
-                        File.Copy(System.Reflection.Assembly.GetExecutingAssembly().Location, path, true);
-                        Console.WriteLine("Added to startup");
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Error: " + e.Message);
-                    }
+        //public static bool AddToStartup(bool set)
+        //{
+        //    var path = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\" + System.Reflection.Assembly.GetExecutingAssembly().Location.Split('\\').Last();
+        //    if (set)
+        //    {
+        //        if (!File.Exists(path))
+        //        {
+        //            try
+        //            {
+        //                File.Copy(System.Reflection.Assembly.GetExecutingAssembly().Location, path, true);
+        //                Console.WriteLine("Added to startup");
+        //            }
+        //            catch (Exception e)
+        //            {
+        //                Console.WriteLine("Error: " + e.Message);
+        //            }
 
-                }
-            }
-            else
-            {
-                if (File.Exists(path))
-                {
-                    try
-                    {
-                        File.Delete(path);
-                        Console.WriteLine("Deleted from startup");
-                    }
-                    catch
-                    {
-                        //This means that the file is running so we need to close the program and then delete it
-                        StreamWriter sw = new StreamWriter("delete.bat");
-                        //Waites 60 sec
-                        sw.WriteLine("ping 127.0.0.1 -n 60 > nul");
-                        //First enter the directory
-                        sw.WriteLine("cd " + Environment.GetFolderPath(Environment.SpecialFolder.Startup));
-                        //only after that delete the file
-                        sw.WriteLine("del " + System.Reflection.Assembly.GetExecutingAssembly().Location.Split('\\').Last());
-                        //if the in this catch that must be because the file is in startup folder, so delete the newly created delete.bat
-                        sw.WriteLine("del delete.bat");
-                        sw.Close();
-                        ProcessStartInfo Info = new ProcessStartInfo();
-                        Info.WindowStyle = ProcessWindowStyle.Hidden;
-                        Info.CreateNoWindow = true;
-                        Info.FileName = "delete.bat";
-                        Process.Start(Info);
-                    }
-                }
-            }
-            return true;
-        }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (File.Exists(path))
+        //        {
+        //            try
+        //            {
+        //                File.Delete(path);
+        //                Console.WriteLine("Deleted from startup");
+        //            }
+        //            catch
+        //            {
+        //                //This means that the file is running so we need to close the program and then delete it
+        //                StreamWriter sw = new StreamWriter("delete.bat");
+        //                //Waites 60 sec
+        //                sw.WriteLine("ping 127.0.0.1 -n 60 > nul");
+        //                //First enter the directory
+        //                sw.WriteLine("cd " + Environment.GetFolderPath(Environment.SpecialFolder.Startup));
+        //                //only after that delete the file
+        //                sw.WriteLine("del " + System.Reflection.Assembly.GetExecutingAssembly().Location.Split('\\').Last());
+        //                //if the in this catch that must be because the file is in startup folder, so delete the newly created delete.bat
+        //                sw.WriteLine("del delete.bat");
+        //                sw.Close();
+        //                ProcessStartInfo Info = new ProcessStartInfo();
+        //                Info.WindowStyle = ProcessWindowStyle.Hidden;
+        //                Info.CreateNoWindow = true;
+        //                Info.FileName = "delete.bat";
+        //                Process.Start(Info);
+        //            }
+        //        }
+        //    }
+        //    return true;
+        //}
 
         private static void PrintArgsUsage()
         {
@@ -527,7 +527,7 @@ namespace PassiveClient
                     MainLoop();
                 }
 
-                setStartUp(false);
+                //setStartUp(false);
             }
             catch (Exception e)
             {

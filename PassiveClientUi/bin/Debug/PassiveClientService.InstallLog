@@ -1,0 +1,151 @@
+﻿Installing assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Installing service Dvir...
+Service Dvir has been successfully installed.
+Creating EventLog source Dvir in log Application...
+Committing assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Installing assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Installing service Dvir...
+Creating EventLog source Dvir in log Application...
+Rolling back assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Restoring event log to previous state for source Dvir.
+Installing assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Installing service Dvir...
+Creating EventLog source Dvir in log Application...
+Rolling back assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Restoring event log to previous state for source Dvir.
+Installing assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Installing service Dvir...
+Creating EventLog source Dvir in log Application...
+Rolling back assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Restoring event log to previous state for source Dvir.
+Installing assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Unable to create an instance of the PassiveClientService.ProjectInstaller installer type.
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+The inner exception System.InvalidOperationException was thrown with the following error message: Sequence contains no elements.
+Rolling back assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Unable to create an instance of the PassiveClientService.ProjectInstaller installer type.
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+The inner exception System.InvalidOperationException was thrown with the following error message: Sequence contains no elements.
+Installing assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Installing assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Unable to create an instance of the PassiveClientService.ProjectInstaller installer type.
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+The inner exception System.InvalidOperationException was thrown with the following error message: Sequence contains no elements.
+Rolling back assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Installing assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Installing service dvir...
+Creating EventLog source dvir in log Application...
+Rolling back assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Restoring event log to previous state for source dvir.
+Installing assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Installing service dvir...
+Creating EventLog source dvir in log Application...
+Rolling back assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Restoring event log to previous state for source dvir.
+Installing assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Installing service dvir...
+Creating EventLog source dvir in log Application...
+Rolling back assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Restoring event log to previous state for source dvir.
+Installing assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Installing service dvir...
+Creating EventLog source dvir in log Application...
+Rolling back assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Restoring event log to previous state for source dvir.
+Installing assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Installing service dvir...
+Creating EventLog source dvir in log Application...
+Rolling back assembly 'C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.InstallLog
+   assemblypath = C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClientUi\bin\Debug\PassiveClientService.exe
+Restoring event log to previous state for source dvir.

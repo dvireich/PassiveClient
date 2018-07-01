@@ -71,10 +71,7 @@ namespace PassiveClientUi
                                             "morethanoneclinet=true",
                                              string.Format("username={0}",UserNameTextBox.Text),
                                              string.Format("password={0}",PasswordTextBox.Text)};
-            if (AddToServices.Checked)
-            {
-                argsArr.Add("/Install");
-            }
+            
             Process.Start(new ProcessStartInfo()
             {
                 UseShellExecute = false,

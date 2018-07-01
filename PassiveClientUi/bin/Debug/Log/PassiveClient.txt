@@ -43054,3 +43054,87 @@ C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveCl
 2018-07-01 04:53:59,818 [426] DEBUG Trace -     Program.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound({System.Func`1[System.Boolean]}, null, null, null) | Succeeded, returnValue = true.
 2018-07-01 04:53:59,818 [426] DEBUG Trace -     Program.processNextCommand({PassiveClient.Program+Shell}) | Starting.
 2018-07-01 04:53:59,818 [426] DEBUG Trace -       Program.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound({System.Func`1[System.Tuple`3[System.String,System.String,System.String]]}, null, null, null) | Starting.
+2018-07-01 21:54:16,373 [1] DEBUG Trace - Program..cctor() | Starting.
+2018-07-01 21:54:16,395 [1] DEBUG Trace - Program..cctor() | Succeeded.
+2018-07-01 21:54:16,399 [1] DEBUG Trace - Program.StartFunc([ "hidden=true", "morethanoneclinet=true", "username=dvir", "password=1234", "/Install" ]) | Starting.
+2018-07-01 21:54:16,399 [1] DEBUG Trace -   Program.PrintArgsUsage() | Starting.
+2018-07-01 21:54:16,399 [1] DEBUG Trace -   Program.PrintArgsUsage() | Succeeded.
+2018-07-01 21:54:16,411 [1] DEBUG Trace -   Program.MainLoop() | Starting.
+2018-07-01 21:54:16,413 [1] DEBUG Trace -     Program.Authenticate("dvir", *******, <out>, <out>) | Starting.
+2018-07-01 21:54:16,414 [1] DEBUG Trace -       Program.initializeServiceReferences("Authentication") | Starting.
+2018-07-01 21:54:16,433 [1] DEBUG Trace -       Program.initializeServiceReferences("Authentication") | Succeeded, returnValue = {PassiveClient.Authentication.IAuthentication}.
+2018-07-01 21:54:16,433 [1] DEBUG Trace -       AuthenticateAndSignInRequest..ctor() | Starting.
+2018-07-01 21:54:16,434 [1] DEBUG Trace -       AuthenticateAndSignInRequest..ctor() | Succeeded.
+2018-07-01 21:54:17,073 [1] DEBUG Trace -       AuthenticateAndSignInResponse..ctor() | Starting.
+2018-07-01 21:54:17,073 [1] DEBUG Trace -       AuthenticateAndSignInResponse..ctor() | Succeeded.
+2018-07-01 21:54:17,074 [1] DEBUG Trace -     Program.Authenticate("dvir", *******, <out>, <out>) | Succeeded, error = "", result = "90f995f7-0674-490d-a94e-c93c26e3b9fa", returnValue = true.
+2018-07-01 21:54:17,074 [1] DEBUG Trace -     Program.initializeServiceReferences(null) | Starting.
+2018-07-01 21:54:17,079 [1] DEBUG Trace -     Program.initializeServiceReferences(null) | Succeeded, returnValue = {PassiveClient.ServiceReference1.IPassiveShell}.
+2018-07-01 21:54:17,079 [1] DEBUG Trace -     Program.CleanPrevId() | Starting.
+2018-07-01 21:54:17,079 [1] DEBUG Trace -     Program.CleanPrevId() | Succeeded.
+2018-07-01 21:54:17,091 [1] DEBUG Trace -     Program.RegisterCallBacks() | Starting.
+2018-07-01 21:54:17,092 [1] DEBUG Trace -       StatusCallBack..cctor() | Starting.
+2018-07-01 21:54:17,092 [1] DEBUG Trace -         Shell..ctor() | Starting.
+2018-07-01 21:54:17,092 [1] DEBUG Trace -         Shell..ctor() | Succeeded.
+2018-07-01 21:54:17,092 [1] DEBUG Trace -       StatusCallBack..cctor() | Succeeded.
+2018-07-01 21:54:17,093 [1] DEBUG Trace -       StatusCallBack..ctor() | Starting.
+2018-07-01 21:54:17,093 [1] DEBUG Trace -       StatusCallBack..ctor() | Succeeded.
+2018-07-01 21:54:17,093 [1] DEBUG Trace -       CallBack..cctor() | Starting.
+2018-07-01 21:54:17,093 [1] DEBUG Trace -         Shell..ctor() | Starting.
+2018-07-01 21:54:17,093 [1] DEBUG Trace -         Shell..ctor() | Succeeded.
+2018-07-01 21:54:17,093 [1] DEBUG Trace -       CallBack..cctor() | Succeeded.
+2018-07-01 21:54:17,093 [1] DEBUG Trace -       CallBack..ctor() | Starting.
+2018-07-01 21:54:17,093 [1] DEBUG Trace -       CallBack..ctor() | Succeeded.
+2018-07-01 21:54:17,094 [1] DEBUG Trace -       CallBack.SetStatusCallback({PassiveClient.Program+StatusCallBack}) | Starting.
+2018-07-01 21:54:17,094 [1] DEBUG Trace -       CallBack.SetStatusCallback({PassiveClient.Program+StatusCallBack}) | Succeeded.
+2018-07-01 21:54:17,094 [1] DEBUG Trace -       StatusCallBack.SendServerCallBack() | Starting.
+2018-07-01 21:54:17,096 [1] DEBUG Trace -         AletCallBackClient..ctor({System.ServiceModel.InstanceContext}, {System.ServiceModel.NetTcpBinding}, {net.tcp://localhost/ShellTrasferServer/CallBack/90f995f7-0674-490d-a94e-c93c26e3b9fa}) | Starting.
+2018-07-01 21:54:17,096 [1] DEBUG Trace -         AletCallBackClient..ctor({System.ServiceModel.InstanceContext}, {System.ServiceModel.NetTcpBinding}, {net.tcp://localhost/ShellTrasferServer/CallBack/90f995f7-0674-490d-a94e-c93c26e3b9fa}) | Succeeded.
+2018-07-01 21:54:17,097 [1] DEBUG Trace -         AletCallBackClient.RegisterCallBackFunction("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0", "status") | Starting.
+2018-07-01 21:54:17,099 [1] DEBUG Trace -         AletCallBackClient.RegisterCallBackFunction("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0", "status") | Succeeded.
+2018-07-01 21:54:17,099 [1] DEBUG Trace -       StatusCallBack.SendServerCallBack() | Succeeded.
+2018-07-01 21:54:17,100 [1] DEBUG Trace -       CallBack.SendServerCallBack() | Starting.
+2018-07-01 21:54:17,100 [1] DEBUG Trace -         AletCallBackClient..ctor({System.ServiceModel.InstanceContext}, {System.ServiceModel.NetTcpBinding}, {net.tcp://localhost/ShellTrasferServer/CallBack/90f995f7-0674-490d-a94e-c93c26e3b9fa}) | Starting.
+2018-07-01 21:54:17,100 [1] DEBUG Trace -         AletCallBackClient..ctor({System.ServiceModel.InstanceContext}, {System.ServiceModel.NetTcpBinding}, {net.tcp://localhost/ShellTrasferServer/CallBack/90f995f7-0674-490d-a94e-c93c26e3b9fa}) | Succeeded.
+2018-07-01 21:54:17,100 [1] DEBUG Trace -         AletCallBackClient.RegisterCallBackFunction("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0", "Main") | Starting.
+2018-07-01 21:54:17,101 [1] DEBUG Trace -         AletCallBackClient.RegisterCallBackFunction("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0", "Main") | Succeeded.
+2018-07-01 21:54:17,101 [1] DEBUG Trace -       CallBack.SendServerCallBack() | Succeeded.
+2018-07-01 21:54:17,101 [1] DEBUG Trace -     Program.RegisterCallBacks() | Succeeded.
+2018-07-01 21:54:17,102 [1] DEBUG Trace -     Program.StartKeepAliveCallbackThread({PassiveClient.Program+CallBack}, {PassiveClient.Program+StatusCallBack}) | Starting.
+2018-07-01 21:54:17,102 [1] DEBUG Trace -     Program.StartKeepAliveCallbackThread({PassiveClient.Program+CallBack}, {PassiveClient.Program+StatusCallBack}) | Succeeded, returnValue = {System.Threading.Timer}.
+2018-07-01 21:54:17,103 [9] DEBUG Trace - CallBack.KeppAlive() | Starting.
+2018-07-01 21:54:17,104 [9] DEBUG Trace -   AletCallBackClient.KeepCallBackAlive("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0") | Starting.
+2018-07-01 21:54:17,104 [9] DEBUG Trace -   AletCallBackClient.KeepCallBackAlive("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0") | Succeeded.
+2018-07-01 21:54:17,104 [9] DEBUG Trace - CallBack.KeppAlive() | Succeeded.
+2018-07-01 21:54:17,104 [9] DEBUG Trace - StatusCallBack.KeppAlive() | Starting.
+2018-07-01 21:54:17,104 [9] DEBUG Trace -   AletCallBackClient.KeepCallBackAlive("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0") | Starting.
+2018-07-01 21:54:17,104 [9] DEBUG Trace -   AletCallBackClient.KeepCallBackAlive("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0") | Succeeded.
+2018-07-01 21:54:17,105 [9] DEBUG Trace - StatusCallBack.KeppAlive() | Succeeded.
+2018-07-01 21:54:17,120 [8] DEBUG Trace - CallBack.KeepCallbackALive() | Starting.
+2018-07-01 21:54:17,120 [8] DEBUG Trace - CallBack.KeepCallbackALive() | Succeeded.
+2018-07-01 21:54:17,133 [8] DEBUG Trace - CallBack.KeepCallbackALive() | Starting.
+2018-07-01 21:54:17,133 [8] DEBUG Trace - CallBack.KeepCallbackALive() | Succeeded.
+2018-07-01 21:55:02,105 [9] DEBUG Trace - CallBack.KeppAlive() | Starting.
+2018-07-01 21:55:02,105 [9] DEBUG Trace -   AletCallBackClient.KeepCallBackAlive("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0") | Starting.
+2018-07-01 21:55:02,105 [9] DEBUG Trace -   AletCallBackClient.KeepCallBackAlive("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0") | Succeeded.
+2018-07-01 21:55:02,105 [9] DEBUG Trace - CallBack.KeppAlive() | Succeeded.
+2018-07-01 21:55:02,105 [9] DEBUG Trace - StatusCallBack.KeppAlive() | Starting.
+2018-07-01 21:55:02,105 [9] DEBUG Trace -   AletCallBackClient.KeepCallBackAlive("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0") | Starting.
+2018-07-01 21:55:02,105 [9] DEBUG Trace -   AletCallBackClient.KeepCallBackAlive("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0") | Succeeded.
+2018-07-01 21:55:02,105 [9] DEBUG Trace - StatusCallBack.KeppAlive() | Succeeded.
+2018-07-01 21:55:02,123 [8] DEBUG Trace - CallBack.KeepCallbackALive() | Starting.
+2018-07-01 21:55:02,123 [8] DEBUG Trace - CallBack.KeepCallbackALive() | Succeeded.
+2018-07-01 21:55:02,129 [8] DEBUG Trace - CallBack.KeepCallbackALive() | Starting.
+2018-07-01 21:55:02,129 [8] DEBUG Trace - CallBack.KeepCallbackALive() | Succeeded.
+2018-07-01 21:55:47,106 [9] DEBUG Trace - CallBack.KeppAlive() | Starting.
+2018-07-01 21:55:47,106 [9] DEBUG Trace -   AletCallBackClient.KeepCallBackAlive("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0") | Starting.
+2018-07-01 21:55:47,106 [9] DEBUG Trace -   AletCallBackClient.KeepCallBackAlive("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0") | Succeeded.
+2018-07-01 21:55:47,106 [9] DEBUG Trace - CallBack.KeppAlive() | Succeeded.
+2018-07-01 21:55:47,107 [9] DEBUG Trace - StatusCallBack.KeppAlive() | Starting.
+2018-07-01 21:55:47,107 [9] DEBUG Trace -   AletCallBackClient.KeepCallBackAlive("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0") | Starting.
+2018-07-01 21:55:47,107 [9] DEBUG Trace -   AletCallBackClient.KeepCallBackAlive("c6acc3b9-92fc-441a-91e0-81cf7adc8fb0") | Succeeded.
+2018-07-01 21:55:47,107 [9] DEBUG Trace - StatusCallBack.KeppAlive() | Succeeded.
+2018-07-01 21:55:47,113 [7] DEBUG Trace - CallBack.KeepCallbackALive() | Starting.
+2018-07-01 21:55:47,113 [7] DEBUG Trace - CallBack.KeepCallbackALive() | Succeeded.
+2018-07-01 21:55:47,121 [7] DEBUG Trace - CallBack.KeepCallbackALive() | Starting.
+2018-07-01 21:55:47,121 [7] DEBUG Trace - CallBack.KeepCallbackALive() | Succeeded.
