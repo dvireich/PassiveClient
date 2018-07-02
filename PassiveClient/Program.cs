@@ -1,8 +1,6 @@
 ﻿using Microsoft.Win32;
 using PassiveClient.Authentication;
 using PassiveClient.ServiceReference1;
-using PostSharp.Patterns.Diagnostics;
-using PostSharp.Patterns.Diagnostics.Backends.Log4Net;
 using System;
 using System.Configuration.Install;
 using System.Diagnostics;
@@ -15,7 +13,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-[assembly: Log]
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
 
 
