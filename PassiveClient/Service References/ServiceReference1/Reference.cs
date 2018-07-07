@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using PostSharp.Patterns.Diagnostics;
+
 namespace PassiveClient.ServiceReference1 {
     
     
@@ -132,7 +134,8 @@ namespace PassiveClient.ServiceReference1 {
             this.taskId = taskId;
         }
     }
-    
+
+    [Log(AttributeExclude = true)]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -468,7 +471,8 @@ namespace PassiveClient.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPassiveShell/ErrorNextCommand", ReplyAction="http://tempuri.org/IPassiveShell/ErrorNextCommandResponse")]
         System.Threading.Tasks.Task ErrorNextCommandAsync(string id, string taskId, string response);
     }
-    
+
+    [Log(AttributeExclude = true)]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

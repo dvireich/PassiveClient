@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
 using PassiveClient.Authentication;
 using PassiveClient.ServiceReference1;
+using PostSharp.Extensibility;
+using PostSharp.Patterns.Diagnostics;
 using System;
 using System.Configuration.Install;
 using System.Diagnostics;
@@ -18,25 +20,28 @@ using System.Threading.Tasks;
 
 namespace PassiveClient
 {
+    [Log(AttributeTargetElements= MulticastTargets.Method, AttributeTargetTypeAttributes= MulticastAttributes.Public, AttributeTargetMemberAttributes= MulticastAttributes.Private | MulticastAttributes.Public)]
     public class Program
     {
         const string Virsion = "11";
-        static IPassiveShell shelService;
-        static Guid id = Guid.NewGuid();
-        static bool _fistOperation = true;
-        static volatile Object endProgram = new Object();
-        private static string _currentTasktId;
         const string run = "Run";
         const string nextCommand = "NextCommand";
         const string closeShell = "CloseShell";
         const string download = "Download";
         const string upload = "Upload";
         const string userType = "PassiveClient";
+
+        public static IPassiveShell shelService;
+        public static Guid id = Guid.NewGuid();
+        static bool _fistOperation = true;
+        static volatile Object endProgram = new Object();
+        private static string _currentTasktId;
+        
         static CallBack callback = null;
         static StatusCallBack status = null;
-        private static string _passiveClientNickName = string.Empty;
+        public static string _passiveClientNickName = string.Empty;
         private static bool shouldRestartConnections = false;
-        private static string _wcfServicesPathId;
+        public static string _wcfServicesPathId;
         private static string _username = string.Empty;
         private static string _password = string.Empty;
 
@@ -106,6 +111,7 @@ namespace PassiveClient
             }
         }
 
+        [Log(AttributeExclude = true)]
         public static void SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(Action op, Action inTimeOutException = null, Action inCommunicationException = null, Action inGeneralException = null)
         {
             while (true)
@@ -137,6 +143,7 @@ namespace PassiveClient
             }
         }
 
+        [Log(AttributeExclude = true)]
         public static T SendRequestAndTryAgainIfTimeOutOrEndpointNotFound<T>(Func<T> op, Action inTimeOutException = null, Action inCommunicationException = null, Action inGeneralException = null)
         {
             while (true)
@@ -310,7 +317,6 @@ namespace PassiveClient
             Console.WriteLine("password=<password>");
         }
 
-
         public static void StartFunc(string[] args)
         {
             
@@ -475,7 +481,7 @@ namespace PassiveClient
             
         }
 
-        private static void MainLoop()
+        public  static void MainLoop()
         {
             try
             {
@@ -611,7 +617,7 @@ namespace PassiveClient
             }
         }
 
-        private static void CheckMissions(Shell shellHandler)
+        public static void CheckMissions(Shell shellHandler)
         {
             if (SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => shelService.HasCommand(id.ToString())))
                 try
@@ -674,8 +680,6 @@ namespace PassiveClient
                 }
         }
 
-        
-
         private static void CleanPrevId()
         {
             if (_fistOperation)
@@ -719,280 +723,6 @@ namespace PassiveClient
                 //the sign is the empty string send by the server
                 default:
                     break;
-            }
-        }
-
-        public sealed class Shell
-        {
-            private string _lastCommand;
-            private Process _process;
-
-            public void CloseShell()
-            {
-                if (_process != null)
-                {
-                    _process.StandardOutput.Close();
-                    _process.StandardInput.Close();
-                    _process.Close();
-                }
-            }
-
-
-            public string NextCommand(string command)
-            {
-                _lastCommand = command;
-                var stdin = _process.StandardInput;
-                stdin.WriteLine(command);
-                StringBuilder str;
-                string returnAns;
-                GetStdOutString(stdin, out str, out returnAns, command);
-                str.Clear();
-                return returnAns;
-            }
-
-            public bool WaitforExitAndAbort(Action act, int timeout)
-            {
-                var wait = new ManualResetEvent(false);
-                var work = new Thread(() =>
-                {
-                    act();
-                    wait.Set();
-                });
-                work.Start();
-                var signal = wait.WaitOne(timeout);
-                if (!signal)
-                {
-                    work.Abort();
-                }
-                return signal;
-            }
-
-            private void GetStdOutString(StreamWriter stdin, out StringBuilder str, out string returnAns, string command)
-            {
-                var clientNextLine = "";
-                stdin.WriteLine("echo #WAITING");
-                stdin.Flush();
-
-                var stdout = _process.StandardOutput;
-                str = new StringBuilder();
-                while (true)
-                {
-                    string line = string.Empty;
-                    if (!WaitforExitAndAbort(() =>
-                    {
-                        line = stdout.ReadLine();
-                    }, 30 * 1000))
-                    {
-                        if (line.Contains("All"))
-                        {
-                            stdin.WriteLine("All");
-                            stdin.WriteLine("echo #WAITING");
-                        }
-                        else if (line.Contains("Yes"))
-                        {
-                            stdin.WriteLine("Yes");
-                            stdin.WriteLine("echo #WAITING");
-
-                        }
-                        else
-                        {
-                            break;
-                        }
-
-                    }
-
-                    if (line == null)
-                    {
-                        str.AppendLine("Error using command " + command);
-                        break;
-                    }
-                    //The last line of the PClient command
-                    if (line == "Wating for command")
-                    {
-                        str.AppendLine(line);
-                        break;
-                    }
-                    if (line == "#WAITING")
-                    {
-                        break;
-                    }
-                    if (line.Contains("#WAITING"))
-                    {
-                        clientNextLine = line.Substring(0, line.Length - "echo#WAITING".Length - "\n\r".Length);
-                    }
-                    else
-                    {
-                        str.AppendLine(line);
-                    }
-
-                }
-                str.AppendLine(clientNextLine);
-                returnAns = str.ToString();
-            }
-            public string Run()
-            {
-                if (_process != null)
-                    _process.Close();
-                var p = Process.Start(new ProcessStartInfo()
-                {
-                    UseShellExecute = false,
-                    RedirectStandardInput = true,
-                    RedirectStandardOutput = true,
-                    FileName = "cmd.exe",
-                    WindowStyle = ProcessWindowStyle.Hidden,
-                    CreateNoWindow = true,
-                    WorkingDirectory = Path.GetDirectoryName(@"C:\"),
-                    Verb = "runas"
-                });
-                _process = p;
-                StringBuilder str;
-                string returnAns;
-                GetStdOutString(p.StandardInput, out str, out returnAns, "Activate");
-                var resultString = str.ToString();
-                str.Clear();
-                return resultString;
-
-            }
-        }
-
-        public class CallBack : IAletCallBackCallback, IDisposable
-        {
-            public static AletCallBackClient proxy;
-            public static Shell shellHandler = new Shell();
-            public static StatusCallBack statusCallBack;
-            private bool isDead = false;
-
-            private void SetReliableSessionAndInactivityTimeoutAndReaderQuotas(NetTcpBinding wsd)
-            {
-                wsd.ReliableSession.Enabled = true;
-                wsd.ReliableSession.InactivityTimeout = TimeSpan.MaxValue;
-                System.Xml.XmlDictionaryReaderQuotas readerQuotas = new System.Xml.XmlDictionaryReaderQuotas();
-                readerQuotas.MaxDepth = System.Int32.MaxValue;
-                readerQuotas.MaxStringContentLength = System.Int32.MaxValue;
-                readerQuotas.MaxArrayLength = System.Int32.MaxValue;
-                readerQuotas.MaxBytesPerRead = System.Int32.MaxValue;
-                readerQuotas.MaxNameTableCharCount = System.Int32.MaxValue;
-                wsd.ReaderQuotas = readerQuotas;
-            }
-
-            public void SetStatusCallback(StatusCallBack status)
-            {
-                statusCallBack = status;
-            }
-            public void SendServerCallBack()
-            {
-                Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack/{0}", _wcfServicesPathId));
-                NetTcpBinding wsd = new NetTcpBinding();
-                wsd.Security.Mode = SecurityMode.None;
-                wsd.CloseTimeout = TimeSpan.MaxValue;
-                wsd.ReceiveTimeout = TimeSpan.MaxValue;
-                wsd.OpenTimeout = TimeSpan.MaxValue;
-                wsd.SendTimeout = TimeSpan.MaxValue;
-                EndpointAddress ea = new EndpointAddress(endPointAdress);
-                proxy = new AletCallBackClient(new InstanceContext(this), wsd, ea);
-                proxy.InnerDuplexChannel.OperationTimeout = TimeSpan.MaxValue;
-                proxy.InnerChannel.OperationTimeout = TimeSpan.MaxValue;
-                proxy.RegisterCallBackFunction(id.ToString(), "Main");
-            }
-
-            public void CallBackFunction(string str)
-            {
-                if (str == "livnessCheck")
-                    return;
-                else if (str.Split(' ').First().ToLower() == "nickname")
-                    _passiveClientNickName = str.Split(' ').Last();
-                try
-                {
-                    CheckMissions(shellHandler);
-                }
-                catch (Exception e)
-                {
-                    Dispose();
-                    statusCallBack.Dispose();
-                    if (shelService != null)
-                    {
-                        ((ICommunicationObject)shelService).Close();
-                        shelService = null;
-                    }
-                    MainLoop();
-                }
-            }
-
-            public void Dispose()
-            {
-                isDead = true;
-                if (proxy != null && proxy.State == CommunicationState.Opened)
-                    proxy.Close();
-            }
-
-            public void KeppAlive()
-            {
-                if (!isDead)
-                    proxy.KeepCallBackAlive(id.ToString());
-            }
-
-            public void KeepCallbackALive()
-            {
-                //Do nothing, this function is only for the server in order to send traffic through the connection pipe  
-            }
-        }
-
-        public class StatusCallBack : IAletCallBackCallback, IDisposable
-        {
-            public static AletCallBackClient proxy;
-            public static Shell shellHandler = new Shell();
-            private bool isDead;
-
-            private void SetReliableSessionAndInactivityTimeoutAndReaderQuotas(NetTcpBinding wsd)
-            {
-                wsd.ReliableSession.Enabled = true;
-                wsd.ReliableSession.InactivityTimeout = TimeSpan.MaxValue;
-                System.Xml.XmlDictionaryReaderQuotas readerQuotas = new System.Xml.XmlDictionaryReaderQuotas();
-                readerQuotas.MaxDepth = System.Int32.MaxValue;
-                readerQuotas.MaxStringContentLength = System.Int32.MaxValue;
-                readerQuotas.MaxArrayLength = System.Int32.MaxValue;
-                readerQuotas.MaxBytesPerRead = System.Int32.MaxValue;
-                readerQuotas.MaxNameTableCharCount = System.Int32.MaxValue;
-                wsd.ReaderQuotas = readerQuotas;
-            }
-
-            public void SendServerCallBack()
-            {
-
-                Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack/{0}", _wcfServicesPathId));
-                NetTcpBinding wsd = new NetTcpBinding();
-                wsd.Security.Mode = SecurityMode.None;
-                wsd.CloseTimeout = TimeSpan.MaxValue;
-                wsd.ReceiveTimeout = TimeSpan.MaxValue;
-                wsd.OpenTimeout = TimeSpan.MaxValue;
-                wsd.SendTimeout = TimeSpan.MaxValue;
-                EndpointAddress ea = new EndpointAddress(endPointAdress);
-                proxy = new AletCallBackClient(new InstanceContext(this), wsd, ea);
-                proxy.InnerDuplexChannel.OperationTimeout = TimeSpan.MaxValue;
-                proxy.InnerChannel.OperationTimeout = TimeSpan.MaxValue;
-                proxy.RegisterCallBackFunction(id.ToString(), "status");
-            }
-
-            public void CallBackFunction(string str)
-            {
-            }
-
-            public void KeppAlive()
-            {
-                if (!isDead)
-                    proxy.KeepCallBackAlive(id.ToString());
-            }
-
-            public void KeepCallbackALive()
-            {
-                //Do nothing, this function is only for the server in order to send traffic through the connection pipe  
-            }
-
-            public void Dispose()
-            {
-                isDead = true;
-                if (proxy != null && proxy.State == CommunicationState.Opened)
-                    proxy.Close();
             }
         }
     }
