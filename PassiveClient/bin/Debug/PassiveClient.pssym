@@ -473,7 +473,7 @@
     </Instance>
   </Class>
   <Class Class="#1">
-    <Instance Declaration="#166=T:[PassiveClient]PassiveClient.CallBack" Id="a7e7e010e51d7090">
+    <Instance Declaration="#166=T:[PassiveClient]PassiveClient.CallBack" Id="a7e7e010a14eaa1a">
       <Target Target="#167=M:[PassiveClient]PassiveClient.CallBack::SetReliableSessionAndInactivityTimeoutAndReaderQuotas(System.ServiceModel.NetTcpBinding)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="0" LinesAvoided="5" />
       </Target>
@@ -496,7 +496,7 @@
         <JoinPoint Advising="#1" Description="#3" Ordinal="6" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#174=T:[PassiveClient]PassiveClient.Program" Id="a7e7e010da20694c">
+    <Instance Declaration="#174=T:[PassiveClient]PassiveClient.Program" Id="a7e7e010d456f5e3">
       <Target Target="#175=M:[PassiveClient]PassiveClient.Program::initializeServiceReferences{T}(System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="9" LinesAvoided="5" />
       </Target>
@@ -552,7 +552,7 @@
         <JoinPoint Advising="#1" Description="#3" Ordinal="26" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#193=T:[PassiveClient]PassiveClient.Shell" Id="a7e7e0107bf5aba1">
+    <Instance Declaration="#193=T:[PassiveClient]PassiveClient.Shell" Id="a7e7e01063f6ee9e">
       <Target Target="#194=M:[PassiveClient]PassiveClient.Shell::CloseShell()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="29" LinesAvoided="5" />
       </Target>
@@ -566,7 +566,7 @@
         <JoinPoint Advising="#1" Description="#3" Ordinal="32" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#198=T:[PassiveClient]PassiveClient.StatusCallBack" Id="a7e7e010cc665007">
+    <Instance Declaration="#198=T:[PassiveClient]PassiveClient.StatusCallBack" Id="a7e7e01069defe36">
       <Target Target="#199=M:[PassiveClient]PassiveClient.StatusCallBack::SetReliableSessionAndInactivityTimeoutAndReaderQuotas(System.ServiceModel.NetTcpBinding)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="34" LinesAvoided="5" />
       </Target>

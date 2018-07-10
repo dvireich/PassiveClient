@@ -65,9 +65,9 @@ namespace PassiveClient
 
             var stdout = _process.StandardOutput;
             str = new StringBuilder();
+            string line = string.Empty;
             while (true)
             {
-                string line = string.Empty;
                 if (!WaitforExitAndAbort(() =>
                 {
                     line = stdout.ReadLine();
