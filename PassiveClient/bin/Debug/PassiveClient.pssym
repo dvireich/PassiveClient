@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Symbols LinesOfCode="1301" PostSharpLinesOfCode="0" EnhancedTypesCount="24" SchemaVersion="1" PostSharpVersion="5.0.52.0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+<Symbols LinesOfCode="1306" PostSharpLinesOfCode="0" EnhancedTypesCount="24" SchemaVersion="1" PostSharpVersion="5.0.52.0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[PostSharp.Patterns.Diagnostics]PostSharp.Patterns.Diagnostics.LogAttribute">
     <Instance File="C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\\PassiveClient.pssln" Line="4" Column="6">
       <Target Target="#2=M:[PassiveClient]PassiveClient.CallBack::#ctor()">
@@ -473,7 +473,7 @@
     </Instance>
   </Class>
   <Class Class="#1">
-    <Instance Declaration="#166=T:[PassiveClient]PassiveClient.CallBack" Id="a7e7e010a14eaa1a">
+    <Instance Declaration="#166=T:[PassiveClient]PassiveClient.CallBack" Id="a7e7e01027fc72c1">
       <Target Target="#167=M:[PassiveClient]PassiveClient.CallBack::SetReliableSessionAndInactivityTimeoutAndReaderQuotas(System.ServiceModel.NetTcpBinding)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="0" LinesAvoided="5" />
       </Target>
@@ -496,7 +496,7 @@
         <JoinPoint Advising="#1" Description="#3" Ordinal="6" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#174=T:[PassiveClient]PassiveClient.Program" Id="a7e7e010d456f5e3">
+    <Instance Declaration="#174=T:[PassiveClient]PassiveClient.Program" Id="a7e7e010f7a523b9">
       <Target Target="#175=M:[PassiveClient]PassiveClient.Program::initializeServiceReferences{T}(System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="9" LinesAvoided="5" />
       </Target>
@@ -552,7 +552,7 @@
         <JoinPoint Advising="#1" Description="#3" Ordinal="26" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#193=T:[PassiveClient]PassiveClient.Shell" Id="a7e7e01063f6ee9e">
+    <Instance Declaration="#193=T:[PassiveClient]PassiveClient.Shell" Id="a7e7e0104fb83270">
       <Target Target="#194=M:[PassiveClient]PassiveClient.Shell::CloseShell()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="29" LinesAvoided="5" />
       </Target>
@@ -566,7 +566,7 @@
         <JoinPoint Advising="#1" Description="#3" Ordinal="32" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#198=T:[PassiveClient]PassiveClient.StatusCallBack" Id="a7e7e01069defe36">
+    <Instance Declaration="#198=T:[PassiveClient]PassiveClient.StatusCallBack" Id="a7e7e010dd9e5ffe">
       <Target Target="#199=M:[PassiveClient]PassiveClient.StatusCallBack::SetReliableSessionAndInactivityTimeoutAndReaderQuotas(System.ServiceModel.NetTcpBinding)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="34" LinesAvoided="5" />
       </Target>

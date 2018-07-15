@@ -77,9 +77,14 @@ namespace PassiveClient
 
         public void Dispose()
         {
-            isDead = true;
-            if (proxy != null && proxy.State == CommunicationState.Opened)
-                proxy.Close();
+            try
+            {
+                isDead = true;
+                if (proxy != null && proxy.State == CommunicationState.Opened)
+                    proxy.Close();
+            }
+            catch { }
+            
         }
 
         public void KeppAlive()
