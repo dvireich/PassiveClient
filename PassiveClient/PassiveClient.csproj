@@ -108,15 +108,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticationableClient.cs" />
     <Compile Include="CallBack.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="CommunicationClient.cs" />
+    <Compile Include="CommunicationExceptionHandler.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="DownloadFileData.cs" />
+    <Compile Include="PassiveClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\AlertCallBack\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\Authentication\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\ServiceReference1\Reference.cs">
+    <Compile Include="Service References\PassiveShell\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -124,6 +134,9 @@
     <Compile Include="Shell.cs" />
     <Compile Include="StartClass.cs" />
     <Compile Include="StatusCallBack.cs" />
+    <Compile Include="CallbackCtorArgs.cs" />
+    <Compile Include="TransferDataHelper.cs" />
+    <Compile Include="UploadFileData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -132,6 +145,13 @@
     <None Include="packages.config" />
     <None Include="PassiveClient_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
+    <None Include="Service References\AlertCallBack\service.wsdl" />
+    <None Include="Service References\AlertCallBack\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AlertCallBack\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\Authentication\Authentication.wsdl" />
     <None Include="Service References\Authentication\Authentication.xsd">
       <SubType>Designer</SubType>
@@ -160,28 +180,25 @@
     <None Include="Service References\Authentication\PassiveClient.Authentication.SignUpResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference1\item.xsd">
+    <None Include="Service References\PassiveShell\090914a3-fa13-4de3-8c00-462d6dd3b614.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\item1.xsd">
+    <None Include="Service References\PassiveShell\090914a3-fa13-4de3-8c00-462d6dd3b6141.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\item2.xsd">
+    <None Include="Service References\PassiveShell\090914a3-fa13-4de3-8c00-462d6dd3b6142.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\item3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference1\PassiveClient.ServiceReference1.DownloadRequest.datasource">
+    <None Include="Service References\PassiveShell\PassiveClient.PassiveShell.DownloadRequest.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference1\PassiveClient.ServiceReference1.PassiveDownloadedFileResponse.datasource">
+    <None Include="Service References\PassiveShell\PassiveClient.PassiveShell.PassiveDownloadedFileResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference1\PassiveClient.ServiceReference1.RemoteFileInfo.datasource">
+    <None Include="Service References\PassiveShell\PassiveClient.PassiveShell.RemoteFileInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference1\ShellTransfer.wsdl" />
+    <None Include="Service References\PassiveShell\PassiveShell.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -199,20 +216,21 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AlertCallBack\" />
     <WCFMetadataStorage Include="Service References\Authentication\" />
-    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
+    <WCFMetadataStorage Include="Service References\PassiveShell\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference1\item.disco" />
+    <None Include="Service References\PassiveShell\090914a3-fa13-4de3-8c00-462d6dd3b614.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
+    <None Include="Service References\PassiveShell\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
+    <None Include="Service References\PassiveShell\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference1\Reference.svcmap">
+    <None Include="Service References\PassiveShell\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -228,6 +246,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\Authentication\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AlertCallBack\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AlertCallBack\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AlertCallBack\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

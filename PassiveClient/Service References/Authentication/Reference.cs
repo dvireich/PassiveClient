@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PassiveClient.Authentication {
+namespace Authentication {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -16,57 +16,57 @@ namespace PassiveClient.Authentication {
     public interface IAuthentication {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/AuthenticateAndSignIn", ReplyAction="http://tempuri.org/IAuthentication/AuthenticateAndSignInResponse")]
-        PassiveClient.Authentication.AuthenticateAndSignInResponse AuthenticateAndSignIn(PassiveClient.Authentication.AuthenticateAndSignInRequest request);
+        Authentication.AuthenticateAndSignInResponse AuthenticateAndSignIn(Authentication.AuthenticateAndSignInRequest request);
         
         // CODEGEN: Generating message contract since the operation has multiple return values.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/AuthenticateAndSignIn", ReplyAction="http://tempuri.org/IAuthentication/AuthenticateAndSignInResponse")]
-        System.Threading.Tasks.Task<PassiveClient.Authentication.AuthenticateAndSignInResponse> AuthenticateAndSignInAsync(PassiveClient.Authentication.AuthenticateAndSignInRequest request);
+        System.Threading.Tasks.Task<Authentication.AuthenticateAndSignInResponse> AuthenticateAndSignInAsync(Authentication.AuthenticateAndSignInRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/Logout", ReplyAction="http://tempuri.org/IAuthentication/LogoutResponse")]
-        PassiveClient.Authentication.LogoutResponse Logout(PassiveClient.Authentication.LogoutRequest request);
+        Authentication.LogoutResponse Logout(Authentication.LogoutRequest request);
         
         // CODEGEN: Generating message contract since the operation has multiple return values.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/Logout", ReplyAction="http://tempuri.org/IAuthentication/LogoutResponse")]
-        System.Threading.Tasks.Task<PassiveClient.Authentication.LogoutResponse> LogoutAsync(PassiveClient.Authentication.LogoutRequest request);
+        System.Threading.Tasks.Task<Authentication.LogoutResponse> LogoutAsync(Authentication.LogoutRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/SignUp", ReplyAction="http://tempuri.org/IAuthentication/SignUpResponse")]
-        PassiveClient.Authentication.SignUpResponse SignUp(PassiveClient.Authentication.SignUpRequest request);
+        Authentication.SignUpResponse SignUp(Authentication.SignUpRequest request);
         
         // CODEGEN: Generating message contract since the operation has multiple return values.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/SignUp", ReplyAction="http://tempuri.org/IAuthentication/SignUpResponse")]
-        System.Threading.Tasks.Task<PassiveClient.Authentication.SignUpResponse> SignUpAsync(PassiveClient.Authentication.SignUpRequest request);
+        System.Threading.Tasks.Task<Authentication.SignUpResponse> SignUpAsync(Authentication.SignUpRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/ChangeUserPassword", ReplyAction="http://tempuri.org/IAuthentication/ChangeUserPasswordResponse")]
-        PassiveClient.Authentication.ChangeUserPasswordResponse ChangeUserPassword(PassiveClient.Authentication.ChangeUserPasswordRequest request);
+        Authentication.ChangeUserPasswordResponse ChangeUserPassword(Authentication.ChangeUserPasswordRequest request);
         
         // CODEGEN: Generating message contract since the operation has multiple return values.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/ChangeUserPassword", ReplyAction="http://tempuri.org/IAuthentication/ChangeUserPasswordResponse")]
-        System.Threading.Tasks.Task<PassiveClient.Authentication.ChangeUserPasswordResponse> ChangeUserPasswordAsync(PassiveClient.Authentication.ChangeUserPasswordRequest request);
+        System.Threading.Tasks.Task<Authentication.ChangeUserPasswordResponse> ChangeUserPasswordAsync(Authentication.ChangeUserPasswordRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/SetSecurityQuestionAndAnswer", ReplyAction="http://tempuri.org/IAuthentication/SetSecurityQuestionAndAnswerResponse")]
-        PassiveClient.Authentication.SetSecurityQuestionAndAnswerResponse SetSecurityQuestionAndAnswer(PassiveClient.Authentication.SetSecurityQuestionAndAnswerRequest request);
+        Authentication.SetSecurityQuestionAndAnswerResponse SetSecurityQuestionAndAnswer(Authentication.SetSecurityQuestionAndAnswerRequest request);
         
         // CODEGEN: Generating message contract since the operation has multiple return values.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/SetSecurityQuestionAndAnswer", ReplyAction="http://tempuri.org/IAuthentication/SetSecurityQuestionAndAnswerResponse")]
-        System.Threading.Tasks.Task<PassiveClient.Authentication.SetSecurityQuestionAndAnswerResponse> SetSecurityQuestionAndAnswerAsync(PassiveClient.Authentication.SetSecurityQuestionAndAnswerRequest request);
+        System.Threading.Tasks.Task<Authentication.SetSecurityQuestionAndAnswerResponse> SetSecurityQuestionAndAnswerAsync(Authentication.SetSecurityQuestionAndAnswerRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/GetSecurityQuestion", ReplyAction="http://tempuri.org/IAuthentication/GetSecurityQuestionResponse")]
-        PassiveClient.Authentication.GetSecurityQuestionResponse GetSecurityQuestion(PassiveClient.Authentication.GetSecurityQuestionRequest request);
+        Authentication.GetSecurityQuestionResponse GetSecurityQuestion(Authentication.GetSecurityQuestionRequest request);
         
         // CODEGEN: Generating message contract since the operation has multiple return values.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/GetSecurityQuestion", ReplyAction="http://tempuri.org/IAuthentication/GetSecurityQuestionResponse")]
-        System.Threading.Tasks.Task<PassiveClient.Authentication.GetSecurityQuestionResponse> GetSecurityQuestionAsync(PassiveClient.Authentication.GetSecurityQuestionRequest request);
+        System.Threading.Tasks.Task<Authentication.GetSecurityQuestionResponse> GetSecurityQuestionAsync(Authentication.GetSecurityQuestionRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/RestorePasswordFromUserNameAndSecurityQuestion" +
             "", ReplyAction="http://tempuri.org/IAuthentication/RestorePasswordFromUserNameAndSecurityQuestion" +
             "Response")]
-        PassiveClient.Authentication.RestorePasswordFromUserNameAndSecurityQuestionResponse RestorePasswordFromUserNameAndSecurityQuestion(PassiveClient.Authentication.RestorePasswordFromUserNameAndSecurityQuestionRequest request);
+        Authentication.RestorePasswordFromUserNameAndSecurityQuestionResponse RestorePasswordFromUserNameAndSecurityQuestion(Authentication.RestorePasswordFromUserNameAndSecurityQuestionRequest request);
         
         // CODEGEN: Generating message contract since the operation has multiple return values.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/RestorePasswordFromUserNameAndSecurityQuestion" +
             "", ReplyAction="http://tempuri.org/IAuthentication/RestorePasswordFromUserNameAndSecurityQuestion" +
             "Response")]
-        System.Threading.Tasks.Task<PassiveClient.Authentication.RestorePasswordFromUserNameAndSecurityQuestionResponse> RestorePasswordFromUserNameAndSecurityQuestionAsync(PassiveClient.Authentication.RestorePasswordFromUserNameAndSecurityQuestionRequest request);
+        System.Threading.Tasks.Task<Authentication.RestorePasswordFromUserNameAndSecurityQuestionResponse> RestorePasswordFromUserNameAndSecurityQuestionAsync(Authentication.RestorePasswordFromUserNameAndSecurityQuestionRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -362,12 +362,12 @@ namespace PassiveClient.Authentication {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IAuthenticationChannel : PassiveClient.Authentication.IAuthentication, System.ServiceModel.IClientChannel {
+    public interface IAuthenticationChannel : Authentication.IAuthentication, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class AuthenticationClient : System.ServiceModel.ClientBase<PassiveClient.Authentication.IAuthentication>, PassiveClient.Authentication.IAuthentication {
+    public partial class AuthenticationClient : System.ServiceModel.ClientBase<Authentication.IAuthentication>, Authentication.IAuthentication {
         
         public AuthenticationClient() {
         }
@@ -389,131 +389,131 @@ namespace PassiveClient.Authentication {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PassiveClient.Authentication.AuthenticateAndSignInResponse PassiveClient.Authentication.IAuthentication.AuthenticateAndSignIn(PassiveClient.Authentication.AuthenticateAndSignInRequest request) {
+        Authentication.AuthenticateAndSignInResponse Authentication.IAuthentication.AuthenticateAndSignIn(Authentication.AuthenticateAndSignInRequest request) {
             return base.Channel.AuthenticateAndSignIn(request);
         }
         
         public string AuthenticateAndSignIn(string userName, string userType, string password, out string error) {
-            PassiveClient.Authentication.AuthenticateAndSignInRequest inValue = new PassiveClient.Authentication.AuthenticateAndSignInRequest();
+            Authentication.AuthenticateAndSignInRequest inValue = new Authentication.AuthenticateAndSignInRequest();
             inValue.userName = userName;
             inValue.userType = userType;
             inValue.password = password;
-            PassiveClient.Authentication.AuthenticateAndSignInResponse retVal = ((PassiveClient.Authentication.IAuthentication)(this)).AuthenticateAndSignIn(inValue);
+            Authentication.AuthenticateAndSignInResponse retVal = ((Authentication.IAuthentication)(this)).AuthenticateAndSignIn(inValue);
             error = retVal.error;
             return retVal.AuthenticateAndSignInResult;
         }
         
-        public System.Threading.Tasks.Task<PassiveClient.Authentication.AuthenticateAndSignInResponse> AuthenticateAndSignInAsync(PassiveClient.Authentication.AuthenticateAndSignInRequest request) {
+        public System.Threading.Tasks.Task<Authentication.AuthenticateAndSignInResponse> AuthenticateAndSignInAsync(Authentication.AuthenticateAndSignInRequest request) {
             return base.Channel.AuthenticateAndSignInAsync(request);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PassiveClient.Authentication.LogoutResponse PassiveClient.Authentication.IAuthentication.Logout(PassiveClient.Authentication.LogoutRequest request) {
+        Authentication.LogoutResponse Authentication.IAuthentication.Logout(Authentication.LogoutRequest request) {
             return base.Channel.Logout(request);
         }
         
         public bool Logout(string userName, string userType, out string error) {
-            PassiveClient.Authentication.LogoutRequest inValue = new PassiveClient.Authentication.LogoutRequest();
+            Authentication.LogoutRequest inValue = new Authentication.LogoutRequest();
             inValue.userName = userName;
             inValue.userType = userType;
-            PassiveClient.Authentication.LogoutResponse retVal = ((PassiveClient.Authentication.IAuthentication)(this)).Logout(inValue);
+            Authentication.LogoutResponse retVal = ((Authentication.IAuthentication)(this)).Logout(inValue);
             error = retVal.error;
             return retVal.LogoutResult;
         }
         
-        public System.Threading.Tasks.Task<PassiveClient.Authentication.LogoutResponse> LogoutAsync(PassiveClient.Authentication.LogoutRequest request) {
+        public System.Threading.Tasks.Task<Authentication.LogoutResponse> LogoutAsync(Authentication.LogoutRequest request) {
             return base.Channel.LogoutAsync(request);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PassiveClient.Authentication.SignUpResponse PassiveClient.Authentication.IAuthentication.SignUp(PassiveClient.Authentication.SignUpRequest request) {
+        Authentication.SignUpResponse Authentication.IAuthentication.SignUp(Authentication.SignUpRequest request) {
             return base.Channel.SignUp(request);
         }
         
         public bool SignUp(string userName, string password, out string error) {
-            PassiveClient.Authentication.SignUpRequest inValue = new PassiveClient.Authentication.SignUpRequest();
+            Authentication.SignUpRequest inValue = new Authentication.SignUpRequest();
             inValue.userName = userName;
             inValue.password = password;
-            PassiveClient.Authentication.SignUpResponse retVal = ((PassiveClient.Authentication.IAuthentication)(this)).SignUp(inValue);
+            Authentication.SignUpResponse retVal = ((Authentication.IAuthentication)(this)).SignUp(inValue);
             error = retVal.error;
             return retVal.SignUpResult;
         }
         
-        public System.Threading.Tasks.Task<PassiveClient.Authentication.SignUpResponse> SignUpAsync(PassiveClient.Authentication.SignUpRequest request) {
+        public System.Threading.Tasks.Task<Authentication.SignUpResponse> SignUpAsync(Authentication.SignUpRequest request) {
             return base.Channel.SignUpAsync(request);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PassiveClient.Authentication.ChangeUserPasswordResponse PassiveClient.Authentication.IAuthentication.ChangeUserPassword(PassiveClient.Authentication.ChangeUserPasswordRequest request) {
+        Authentication.ChangeUserPasswordResponse Authentication.IAuthentication.ChangeUserPassword(Authentication.ChangeUserPasswordRequest request) {
             return base.Channel.ChangeUserPassword(request);
         }
         
         public bool ChangeUserPassword(string userName, string oldPassword, string newPassword, out string error) {
-            PassiveClient.Authentication.ChangeUserPasswordRequest inValue = new PassiveClient.Authentication.ChangeUserPasswordRequest();
+            Authentication.ChangeUserPasswordRequest inValue = new Authentication.ChangeUserPasswordRequest();
             inValue.userName = userName;
             inValue.oldPassword = oldPassword;
             inValue.newPassword = newPassword;
-            PassiveClient.Authentication.ChangeUserPasswordResponse retVal = ((PassiveClient.Authentication.IAuthentication)(this)).ChangeUserPassword(inValue);
+            Authentication.ChangeUserPasswordResponse retVal = ((Authentication.IAuthentication)(this)).ChangeUserPassword(inValue);
             error = retVal.error;
             return retVal.ChangeUserPasswordResult;
         }
         
-        public System.Threading.Tasks.Task<PassiveClient.Authentication.ChangeUserPasswordResponse> ChangeUserPasswordAsync(PassiveClient.Authentication.ChangeUserPasswordRequest request) {
+        public System.Threading.Tasks.Task<Authentication.ChangeUserPasswordResponse> ChangeUserPasswordAsync(Authentication.ChangeUserPasswordRequest request) {
             return base.Channel.ChangeUserPasswordAsync(request);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PassiveClient.Authentication.SetSecurityQuestionAndAnswerResponse PassiveClient.Authentication.IAuthentication.SetSecurityQuestionAndAnswer(PassiveClient.Authentication.SetSecurityQuestionAndAnswerRequest request) {
+        Authentication.SetSecurityQuestionAndAnswerResponse Authentication.IAuthentication.SetSecurityQuestionAndAnswer(Authentication.SetSecurityQuestionAndAnswerRequest request) {
             return base.Channel.SetSecurityQuestionAndAnswer(request);
         }
         
         public bool SetSecurityQuestionAndAnswer(string userName, string password, string question, string answer, out string error) {
-            PassiveClient.Authentication.SetSecurityQuestionAndAnswerRequest inValue = new PassiveClient.Authentication.SetSecurityQuestionAndAnswerRequest();
+            Authentication.SetSecurityQuestionAndAnswerRequest inValue = new Authentication.SetSecurityQuestionAndAnswerRequest();
             inValue.userName = userName;
             inValue.password = password;
             inValue.question = question;
             inValue.answer = answer;
-            PassiveClient.Authentication.SetSecurityQuestionAndAnswerResponse retVal = ((PassiveClient.Authentication.IAuthentication)(this)).SetSecurityQuestionAndAnswer(inValue);
+            Authentication.SetSecurityQuestionAndAnswerResponse retVal = ((Authentication.IAuthentication)(this)).SetSecurityQuestionAndAnswer(inValue);
             error = retVal.error;
             return retVal.SetSecurityQuestionAndAnswerResult;
         }
         
-        public System.Threading.Tasks.Task<PassiveClient.Authentication.SetSecurityQuestionAndAnswerResponse> SetSecurityQuestionAndAnswerAsync(PassiveClient.Authentication.SetSecurityQuestionAndAnswerRequest request) {
+        public System.Threading.Tasks.Task<Authentication.SetSecurityQuestionAndAnswerResponse> SetSecurityQuestionAndAnswerAsync(Authentication.SetSecurityQuestionAndAnswerRequest request) {
             return base.Channel.SetSecurityQuestionAndAnswerAsync(request);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PassiveClient.Authentication.GetSecurityQuestionResponse PassiveClient.Authentication.IAuthentication.GetSecurityQuestion(PassiveClient.Authentication.GetSecurityQuestionRequest request) {
+        Authentication.GetSecurityQuestionResponse Authentication.IAuthentication.GetSecurityQuestion(Authentication.GetSecurityQuestionRequest request) {
             return base.Channel.GetSecurityQuestion(request);
         }
         
         public string GetSecurityQuestion(string userName, out string error) {
-            PassiveClient.Authentication.GetSecurityQuestionRequest inValue = new PassiveClient.Authentication.GetSecurityQuestionRequest();
+            Authentication.GetSecurityQuestionRequest inValue = new Authentication.GetSecurityQuestionRequest();
             inValue.userName = userName;
-            PassiveClient.Authentication.GetSecurityQuestionResponse retVal = ((PassiveClient.Authentication.IAuthentication)(this)).GetSecurityQuestion(inValue);
+            Authentication.GetSecurityQuestionResponse retVal = ((Authentication.IAuthentication)(this)).GetSecurityQuestion(inValue);
             error = retVal.error;
             return retVal.GetSecurityQuestionResult;
         }
         
-        public System.Threading.Tasks.Task<PassiveClient.Authentication.GetSecurityQuestionResponse> GetSecurityQuestionAsync(PassiveClient.Authentication.GetSecurityQuestionRequest request) {
+        public System.Threading.Tasks.Task<Authentication.GetSecurityQuestionResponse> GetSecurityQuestionAsync(Authentication.GetSecurityQuestionRequest request) {
             return base.Channel.GetSecurityQuestionAsync(request);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PassiveClient.Authentication.RestorePasswordFromUserNameAndSecurityQuestionResponse PassiveClient.Authentication.IAuthentication.RestorePasswordFromUserNameAndSecurityQuestion(PassiveClient.Authentication.RestorePasswordFromUserNameAndSecurityQuestionRequest request) {
+        Authentication.RestorePasswordFromUserNameAndSecurityQuestionResponse Authentication.IAuthentication.RestorePasswordFromUserNameAndSecurityQuestion(Authentication.RestorePasswordFromUserNameAndSecurityQuestionRequest request) {
             return base.Channel.RestorePasswordFromUserNameAndSecurityQuestion(request);
         }
         
         public string RestorePasswordFromUserNameAndSecurityQuestion(string userName, string answer, out string error) {
-            PassiveClient.Authentication.RestorePasswordFromUserNameAndSecurityQuestionRequest inValue = new PassiveClient.Authentication.RestorePasswordFromUserNameAndSecurityQuestionRequest();
+            Authentication.RestorePasswordFromUserNameAndSecurityQuestionRequest inValue = new Authentication.RestorePasswordFromUserNameAndSecurityQuestionRequest();
             inValue.userName = userName;
             inValue.answer = answer;
-            PassiveClient.Authentication.RestorePasswordFromUserNameAndSecurityQuestionResponse retVal = ((PassiveClient.Authentication.IAuthentication)(this)).RestorePasswordFromUserNameAndSecurityQuestion(inValue);
+            Authentication.RestorePasswordFromUserNameAndSecurityQuestionResponse retVal = ((Authentication.IAuthentication)(this)).RestorePasswordFromUserNameAndSecurityQuestion(inValue);
             error = retVal.error;
             return retVal.RestorePasswordFromUserNameAndSecurityQuestionResult;
         }
         
-        public System.Threading.Tasks.Task<PassiveClient.Authentication.RestorePasswordFromUserNameAndSecurityQuestionResponse> RestorePasswordFromUserNameAndSecurityQuestionAsync(PassiveClient.Authentication.RestorePasswordFromUserNameAndSecurityQuestionRequest request) {
+        public System.Threading.Tasks.Task<Authentication.RestorePasswordFromUserNameAndSecurityQuestionResponse> RestorePasswordFromUserNameAndSecurityQuestionAsync(Authentication.RestorePasswordFromUserNameAndSecurityQuestionRequest request) {
             return base.Channel.RestorePasswordFromUserNameAndSecurityQuestionAsync(request);
         }
     }

@@ -1,29 +1,25 @@
-﻿using PassiveClient;
-using PostSharp.Patterns.Diagnostics;
+﻿using PostSharp.Patterns.Diagnostics;
 using PostSharp.Patterns.Diagnostics.Backends.Log4Net;
-using System;
-using System.Configuration.Install;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.ServiceProcess;
 
-[Log(AttributeExclude = true)]
-public class StartClass
+namespace PassiveClient
 {
-
-    public static void Main(string[] args)
+    [Log(AttributeExclude = true)]
+    public class StartClass
     {
-        InitializeLoggingBackend();
 
-        Program.StartFunc(args);
+        public static void Main(string[] args)
+        {
+            InitializeLoggingBackend();
+            var passiveClient = new PassiveClient();
+            passiveClient.Main(args);
+        }
 
-    }
-
-    public static void InitializeLoggingBackend()
-    {
-        log4net.Config.XmlConfigurator.Configure();
-        var log4NetLoggingBackend = new Log4NetLoggingBackend();
-        LoggingServices.DefaultBackend = log4NetLoggingBackend;
+        public static void InitializeLoggingBackend()
+        {
+            log4net.Config.XmlConfigurator.Configure();
+            var log4NetLoggingBackend = new Log4NetLoggingBackend();
+            LoggingServices.DefaultBackend = log4NetLoggingBackend;
+        }
     }
 }
+

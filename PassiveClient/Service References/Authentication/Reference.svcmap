@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7e510011-ceb2-480d-8954-c035c90b78b6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cc30e2c1-80a1-465c-977d-912a16d248e7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,10 +22,10 @@
     <MetadataSource Address="http://localhost/ShellTrasferServer/Authentication" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Authentication.wsdl" MetadataType="Wsdl" ID="56a967fe-272e-4555-8d48-95d34bde215d" SourceId="1" SourceUrl="http://localhost/ShellTrasferServer/Authentication?wsdl" />
-    <MetadataFile FileName="Authentication.xsd" MetadataType="Schema" ID="f189b669-5eaa-47c6-8d7e-8759743d43ef" SourceId="1" SourceUrl="http://localhost/ShellTrasferServer/Authentication?xsd=xsd0" />
-    <MetadataFile FileName="Authentication.disco" MetadataType="Disco" ID="9ccbb7a4-4a34-4480-b3f3-2f62c78814b0" SourceId="1" SourceUrl="http://localhost/ShellTrasferServer/Authentication?disco" />
-    <MetadataFile FileName="Authentication1.xsd" MetadataType="Schema" ID="6884fd48-9abb-47f1-bd4e-a18d94811984" SourceId="1" SourceUrl="http://localhost/ShellTrasferServer/Authentication?xsd=xsd1" />
+    <MetadataFile FileName="Authentication.wsdl" MetadataType="Wsdl" ID="7c0c3910-10e4-4067-8fe8-0d90249cea4d" SourceId="1" SourceUrl="http://localhost/ShellTrasferServer/Authentication?wsdl" />
+    <MetadataFile FileName="Authentication.xsd" MetadataType="Schema" ID="7982ffb9-803c-46a9-a9df-6c6e88754360" SourceId="1" SourceUrl="http://localhost/ShellTrasferServer/Authentication?xsd=xsd0" />
+    <MetadataFile FileName="Authentication.disco" MetadataType="Disco" ID="5cb28daf-5256-4d57-a5fe-397c5b3f8c2b" SourceId="1" SourceUrl="http://localhost/ShellTrasferServer/Authentication?disco" />
+    <MetadataFile FileName="Authentication1.xsd" MetadataType="Schema" ID="8f9eab29-e0b6-4f39-a881-8687d4dbea55" SourceId="1" SourceUrl="http://localhost/ShellTrasferServer/Authentication?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

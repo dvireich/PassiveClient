@@ -1,23 +1,21 @@
-﻿using PassiveClient.ServiceReference1;
+﻿using AlertCallBack;
 using PostSharp.Extensibility;
 using PostSharp.Patterns.Diagnostics;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using static PassiveClient.Program;
+using static PassiveClient.PassiveClient;
 
 namespace PassiveClient
 {
     [Log(AttributeTargetElements = MulticastTargets.Method, AttributeTargetTypeAttributes = MulticastAttributes.Public, AttributeTargetMemberAttributes = MulticastAttributes.Private | MulticastAttributes.Public)]
     public class CallBack : IAletCallBackCallback, IDisposable
     {
-        public static AletCallBackClient proxy;
-        public static Shell shellHandler = new Shell();
-        public static StatusCallBack statusCallBack;
-        private bool isDead = false;
+        private AletCallBackClient _proxy;
+        private CallbackCtorArgs _callbackCtorArgs;
+        private Shell _shellHandler;
+        private StatusCallBack _statusCallBack;
+        private bool _isDead = false;
 
         private void SetReliableSessionAndInactivityTimeoutAndReaderQuotas(NetTcpBinding wsd)
         {
@@ -32,13 +30,16 @@ namespace PassiveClient
             wsd.ReaderQuotas = readerQuotas;
         }
 
-        public void SetStatusCallback(StatusCallBack status)
+        public void SetStatusCallbackAndCallbackCtorArgs(StatusCallBack status, CallbackCtorArgs callbackCtorArgs)
         {
-            statusCallBack = status;
+            _statusCallBack = status;
+            _callbackCtorArgs = callbackCtorArgs;
+            _shellHandler = new Shell();
         }
-        public void SendServerCallBack()
+
+        public void SendServerCallBack(string wcfServicesPathId)
         {
-            Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack/{0}", _wcfServicesPathId));
+            Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack/{0}", wcfServicesPathId));
             NetTcpBinding wsd = new NetTcpBinding();
             wsd.Security.Mode = SecurityMode.None;
             wsd.CloseTimeout = TimeSpan.MaxValue;
@@ -46,10 +47,10 @@ namespace PassiveClient
             wsd.OpenTimeout = TimeSpan.MaxValue;
             wsd.SendTimeout = TimeSpan.MaxValue;
             EndpointAddress ea = new EndpointAddress(endPointAdress);
-            proxy = new AletCallBackClient(new InstanceContext(this), wsd, ea);
-            proxy.InnerDuplexChannel.OperationTimeout = TimeSpan.MaxValue;
-            proxy.InnerChannel.OperationTimeout = TimeSpan.MaxValue;
-            proxy.RegisterCallBackFunction(id.ToString(), "Main");
+            _proxy = new AletCallBackClient(new InstanceContext(this), wsd, ea);
+            _proxy.InnerDuplexChannel.OperationTimeout = TimeSpan.MaxValue;
+            _proxy.InnerChannel.OperationTimeout = TimeSpan.MaxValue;
+            _proxy.RegisterCallBackFunction(id.ToString(), "Main");
         }
 
         public void CallBackFunction(string str)
@@ -60,18 +61,13 @@ namespace PassiveClient
                 _passiveClientNickName = str.Split(' ').Last();
             try
             {
-                CheckMissions(shellHandler);
+                _callbackCtorArgs.CheckMission(_shellHandler);
             }
-            catch (Exception e)
+            catch
             {
                 Dispose();
-                statusCallBack.Dispose();
-                if (shelService != null)
-                {
-                    ((ICommunicationObject)shelService).Close();
-                    shelService = null;
-                }
-                MainLoop();
+                _statusCallBack.Dispose();
+                
             }
         }
 
@@ -79,9 +75,9 @@ namespace PassiveClient
         {
             try
             {
-                isDead = true;
-                if (proxy != null && proxy.State == CommunicationState.Opened)
-                    proxy.Close();
+                _isDead = true;
+                if (_proxy != null && _proxy.State == CommunicationState.Opened)
+                    _proxy.Close();
             }
             catch { }
             
@@ -89,8 +85,8 @@ namespace PassiveClient
 
         public void KeppAlive()
         {
-            if (!isDead)
-                proxy.KeepCallBackAlive(id.ToString());
+            if (!_isDead)
+                _proxy.KeepCallBackAlive(id.ToString());
         }
 
         public void KeepCallbackALive()

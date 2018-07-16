@@ -1,13 +1,9 @@
-﻿using PassiveClient.ServiceReference1;
+﻿using AlertCallBack;
 using PostSharp.Extensibility;
 using PostSharp.Patterns.Diagnostics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using static PassiveClient.Program;
+using static PassiveClient.PassiveClient;
 
 namespace PassiveClient
 {
@@ -31,10 +27,10 @@ namespace PassiveClient
             wsd.ReaderQuotas = readerQuotas;
         }
 
-        public void SendServerCallBack()
+        public void SendServerCallBack(string wcfServicesPathId)
         {
 
-            Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack/{0}", _wcfServicesPathId));
+            Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack/{0}", wcfServicesPathId));
             NetTcpBinding wsd = new NetTcpBinding();
             wsd.Security.Mode = SecurityMode.None;
             wsd.CloseTimeout = TimeSpan.MaxValue;
