@@ -7,7 +7,7 @@ using System.ServiceModel;
 namespace PassiveClient
 {
     [Log(AttributeTargetElements = MulticastTargets.Method, AttributeTargetTypeAttributes = MulticastAttributes.Public, AttributeTargetMemberAttributes = MulticastAttributes.Private | MulticastAttributes.Public)]
-    public class AuthenticationableClient : CommunicationClient
+    public class AuthenticationClient : CommunicationClient
     {
         protected string _username = string.Empty;
         protected string _password = string.Empty;

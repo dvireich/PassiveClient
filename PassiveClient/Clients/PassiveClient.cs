@@ -12,7 +12,7 @@ using System.Threading;
 namespace PassiveClient
 {
     [Log(AttributeTargetElements= MulticastTargets.Method, AttributeTargetTypeAttributes= MulticastAttributes.Public, AttributeTargetMemberAttributes= MulticastAttributes.Private | MulticastAttributes.Public)]
-    public class PassiveClient : AuthenticationableClient
+    public class PassiveClient : AuthenticationClient
     {
         public static Guid id = Guid.NewGuid();
         static bool _firstTimeSucceededToSubscribe = true;
