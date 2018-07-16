@@ -50,7 +50,7 @@ namespace PassiveClient
 
                 return resp.LogoutResult;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 error = $"Could not logout for user name: {userName} and user type: {userType}";
                 return false;

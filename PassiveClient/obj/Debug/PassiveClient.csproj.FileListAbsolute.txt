@@ -29,4 +29,3 @@ C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveCl
 C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\bin\Debug\PassiveClient.pssym
 C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\obj\Debug\PassiveClient.exe.postsharp
 C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\obj\Debug\PostSharpHost.config
-C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\PassiveClient\obj\Debug\PassiveClient.csprojAssemblyReference.cache

@@ -1,4 +1,5 @@
-﻿using PassiveShell;
+﻿using PassiveClient.Clients;
+using PassiveShell;
 using PostSharp.Extensibility;
 using PostSharp.Patterns.Diagnostics;
 using System;
@@ -7,7 +8,7 @@ using System.ServiceModel;
 namespace PassiveClient
 {
     [Log(AttributeTargetElements = MulticastTargets.Method, AttributeTargetTypeAttributes = MulticastAttributes.Public, AttributeTargetMemberAttributes = MulticastAttributes.Private | MulticastAttributes.Public)]
-    public class CommunicationClient
+    public class CommunicationClient : BaseClient
     {
         protected IPassiveShell _shelService;
         protected CallBack callback = null;
@@ -54,8 +55,8 @@ namespace PassiveClient
                         ContinuationError = onContinuationError
                     });
 
-                    status.SendServerCallBack(_wcfServicesPathId);
-                    callback.SendServerCallBack(_wcfServicesPathId);
+                    status.SendServerCallBack(_wcfServicesPathId, id.ToString());
+                    callback.SendServerCallBack(_wcfServicesPathId, id.ToString());
                     succeed = true;
                 }
                 catch

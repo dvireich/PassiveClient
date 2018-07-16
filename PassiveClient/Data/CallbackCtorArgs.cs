@@ -12,5 +12,7 @@ namespace PassiveClient
     {
        public Action<Shell> CheckMission;
        public Action ContinuationError;
+
+       public string NickName;
     }
 }

@@ -14,13 +14,13 @@ namespace PassiveClient
     [Log(AttributeTargetElements= MulticastTargets.Method, AttributeTargetTypeAttributes= MulticastAttributes.Public, AttributeTargetMemberAttributes= MulticastAttributes.Private | MulticastAttributes.Public)]
     public class PassiveClient : AuthenticationClient
     {
-        public static Guid id = Guid.NewGuid();
-        static bool _firstTimeSucceededToSubscribe = true;
-        static volatile Object endProgram = new Object();
+        
+        private bool _firstTimeSucceededToSubscribe = true;
+        private readonly Object _endProgram = new Object();
         private string _currentTasktId;
         public static string _passiveClientNickName = string.Empty;
-        private static bool shouldRestartConnections = false;
-        
+        private bool _shouldRestartConnections = false;
+
         public void Main(string[] args)
         {
             string username = string.Empty;
@@ -102,9 +102,9 @@ namespace PassiveClient
                     Console.WriteLine($"Server is not responding with this error: {e.Message}");
                     CloseAllConnectionsAndDisposeTimers(timerThread);
                     Thread.Sleep(1000);
-                    shouldRestartConnections = true;
+                    _shouldRestartConnections = true;
                 }
-            } while (shouldRestartConnections);
+            } while (_shouldRestartConnections);
         }
 
         private void CloseAllConnectionsAndDisposeTimers(Timer timerThread)
@@ -136,12 +136,12 @@ namespace PassiveClient
             catch { }
         }
 
-        private static void WaitUntilActiveClientCloseOrLostConnections()
+        private void WaitUntilActiveClientCloseOrLostConnections()
         {
-            lock (endProgram)
+            lock (_endProgram)
             {
-                shouldRestartConnections = false;
-                Monitor.Wait(endProgram);
+                _shouldRestartConnections = false;
+                Monitor.Wait(_endProgram);
             }
         }
 
@@ -164,7 +164,7 @@ namespace PassiveClient
 
             var timer = new Timer((e) =>
             {
-                if (shouldRestartConnections) return;
+                if (_shouldRestartConnections) return;
 
                 var numberOfTries = 3;
                 //maybe the server is down. If so we will close the connection and will reset all the connections;
@@ -184,10 +184,10 @@ namespace PassiveClient
 
                 if (numberOfTries == 0)
                 {
-                    shouldRestartConnections = true;
-                    lock (endProgram)
+                    _shouldRestartConnections = true;
+                    lock (_endProgram)
                     {
-                        Monitor.PulseAll(endProgram);
+                        Monitor.PulseAll(_endProgram);
                     }
                 }
 
@@ -346,9 +346,9 @@ namespace PassiveClient
                     shellHandler.CloseShell();
                     CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                         _shelService.CommandResponse(id.ToString(), _currentTasktId, "EndProg"));
-                    lock (endProgram)
+                    lock (_endProgram)
                     {
-                        Monitor.PulseAll(endProgram);
+                        Monitor.PulseAll(_endProgram);
                     }
                     break;
                 //In case that between the has command to the get command the task has been deleted

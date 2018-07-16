@@ -16,6 +16,7 @@ namespace PassiveClient
         private Shell _shellHandler;
         private StatusCallBack _statusCallBack;
         private bool _isDead = false;
+        private string _id;
 
         private void SetReliableSessionAndInactivityTimeoutAndReaderQuotas(NetTcpBinding wsd)
         {
@@ -37,8 +38,10 @@ namespace PassiveClient
             _shellHandler = new Shell();
         }
 
-        public void SendServerCallBack(string wcfServicesPathId)
+        public void SendServerCallBack(string wcfServicesPathId, string id)
         {
+            _id = id;
+
             Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack/{0}", wcfServicesPathId));
             NetTcpBinding wsd = new NetTcpBinding();
             wsd.Security.Mode = SecurityMode.None;
@@ -50,7 +53,7 @@ namespace PassiveClient
             _proxy = new AletCallBackClient(new InstanceContext(this), wsd, ea);
             _proxy.InnerDuplexChannel.OperationTimeout = TimeSpan.MaxValue;
             _proxy.InnerChannel.OperationTimeout = TimeSpan.MaxValue;
-            _proxy.RegisterCallBackFunction(id.ToString(), "Main");
+            _proxy.RegisterCallBackFunction(id, "Main");
         }
 
         public void CallBackFunction(string str)
@@ -86,7 +89,7 @@ namespace PassiveClient
         public void KeppAlive()
         {
             if (!_isDead)
-                _proxy.KeepCallBackAlive(id.ToString());
+                _proxy.KeepCallBackAlive(_id);
         }
 
         public void KeepCallbackALive()

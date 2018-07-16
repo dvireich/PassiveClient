@@ -13,9 +13,12 @@ namespace PassiveClient
         public static AletCallBackClient proxy;
         public static Shell shellHandler = new Shell();
         private bool isDead;
+        private string _id;
 
-        private void SetReliableSessionAndInactivityTimeoutAndReaderQuotas(NetTcpBinding wsd)
+        private void SetReliableSessionAndInactivityTimeoutAndReaderQuotas(NetTcpBinding wsd, string id)
         {
+            _id = id;
+
             wsd.ReliableSession.Enabled = true;
             wsd.ReliableSession.InactivityTimeout = TimeSpan.MaxValue;
             System.Xml.XmlDictionaryReaderQuotas readerQuotas = new System.Xml.XmlDictionaryReaderQuotas();
@@ -27,7 +30,7 @@ namespace PassiveClient
             wsd.ReaderQuotas = readerQuotas;
         }
 
-        public void SendServerCallBack(string wcfServicesPathId)
+        public void SendServerCallBack(string wcfServicesPathId, string id)
         {
 
             Uri endPointAdress = new Uri(string.Format("net.tcp://localhost/ShellTrasferServer/CallBack/{0}", wcfServicesPathId));
@@ -41,7 +44,7 @@ namespace PassiveClient
             proxy = new AletCallBackClient(new InstanceContext(this), wsd, ea);
             proxy.InnerDuplexChannel.OperationTimeout = TimeSpan.MaxValue;
             proxy.InnerChannel.OperationTimeout = TimeSpan.MaxValue;
-            proxy.RegisterCallBackFunction(id.ToString(), "status");
+            proxy.RegisterCallBackFunction(id, "status");
         }
 
         public void CallBackFunction(string str)
@@ -51,7 +54,7 @@ namespace PassiveClient
         public void KeppAlive()
         {
             if (!isDead)
-                proxy.KeepCallBackAlive(id.ToString());
+                proxy.KeepCallBackAlive(_id);
         }
 
         public void KeepCallbackALive()

@@ -110,6 +110,7 @@
   <ItemGroup>
     <Compile Include="Clients\AuthenticationClient.cs" />
     <Compile Include="Callback\CallBack.cs" />
+    <Compile Include="Clients\BaseClient.cs" />
     <Compile Include="Clients\CommunicationClient.cs" />
     <Compile Include="Helpers\CommunicationExceptionHandler.cs" />
     <Compile Include="Data\Constants.cs" />
