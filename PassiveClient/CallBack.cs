@@ -67,7 +67,7 @@ namespace PassiveClient
             {
                 Dispose();
                 _statusCallBack.Dispose();
-                
+                _callbackCtorArgs.ContinuationError();
             }
         }
 
