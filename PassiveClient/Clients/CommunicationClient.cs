@@ -1,4 +1,5 @@
 ﻿using PassiveClient.Clients;
+using PassiveClient.Data;
 using PassiveShell;
 using PostSharp.Extensibility;
 using PostSharp.Patterns.Diagnostics;
@@ -40,7 +41,7 @@ namespace PassiveClient
             return shelService;
         }
 
-        protected void RegisterCallBackCommunicationClient(Action<Shell> callBackFunctionCheckMission, Action onContinuationError)
+        protected void InitializeCallBackCommunicationClient(string nickName, Object programLock, Action<string> onContinuationError)
         {
             var succeed = false;
             while (!succeed)
@@ -49,9 +50,11 @@ namespace PassiveClient
                 {
                     status = new StatusCallBack();
                     callback = new CallBack();
-                    callback.SetStatusCallbackAndCallbackCtorArgs(status, new CallbackCtorArgs()
+                    callback.Initialize(new CallBackInitializeData()
                     {
-                        CheckMission = callBackFunctionCheckMission,
+                        Proxy = _shelService,
+                        ProgramLock = programLock,
+                        StatusCallBack = status,
                         ContinuationError = onContinuationError
                     });
 

@@ -17,14 +17,11 @@ namespace PassiveClient
         
         private bool _firstTimeSucceededToSubscribe = true;
         private readonly Object _endProgram = new Object();
-        private string _currentTasktId;
-        public static string _passiveClientNickName = string.Empty;
         private bool _shouldRestartConnections = false;
 
         public void Main(string[] args)
         {
-            string username = string.Empty;
-            string password = string.Empty;
+            string nickName = string.Empty;
 
             PrintArgsUsage();
             if (args.Length > 0)
@@ -35,7 +32,7 @@ namespace PassiveClient
                     var val = args[i].Split('=').Last();
                     if (arg.ToLower() == "nickname")
                     {
-                        _passiveClientNickName = val;
+                        nickName = val;
                     }
                     if (arg.ToLower() == "username")
                     {
@@ -51,7 +48,7 @@ namespace PassiveClient
             if (string.IsNullOrEmpty(_username) || string.IsNullOrEmpty(_password))
                 throw new Exception("Cant connect without user name and password. please run with cmd args userName=? password=?");
 
-            InitializeServiceAndWaitForCommands();
+            InitializeServiceAndWaitForCommands(nickName);
             Console.WriteLine("Exited...");
         }
 
@@ -63,7 +60,7 @@ namespace PassiveClient
             Console.WriteLine("password=<password>");
         }
 
-        public void InitializeServiceAndWaitForCommands()
+        public void InitializeServiceAndWaitForCommands(string nickName)
         {
             Timer timerThread = null;
             do
@@ -79,12 +76,12 @@ namespace PassiveClient
 
                     CleanPreviousPassiveClientId();
 
-                    WaitUntilSubscribed();
+                    WaitUntilSubscribed(nickName);
 
-                    RegisterCallBackCommunicationClient(CheckMissions, () =>
+                    InitializeCallBackCommunicationClient(nickName, _endProgram, (nickname) =>
                     {
                         CloseAllConnectionsAndDisposeTimers(timerThread);
-                        InitializeServiceAndWaitForCommands();
+                        InitializeServiceAndWaitForCommands(nickname);
                     });
 
                     timerThread = StartKeepAliveCallbackThread(callback, status);
@@ -145,9 +142,9 @@ namespace PassiveClient
             }
         }
 
-        private void WaitUntilSubscribed()
+        private void WaitUntilSubscribed(string nickName)
         {
-            while (!_shelService.Subscribe(id.ToString(), Constants.virsion, _passiveClientNickName))
+            while (!_shelService.Subscribe(id.ToString(), Constants.virsion, nickName))
             {
                 Console.WriteLine(string.Format("Wasn't able to connect with {0} id, tring diffrent one...", id));
                 CleanPreviousPassiveClientId();
@@ -195,119 +192,6 @@ namespace PassiveClient
             return timer;
         }
 
-        public void CheckMissions(Shell shellHandler)
-        {
-            if (CheckIfHasShellCommand())
-            {
-                ShellCommandHendler(shellHandler);
-            }
-            else if (CheckIfHasDownloadCommand())
-            {
-                DownloadCommandHendler();
-            }
-            else if (CheckIfHasUploadCommand())
-            {
-                UploadCommandHendler();
-            }  
-        }
-
-        private void UploadCommandHendler()
-        {
-            try
-            {
-                var currentId = id;
-                var uploadCommand = CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => _shelService.PassiveGetUploadFile(new DownloadRequest
-                {
-                    id = currentId.ToString()
-                }));
-                //In case that between the has command to the get command the task has been deleted
-                //the sign is the empty Guid
-                if (uploadCommand.taskId == Guid.Empty.ToString())
-                    return;
-                _currentTasktId = uploadCommand.taskId;
-                
-                TransferDataHelper.UploadFile(new UploadFileData()
-                {
-                    Id = id.ToString(),
-                    TaskId = _currentTasktId,
-                    Request = uploadCommand,
-                    ShellService = _shelService
-                });
-
-                CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => _shelService.PassiveUploadedFile(id.ToString(), _currentTasktId));
-            }
-
-            catch (Exception e)
-            {
-                CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
-                _shelService.ErrorUploadDownload(id.ToString(), _currentTasktId, e.Message));
-            }
-        }
-
-        private bool CheckIfHasUploadCommand()
-        {
-            return CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => _shelService.HasUploadCommand(id.ToString()));
-        }
-
-        private bool CheckIfHasDownloadCommand()
-        {
-            return CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => _shelService.HasDownloadCommand(id.ToString()));
-        }
-
-        private bool CheckIfHasShellCommand()
-        {
-            return CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => _shelService.HasCommand(id.ToString()));
-        }
-
-        private void ShellCommandHendler(Shell shellHandler)
-        {
-            try
-            {
-                ProcessNextCommand(shellHandler);
-            }
-            catch (Exception e)
-            {
-                CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
-                    _shelService.ErrorNextCommand(id.ToString(), _currentTasktId, string.Format("Error Next-Command: {0}", e.Message)));
-            }
-        }
-
-        private void DownloadCommandHendler()
-        {
-            try
-            {
-                var currentId = id;
-                var downloadCommand = CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => _shelService.PassiveGetDownloadFile(new DownloadRequest
-                {
-                    id = currentId.ToString()
-                }));
-                //In case that between the has command to the get command the task has been deleted
-                //the sign is the empty Guid
-                if (downloadCommand.taskId == Guid.Empty.ToString())
-                    return;
-                _currentTasktId = downloadCommand.taskId;
-                var downloadFileName = downloadCommand.FileName;
-                var downloadDirectory = downloadCommand.PathInServer;
-                var downloadPathToSave = downloadCommand.PathToSaveInClient;
-
-                
-                TransferDataHelper.DownloadFile(new DownloadFileData()
-                {
-                    FileName = downloadFileName,
-                    Directory = downloadDirectory,
-                    PathToSaveOnServer = downloadPathToSave,
-                    Id = id.ToString(),
-                    TasktId = _currentTasktId,
-                    ShellService = _shelService
-                });
-            }
-            catch (Exception e)
-            {
-                CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
-                    _shelService.ErrorUploadDownload(id.ToString(), _currentTasktId, e.Message));
-            }
-        }
-
         private void CleanPreviousPassiveClientId()
         {
             if (_firstTimeSucceededToSubscribe) return;
@@ -317,7 +201,7 @@ namespace PassiveClient
             {
                 try
                 {
-                    _shelService.CommandResponse(id.ToString(), _currentTasktId, "CleanId");
+                    _shelService.CommandResponse(id.ToString(), string.Empty, "CleanId");
                     succeeded = true;
                 }
                 catch
@@ -325,36 +209,6 @@ namespace PassiveClient
                     Console.WriteLine("Server not responding. Waiting tor server to respond...");
                     Thread.Sleep(1000);
                 }
-            }
-        }
-
-        private void ProcessNextCommand(Shell shellHandler)
-        {
-            var command = CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => _shelService.PassiveNextCommand(id.ToString()));
-            _currentTasktId = command.Item3;
-            switch (command.Item1)
-            {
-                case Constants.run:
-                    CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
-                        _shelService.PassiveClientRun(id.ToString(), _currentTasktId, shellHandler.Run()));
-                    break;
-                case Constants.nextCommand:
-                    CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
-                        _shelService.CommandResponse(id.ToString(), _currentTasktId, shellHandler.NextCommand(command.Item2)));
-                    break;
-                case Constants.closeShell:
-                    shellHandler.CloseShell();
-                    CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
-                        _shelService.CommandResponse(id.ToString(), _currentTasktId, "EndProg"));
-                    lock (_endProgram)
-                    {
-                        Monitor.PulseAll(_endProgram);
-                    }
-                    break;
-                //In case that between the has command to the get command the task has been deleted
-                //the sign is the empty string send by the server
-                default:
-                    break;
             }
         }
     }

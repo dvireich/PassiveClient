@@ -112,6 +112,7 @@
     <Compile Include="Callback\CallBack.cs" />
     <Compile Include="Clients\BaseClient.cs" />
     <Compile Include="Clients\CommunicationClient.cs" />
+    <Compile Include="Data\CallBackInitializeData.cs" />
     <Compile Include="Helpers\CommunicationExceptionHandler.cs" />
     <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\DownloadFileData.cs" />
@@ -135,7 +136,6 @@
     <Compile Include="Helpers\Shell.cs" />
     <Compile Include="StartClass.cs" />
     <Compile Include="Callback\StatusCallBack.cs" />
-    <Compile Include="Data\CallbackCtorArgs.cs" />
     <Compile Include="Helpers\TransferDataHelper.cs" />
     <Compile Include="Data\UploadFileData.cs" />
   </ItemGroup>
