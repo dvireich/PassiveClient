@@ -4,7 +4,7 @@ using PostSharp.Patterns.Diagnostics.Backends.Log4Net;
 namespace PassiveClient
 {
     [Log(AttributeExclude = true)]
-    public class StartClass
+    public class Program
     {
 
         public static void Main(string[] args)

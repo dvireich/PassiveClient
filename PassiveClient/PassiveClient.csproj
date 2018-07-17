@@ -109,7 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clients\AuthenticationClient.cs" />
-    <Compile Include="Callback\CallBack.cs" />
+    <Compile Include="Callback Implementation\CallBack.cs" />
     <Compile Include="Clients\BaseClient.cs" />
     <Compile Include="Clients\CommunicationClient.cs" />
     <Compile Include="Data\CallBackInitializeData.cs" />
@@ -134,8 +134,8 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Shell.cs" />
-    <Compile Include="StartClass.cs" />
-    <Compile Include="Callback\StatusCallBack.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Callback Implementation\StatusCallBack.cs" />
     <Compile Include="Helpers\TransferDataHelper.cs" />
     <Compile Include="Data\UploadFileData.cs" />
   </ItemGroup>
