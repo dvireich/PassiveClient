@@ -1,4 +1,5 @@
-﻿using PostSharp.Extensibility;
+﻿using PassiveClient.Helpers.Interfaces;
+using PostSharp.Extensibility;
 using PostSharp.Patterns.Diagnostics;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,35 @@ using System.Threading.Tasks;
 namespace PassiveClient
 {
     [Log(AttributeTargetElements = MulticastTargets.Method, AttributeTargetTypeAttributes = MulticastAttributes.Public, AttributeTargetMemberAttributes = MulticastAttributes.Private | MulticastAttributes.Public)]
-    public sealed class Shell
+    public sealed class Shell : IShell
     {
         private string _lastCommand;
         private Process _process;
+
+        public string Run()
+        {
+            if (_process != null)
+                _process.Close();
+            var p = Process.Start(new ProcessStartInfo()
+            {
+                UseShellExecute = false,
+                RedirectStandardInput = true,
+                RedirectStandardOutput = true,
+                FileName = "cmd.exe",
+                WindowStyle = ProcessWindowStyle.Hidden,
+                CreateNoWindow = true,
+                WorkingDirectory = Path.GetDirectoryName(@"C:\"),
+                Verb = "runas"
+            });
+            _process = p;
+            StringBuilder str;
+            string returnAns;
+            GetStdOutString(p.StandardInput, out str, out returnAns, "Activate");
+            var resultString = str.ToString();
+            str.Clear();
+            return resultString;
+
+        }
 
         public void CloseShell()
         {
@@ -40,7 +66,7 @@ namespace PassiveClient
         }
 
         [Log(AttributeExclude = true)]
-        public bool WaitforExitAndAbort(Action act, int timeout)
+        private bool WaitforExitAndAbort(Action act, int timeout)
         {
             var wait = new ManualResetEvent(false);
             var work = new Thread(() =>
@@ -120,29 +146,6 @@ namespace PassiveClient
             returnAns = str.ToString();
         }
 
-        public string Run()
-        {
-            if (_process != null)
-                _process.Close();
-            var p = Process.Start(new ProcessStartInfo()
-            {
-                UseShellExecute = false,
-                RedirectStandardInput = true,
-                RedirectStandardOutput = true,
-                FileName = "cmd.exe",
-                WindowStyle = ProcessWindowStyle.Hidden,
-                CreateNoWindow = true,
-                WorkingDirectory = Path.GetDirectoryName(@"C:\"),
-                Verb = "runas"
-            });
-            _process = p;
-            StringBuilder str;
-            string returnAns;
-            GetStdOutString(p.StandardInput, out str, out returnAns, "Activate");
-            var resultString = str.ToString();
-            str.Clear();
-            return resultString;
-
-        }
+        
     }
 }

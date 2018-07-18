@@ -69,10 +69,13 @@ namespace PassiveClient
 
         public void CallBackFunction(string str)
         {
-            if (str == "livnessCheck")
-                return;
-            else if (str.Split(' ').First().ToLower() == "nickname")
+            if (str == "livnessCheck") return;
+
+            if (str.Split(' ').First().ToLower() == "nickname")
+            {
                 _nickName = str.Split(' ').Last();
+            }
+               
             try
             {
                 CheckMissions(_shellHandler);
