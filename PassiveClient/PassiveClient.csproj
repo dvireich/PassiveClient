@@ -118,9 +118,13 @@
     <Compile Include="Data\DownloadFileData.cs" />
     <Compile Include="Clients\PassiveClient.cs" />
     <Compile Include="Helpers\Shell\Commands\Cd.cs" />
+    <Compile Include="Helpers\Shell\Commands\CdToParentFolder.cs" />
+    <Compile Include="Helpers\Shell\Commands\Copy.cs" />
+    <Compile Include="Helpers\Shell\Commands\Delete.cs" />
     <Compile Include="Helpers\Shell\Commands\Dir.cs" />
     <Compile Include="Helpers\Shell\Commands\DirBareFolder.cs" />
     <Compile Include="Helpers\Shell\Commands\DirBareFormat.cs" />
+    <Compile Include="Helpers\Shell\Commands\Rename.cs" />
     <Compile Include="Helpers\Shell\CSharpShell.cs" />
     <Compile Include="Helpers\Shell\Data\HardDrive.cs" />
     <Compile Include="Helpers\Shell\Helpers\DirHelper.cs" />

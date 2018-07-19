@@ -15,33 +15,25 @@ namespace PassiveClient.Helpers
 {
     class CSharpShell : IShell
     {
-        private HashSet<string> _supportedCommands = new HashSet<string>()
-        {
-            //Must be in this order
-            "rename",
-            "del",
-            "copy",
-        };
 
         private List<IShellCommand> _commands;
 
         public void CloseShell()
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public string NextCommand(string commandToPerform)
         {
-
+            InitializeShellCommands();
             var command = _commands.FirstOrDefault(c => c.IsMatch(commandToPerform));
             if (command == null) throw new NotImplementedException($"The command {commandToPerform} is not supported");
-
             return command.PerformCommand();
         }
 
         public string Run()
         {
-            throw new NotImplementedException();
+            return Directory.GetCurrentDirectory();
         }
 
         private void InitializeShellCommands()
@@ -51,9 +43,12 @@ namespace PassiveClient.Helpers
                 new Dir(),
                 new DirBareFolder(),
                 new DirBareFormat(),
+                new Cd(),
+                new CdToParentFolder(),
+                new Copy(),
+                new Delete(),
+                new Rename()
             };
-
-
         }
     }
 }

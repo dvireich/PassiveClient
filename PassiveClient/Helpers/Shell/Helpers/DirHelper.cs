@@ -110,8 +110,10 @@ namespace PassiveClient.Helpers
 
         public static string GenerateFilesAndDirString()
         {
-            var totalDirSize = 0;
             var sb = new StringBuilder();
+
+            sb.AppendLine(Directory.GetCurrentDirectory());
+            sb.AppendLine();
             var volLetterAndName = $" Volume in drive {GetDriveLetter()} is {GetDriveName()}";
             var volSerialNum = $" Volume Serial Number is {GetDrivSerialNumber()}";
 
@@ -120,16 +122,22 @@ namespace PassiveClient.Helpers
             sb.AppendLine();
 
             var path = $" Directory of {Directory.GetCurrentDirectory()}";
+            sb.AppendLine(path);
             sb.AppendLine();
 
+            var numberOfDir = 2;
+            sb.AppendLine(CreateDirStringLine(string.Empty, string.Empty, true , string.Empty, "." ));
+            sb.AppendLine(CreateDirStringLine(string.Empty, string.Empty, true, string.Empty, ".."));
             foreach (var dir in GetDirectories())
             {
                 var dirName = dir.Split('\\').Last();
                 var modificationDate = GetModificationDate(dir);
                 var modificationTime = GetModificationTime(dir);
                 sb.AppendLine(CreateDirStringLine(modificationDate, modificationTime, true, null, dirName));
+                numberOfDir++;
             }
 
+            var numberOfFiles = 0;
             foreach (var file in GetFiles())
             {
                 var fileName = file.Split('\\').Last(); ;
@@ -137,24 +145,36 @@ namespace PassiveClient.Helpers
                 var modificationTime = GetModificationTime(file);
                 var fileSize = GetFileSize(file);
                 sb.AppendLine(CreateDirStringLine(modificationDate, modificationTime, false, fileSize, fileName));
+                numberOfFiles++;
             }
 
+            sb.AppendLine($"{numberOfFiles} File(s)");
+            sb.AppendLine($"{numberOfDir} Dir(s)");
+            sb.AppendLine();
+            sb.AppendLine(Directory.GetCurrentDirectory());
             return sb.ToString();
         }
 
         public static string GenerateBareFormatAllFileAndFolderString()
         {
-            return string.Concat(string.Join(Environment.NewLine, GetDirectories().Select(dir => dir.Split('\\').Last()).ToList()),
+            return string.Concat(Environment.NewLine,
+                                 Directory.GetCurrentDirectory(),
+                                 Environment.NewLine,
+                                 string.Join(Environment.NewLine, GetDirectories().Select(dir => dir.Split('\\').Last()).ToList()),
                                  string.Join(Environment.NewLine, GetFiles().Select(file => file.Split('\\').Last()).ToList()),
                                  Environment.NewLine,
-                                 Environment.NewLine);
+                                 Environment.NewLine,
+                                 Directory.GetCurrentDirectory());
         }
 
         public static string GenerateBareFormatFolderString()
         {
-            return string.Concat(string.Join(Environment.NewLine, GetDirectories().Select(dir => dir.Split('\\').Last()).ToList()),
+            return string.Concat(Directory.GetCurrentDirectory(),
                                  Environment.NewLine,
-                                 Environment.NewLine);
+                                 string.Join(Environment.NewLine, GetDirectories().Select(dir => dir.Split('\\').Last()).ToList()),
+                                 Environment.NewLine,
+                                 Environment.NewLine,
+                                 Directory.GetCurrentDirectory());
         }
 
         private static string[] GetDirectories()

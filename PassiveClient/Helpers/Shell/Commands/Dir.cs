@@ -11,8 +11,7 @@ namespace PassiveClient.Helpers.Shell.Commands
     {
         public bool IsMatch(string command)
         {
-            return command.ToLower().StartsWith("dir") &&
-                   string.IsNullOrEmpty(command.ToLower().Substring(0, "dir".Length));
+            return command.ToLower().Equals("dir");
         }
 
         public string PerformCommand()
