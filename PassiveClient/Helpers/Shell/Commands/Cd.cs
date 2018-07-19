@@ -1,4 +1,5 @@
 ﻿using PassiveClient.Helpers.Shell.Interfaces;
+using PostSharp.Patterns.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,10 +9,12 @@ using System.Threading.Tasks;
 
 namespace PassiveClient.Helpers.Shell.Commands
 {
+
     public class Cd : IShellCommand
     {
         private string _command;
 
+        [Log(AttributeExclude = true)]
         public bool IsMatch(string command)
         {
             _command = command.ToLower(); ;

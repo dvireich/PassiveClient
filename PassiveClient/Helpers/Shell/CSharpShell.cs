@@ -2,6 +2,7 @@
 using PassiveClient.Helpers.Interfaces;
 using PassiveClient.Helpers.Shell.Commands;
 using PassiveClient.Helpers.Shell.Interfaces;
+using PostSharp.Patterns.Diagnostics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace PassiveClient.Helpers
 {
+    [Log(AttributeExclude = true)]
     class CSharpShell : IShell
     {
 

@@ -1,4 +1,5 @@
 ﻿using PassiveClient.Helpers.Data;
+using PostSharp.Patterns.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace PassiveClient.Helpers
 {
+    [Log(AttributeExclude = true)]
     public static class DirHelper
     {
         private static List<HardDrive> _hardDrives;
