@@ -1,4 +1,5 @@
 ﻿using PassiveClient.Helpers.Data;
+using PassiveClient.Helpers.Shell.Interfaces;
 using PostSharp.Patterns.Diagnostics;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,16 @@ using System.Threading.Tasks;
 namespace PassiveClient.Helpers
 {
     [Log(AttributeExclude = true)]
-    public static class DirHelper
+    public class DirHelper : IDirHelper
     {
+        public DirHelper()
+        {
+            _hardDrives = GetHradDisksData();
+        }
+
         private static List<HardDrive> _hardDrives;
 
-        private static List<HardDrive> GetHradDisksData()
+        private List<HardDrive> GetHradDisksData()
         {
             ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive");
             List<HardDrive> hdCollection = new List<HardDrive>();
@@ -47,7 +53,7 @@ namespace PassiveClient.Helpers
             return hdCollection;
         }
 
-        private static List<HardDrive> GetDriveLetterAndLabelFromID(List<HardDrive> drives)
+        private List<HardDrive> GetDriveLetterAndLabelFromID(List<HardDrive> drives)
         {
             foreach (var drive in drives)
             {
@@ -75,12 +81,12 @@ namespace PassiveClient.Helpers
             return drives;
         }
 
-        private static List<HardDrive> GetHardDrives()
+        private List<HardDrive> GetHardDrives()
         {
             return GetDriveLetterAndLabelFromID(GetHradDisksData());
         }
 
-        private static string GetDriveLetter()
+        private string GetDriveLetter()
         {
             var currentDriveLetter = Directory.GetCurrentDirectory().Split(':').First() + ":";
             _hardDrives = _hardDrives ?? GetHardDrives();
@@ -90,7 +96,7 @@ namespace PassiveClient.Helpers
             return drive.Letter;
         }
 
-        private static string GetDriveName()
+        private string GetDriveName()
         {
             var currentDriveLetter = Directory.GetCurrentDirectory().Split(':').First() + ":";
             _hardDrives = _hardDrives ?? GetHardDrives();
@@ -100,7 +106,7 @@ namespace PassiveClient.Helpers
             return drive.Name;
         }
 
-        private static string GetDrivSerialNumber()
+        private string GetDrivSerialNumber()
         {
             var currentDriveLetter = Directory.GetCurrentDirectory().Split(':').First() + ":";
             _hardDrives = _hardDrives ?? GetHardDrives();
@@ -110,7 +116,7 @@ namespace PassiveClient.Helpers
             return drive.SerialNo.Trim();
         }
 
-        public static string GenerateFilesAndDirString()
+        public string GenerateFilesAndDirString()
         {
             var sb = new StringBuilder();
 
@@ -157,7 +163,7 @@ namespace PassiveClient.Helpers
             return sb.ToString();
         }
 
-        public static string GenerateBareFormatAllFileAndFolderString()
+        public string GenerateBareFormatAllFileAndFolderString()
         {
             return string.Concat(Environment.NewLine,
                                  Directory.GetCurrentDirectory(),
@@ -169,7 +175,7 @@ namespace PassiveClient.Helpers
                                  Directory.GetCurrentDirectory());
         }
 
-        public static string GenerateBareFormatFolderString()
+        public string GenerateBareFormatFolderString()
         {
             return string.Concat(Directory.GetCurrentDirectory(),
                                  Environment.NewLine,
@@ -179,37 +185,35 @@ namespace PassiveClient.Helpers
                                  Directory.GetCurrentDirectory());
         }
 
-        private static string[] GetDirectories()
+        private string[] GetDirectories()
         {
             return Directory.GetDirectories(Directory.GetCurrentDirectory());
         }
 
-        private static string[] GetFiles()
+        private string[] GetFiles()
         {
             return Directory.GetFiles(Directory.GetCurrentDirectory());
         }
 
-        private static string GetFileSize(string path)
+        private string GetFileSize(string path)
         {
             return new FileInfo(path).Length.ToString();
         }
 
-        private static string GetModificationDate(string path)
+        private string GetModificationDate(string path)
         {
             return File.GetLastWriteTime(path).Date.ToString("dd/MM/yyyy");
         }
 
-        private static string GetModificationTime(string path)
+        private string GetModificationTime(string path)
         {
             return File.GetLastWriteTime(path).ToString("HH:mm");
         }
 
-        private static string CreateDirStringLine(string modificationDate, string modificationTime, bool directory, string size, string name)
+        private string CreateDirStringLine(string modificationDate, string modificationTime, bool directory, string size, string name)
         {
             return directory ? $"{modificationDate}  {modificationTime}    <DIR>            {name}" :
                                $"{modificationDate}  {modificationTime}              {size} {name}";
         }
-
-
     }
 }

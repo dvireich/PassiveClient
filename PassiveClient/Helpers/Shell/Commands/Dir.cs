@@ -10,6 +10,13 @@ namespace PassiveClient.Helpers.Shell.Commands
 {
     class Dir : IShellCommand
     {
+        private IDirHelper _dirHeleper;
+
+        public Dir(IDirHelper dirHelper)
+        {
+            _dirHeleper = dirHelper;
+        }
+
         [Log(AttributeExclude = true)]
         public bool IsMatch(string command)
         {
@@ -18,7 +25,7 @@ namespace PassiveClient.Helpers.Shell.Commands
 
         public string PerformCommand()
         {
-            return DirHelper.GenerateFilesAndDirString();
+            return _dirHeleper.GenerateFilesAndDirString();
         }
     }
 }

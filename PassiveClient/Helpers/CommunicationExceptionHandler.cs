@@ -1,4 +1,5 @@
-﻿using PostSharp.Patterns.Diagnostics;
+﻿using PassiveClient.Helpers;
+using PostSharp.Patterns.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ using System.Threading.Tasks;
 namespace PassiveClient
 {
     [Log(AttributeExclude = true)]
-    public static class CommunicationExceptionHandler
+    public class CommunicationExceptionHandler : ICommunicationExceptionHandler
     {
         [Log(AttributeExclude = true)]
-        public static void SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(Action op, Action inTimeOutException = null, Action inCommunicationException = null, Action inGeneralException = null)
+        public void SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(Action op, Action inTimeOutException = null, Action inCommunicationException = null, Action inGeneralException = null)
         {
             while (true)
             {
@@ -44,7 +45,7 @@ namespace PassiveClient
         }
 
         [Log(AttributeExclude = true)]
-        public static T SendRequestAndTryAgainIfTimeOutOrEndpointNotFound<T>(Func<T> op, Action inTimeOutException = null, Action inCommunicationException = null, Action inGeneralException = null)
+        public T SendRequestAndTryAgainIfTimeOutOrEndpointNotFound<T>(Func<T> op, Action inTimeOutException = null, Action inCommunicationException = null, Action inGeneralException = null)
         {
             while (true)
             {

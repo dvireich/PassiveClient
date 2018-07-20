@@ -108,6 +108,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Callback Implementation\BaseCallBack.cs" />
     <Compile Include="Clients\AuthenticationClient.cs" />
     <Compile Include="Callback Implementation\CallBack.cs" />
     <Compile Include="Clients\BaseClient.cs" />
@@ -117,6 +118,8 @@
     <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\DownloadFileData.cs" />
     <Compile Include="Clients\PassiveClient.cs" />
+    <Compile Include="Helpers\ICommunicationExceptionHandler.cs" />
+    <Compile Include="Helpers\ITransferDataHelper.cs" />
     <Compile Include="Helpers\Shell\Commands\Cd.cs" />
     <Compile Include="Helpers\Shell\Commands\CdToParentFolder.cs" />
     <Compile Include="Helpers\Shell\Commands\Copy.cs" />
@@ -128,6 +131,7 @@
     <Compile Include="Helpers\Shell\CSharpShell.cs" />
     <Compile Include="Helpers\Shell\Data\HardDrive.cs" />
     <Compile Include="Helpers\Shell\Helpers\DirHelper.cs" />
+    <Compile Include="Helpers\Shell\Interfaces\IDirHelper.cs" />
     <Compile Include="Helpers\Shell\Interfaces\IShell.cs" />
     <Compile Include="Helpers\Shell\Interfaces\IShellCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

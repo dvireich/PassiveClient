@@ -10,6 +10,13 @@ namespace PassiveClient.Helpers.Shell.Commands
 {
     public class DirBareFormat : IShellCommand
     {
+        private IDirHelper _dirHeleper;
+
+        public DirBareFormat( IDirHelper dirHeleper)
+        {
+            _dirHeleper = dirHeleper;
+        }
+
         [Log(AttributeExclude = true)]
         public bool IsMatch(string command)
         {
@@ -18,7 +25,7 @@ namespace PassiveClient.Helpers.Shell.Commands
 
         public string PerformCommand()
         {
-            return DirHelper.GenerateBareFormatAllFileAndFolderString();
+            return _dirHeleper.GenerateBareFormatAllFileAndFolderString();
         }
     }
 }

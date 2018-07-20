@@ -14,7 +14,5 @@ namespace PassiveClient
         public RemoteFileInfo Request;
         public string TaskId;
         public string Id;
-
-        public IPassiveShell ShellService;
     }
 }

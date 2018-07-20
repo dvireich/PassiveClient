@@ -1,13 +1,23 @@
-﻿using PassiveShell;
+﻿using PassiveClient.Helpers;
+using PassiveShell;
 using System;
 using System.IO;
 using System.Linq;
 
 namespace PassiveClient
 {
-    public static class TransferDataHelper
+    public class TransferDataHelper : ITransferDataHelper
     {
-        public static void DownloadFile(DownloadFileData downloadFileData)
+        private readonly ICommunicationExceptionHandler _communicationExceptionHandler;
+        private readonly IPassiveShell _sellService;
+
+        public TransferDataHelper(ICommunicationExceptionHandler communicationExceptionHandler, IPassiveShell sellService)
+        {
+            _communicationExceptionHandler = communicationExceptionHandler;
+            _sellService = sellService;
+        }
+
+        public void DownloadFile(DownloadFileData downloadFileData)
         {
             var path = Path.Combine(downloadFileData.Directory, downloadFileData.FileName);
             FileInfo fileInfo = new FileInfo(path);
@@ -31,24 +41,24 @@ namespace PassiveClient
                     {
                         uploadRequestInfo.FileByteStream = byteStream.Skip(i).Take(chunk).ToArray();
                         uploadRequestInfo.FileEnded = false;
-                        CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
+                        _communicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                         {
-                            downloadFileData.ShellService.StartTransferData();
-                            downloadFileData.ShellService.PassiveDownloadedFile(uploadRequestInfo);
+                            _sellService.StartTransferData();
+                            _sellService.PassiveDownloadedFile(uploadRequestInfo);
                         });
                     }
                 }
                 uploadRequestInfo.FileByteStream = new byte[0];
                 uploadRequestInfo.FileEnded = true;
-                CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
+                _communicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                 {
-                    downloadFileData.ShellService.StartTransferData();
-                    downloadFileData.ShellService.PassiveDownloadedFile(uploadRequestInfo);
+                    _sellService.StartTransferData();
+                    _sellService.PassiveDownloadedFile(uploadRequestInfo);
                 });
             }
         }
 
-        public static void UploadFile(UploadFileData uploadFileData)
+        public void UploadFile(UploadFileData uploadFileData)
         {
             DownloadRequest requestData = new DownloadRequest();
             requestData.taskId = uploadFileData.TaskId;
@@ -58,9 +68,9 @@ namespace PassiveClient
             {
                 if (fileStrem == null)
                 {
-                    CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
+                    _communicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                     {
-                        uploadFileData.ShellService.ErrorUploadDownload(uploadFileData.Id, uploadFileData.Request.taskId, string.Format("Fail to create File in your computer {0}", uploadFileData.Request.FileName));
+                        _sellService.ErrorUploadDownload(uploadFileData.Id, uploadFileData.Request.taskId, string.Format("Fail to create File in your computer {0}", uploadFileData.Request.FileName));
                     });
                     return;
                 }
@@ -86,15 +96,15 @@ namespace PassiveClient
                         fileStrem.Flush();
                     }
 
-                    CommunicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
+                    _communicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                     {
-                        uploadFileData.Request = uploadFileData.ShellService.PassiveGetUploadFile(requestData);
+                        uploadFileData.Request = _sellService.PassiveGetUploadFile(requestData);
                     });
                 }
             }
         }
 
-        public static FileStream CreateNewFile(string fileName, string pathTosave)
+        private FileStream CreateNewFile(string fileName, string pathTosave)
         {
             var dirPath = pathTosave;
             var path = Path.Combine(dirPath, fileName);

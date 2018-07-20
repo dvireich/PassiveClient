@@ -19,6 +19,12 @@ namespace PassiveClient.Helpers
     {
 
         private List<IShellCommand> _commands;
+        private IDirHelper _dirHelper;
+
+        public CSharpShell(IDirHelper dirHelper)
+        {
+            _dirHelper = dirHelper;
+        }
 
         public void CloseShell()
         {
@@ -42,9 +48,9 @@ namespace PassiveClient.Helpers
         {
             _commands = new List<IShellCommand>
             {
-                new Dir(),
-                new DirBareFolder(),
-                new DirBareFormat(),
+                new Dir(_dirHelper),
+                new DirBareFolder(_dirHelper),
+                new DirBareFormat(_dirHelper),
                 new Cd(),
                 new CdToParentFolder(),
                 new Copy(),

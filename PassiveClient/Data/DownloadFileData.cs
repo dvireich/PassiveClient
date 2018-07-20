@@ -11,7 +11,5 @@ namespace PassiveClient
         public string PathToSaveOnServer;
         public string Id;
         public string TasktId;
-
-        public IPassiveShell ShellService;
     }
 }
