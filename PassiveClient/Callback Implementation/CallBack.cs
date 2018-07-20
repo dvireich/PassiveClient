@@ -9,7 +9,6 @@ using System;
 using System.Linq;
 using System.ServiceModel;
 using System.Threading;
-using static PassiveClient.PassiveClient;
 
 namespace PassiveClient
 {

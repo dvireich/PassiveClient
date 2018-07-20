@@ -107,6 +107,12 @@ namespace PassiveShell {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPassiveShell/ErrorNextCommand", ReplyAction="http://tempuri.org/IPassiveShell/ErrorNextCommandResponse")]
         System.Threading.Tasks.Task ErrorNextCommandAsync(string id, string taskId, string response);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPassiveShell/RemoveId", ReplyAction="http://tempuri.org/IPassiveShell/RemoveIdResponse")]
+        void RemoveId(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPassiveShell/RemoveId", ReplyAction="http://tempuri.org/IPassiveShell/RemoveIdResponse")]
+        System.Threading.Tasks.Task RemoveIdAsync(string id);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -430,6 +436,14 @@ namespace PassiveShell {
         
         public System.Threading.Tasks.Task ErrorNextCommandAsync(string id, string taskId, string response) {
             return base.Channel.ErrorNextCommandAsync(id, taskId, response);
+        }
+        
+        public void RemoveId(string id) {
+            base.Channel.RemoveId(id);
+        }
+        
+        public System.Threading.Tasks.Task RemoveIdAsync(string id) {
+            return base.Channel.RemoveIdAsync(id);
         }
     }
 }

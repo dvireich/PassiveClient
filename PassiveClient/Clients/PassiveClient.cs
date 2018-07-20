@@ -201,7 +201,7 @@ namespace PassiveClient
             {
                 try
                 {
-                    _shelService.CommandResponse(id.ToString(), string.Empty, "CleanId");
+                    _shelService.RemoveId(id.ToString());
                     succeeded = true;
                 }
                 catch
