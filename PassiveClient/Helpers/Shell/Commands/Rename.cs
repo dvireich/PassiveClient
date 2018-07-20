@@ -25,10 +25,10 @@ namespace PassiveClient.Helpers.Shell.Commands
             var args = _command.Split(' ').Skip(1).ToArray();
             if (args.Length < 2) throw new ArgumentException($"The rename command need at least 2 argumenrs");
 
-            var oldFileName = args[0];
-            var newFileName = args[1];
+            var oldFileName = args[0].Replace("\"","");
+            var newFileName = args[1].Replace("\"", "");
 
-            System.IO.File.Move(oldFileName, newFileName);
+            File.Move(oldFileName, newFileName);
 
             return Directory.GetCurrentDirectory();
         }

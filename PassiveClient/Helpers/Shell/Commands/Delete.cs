@@ -24,25 +24,19 @@ namespace PassiveClient.Helpers.Shell.Commands
         {
             var pathToDel = _command.Split(' ').Skip(1).FirstOrDefault();
             if (pathToDel == null) throw new ArgumentNullException($"The command should not get null argument: {_command} ");
-                                 
-            var path = string.Empty;                                              
-            if(File.Exists(pathToDel))
-            {
-                path = pathToDel;
-            }
-            else if(File.Exists(Path.Combine(Directory.GetCurrentDirectory(), pathToDel)))
-            {
-                path = Path.Combine(Directory.GetCurrentDirectory(), pathToDel);
-            }
-            else if (Directory.Exists(pathToDel))
-            {
-                path = pathToDel;
-            }
-            else if(Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), pathToDel)))
-            {
-                path = Path.Combine(Directory.GetCurrentDirectory(), pathToDel);
-            }
 
+            pathToDel = pathToDel.Replace("\"", "");
+
+            var path = string.Empty;                                              
+            if(File.Exists(pathToDel) || Directory.Exists(pathToDel))
+            {
+                path = pathToDel;
+            }
+            else if(File.Exists(Path.Combine(Directory.GetCurrentDirectory(), pathToDel)) ||
+                    Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), pathToDel)))
+            {
+                path = Path.Combine(Directory.GetCurrentDirectory(), pathToDel);
+            }
             File.Delete(path);
 
             return Directory.GetCurrentDirectory();

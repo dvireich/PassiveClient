@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Symbols LinesOfCode="1412" PostSharpLinesOfCode="0" EnhancedTypesCount="37" SchemaVersion="1" PostSharpVersion="5.0.52.0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+<Symbols LinesOfCode="1445" PostSharpLinesOfCode="0" EnhancedTypesCount="37" SchemaVersion="1" PostSharpVersion="5.0.52.0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[PostSharp.Patterns.Diagnostics]PostSharp.Patterns.Diagnostics.LogAttribute">
     <Instance File="C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\\PassiveClient.pssln" Line="4" Column="6">
       <Target Target="#2=M:[PassiveClient]PassiveClient.AuthenticationClient::#ctor()">
@@ -377,249 +377,252 @@
       <Target Target="#127=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Copy::PerformCommand()">
         <JoinPoint Description="#3" Ordinal="161" LinesAvoided="5" />
       </Target>
-      <Target Target="#128=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Copy::#ctor()">
+      <Target Target="#128=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Copy::GetArgs(System.String, out System.String, out System.String)">
         <JoinPoint Description="#3" Ordinal="162" LinesAvoided="5" />
       </Target>
-      <Target Target="#129=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Delete::PerformCommand()">
+      <Target Target="#129=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Copy::#ctor()">
         <JoinPoint Description="#3" Ordinal="163" LinesAvoided="5" />
       </Target>
-      <Target Target="#130=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Delete::#ctor()">
+      <Target Target="#130=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Delete::PerformCommand()">
         <JoinPoint Description="#3" Ordinal="164" LinesAvoided="5" />
       </Target>
-      <Target Target="#131=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Dir::PerformCommand()">
+      <Target Target="#131=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Delete::#ctor()">
         <JoinPoint Description="#3" Ordinal="165" LinesAvoided="5" />
       </Target>
-      <Target Target="#132=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Dir::#ctor()">
+      <Target Target="#132=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Dir::PerformCommand()">
         <JoinPoint Description="#3" Ordinal="166" LinesAvoided="5" />
       </Target>
-      <Target Target="#133=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.DirBareFolder::PerformCommand()">
+      <Target Target="#133=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Dir::#ctor()">
         <JoinPoint Description="#3" Ordinal="167" LinesAvoided="5" />
       </Target>
-      <Target Target="#134=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.DirBareFolder::#ctor()">
+      <Target Target="#134=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.DirBareFolder::PerformCommand()">
         <JoinPoint Description="#3" Ordinal="168" LinesAvoided="5" />
       </Target>
-      <Target Target="#135=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.DirBareFormat::PerformCommand()">
+      <Target Target="#135=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.DirBareFolder::#ctor()">
         <JoinPoint Description="#3" Ordinal="169" LinesAvoided="5" />
       </Target>
-      <Target Target="#136=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.DirBareFormat::#ctor()">
+      <Target Target="#136=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.DirBareFormat::PerformCommand()">
         <JoinPoint Description="#3" Ordinal="170" LinesAvoided="5" />
       </Target>
-      <Target Target="#137=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Rename::PerformCommand()">
+      <Target Target="#137=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.DirBareFormat::#ctor()">
         <JoinPoint Description="#3" Ordinal="171" LinesAvoided="5" />
       </Target>
-      <Target Target="#138=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Rename::#ctor()">
+      <Target Target="#138=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Rename::PerformCommand()">
         <JoinPoint Description="#3" Ordinal="172" LinesAvoided="5" />
       </Target>
-      <Target Target="#139=M:[PassiveClient]PassiveClient.Data.CallBackInitializeData::#ctor()">
+      <Target Target="#139=M:[PassiveClient]PassiveClient.Helpers.Shell.Commands.Rename::#ctor()">
         <JoinPoint Description="#3" Ordinal="173" LinesAvoided="5" />
       </Target>
-      <Target Target="#140=M:[PassiveClient]PassiveClient.Clients.BaseClient::#ctor()">
+      <Target Target="#140=M:[PassiveClient]PassiveClient.Data.CallBackInitializeData::#ctor()">
+        <JoinPoint Description="#3" Ordinal="174" LinesAvoided="5" />
+      </Target>
+      <Target Target="#141=M:[PassiveClient]PassiveClient.Clients.BaseClient::#ctor()">
         <JoinPoint Description="#3" Ordinal="0" LinesAvoided="5" />
       </Target>
     </Instance>
   </Class>
-  <Class Class="#141=T:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy">
+  <Class Class="#142=T:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy">
     <Instance File="C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\\PassiveClient.pssln" Line="5" Column="6">
-      <Target Target="#142=A:PassiveClient">
-        <JoinPoint Advised="#143=M:[mscorlib]System.Threading.WaitHandle::WaitOne(System.Int32)" Advising="#144=T:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements" Description="#145=Intercepted by WaitOne_Int32" Ordinal="174" LinesAvoided="2" />
-        <JoinPoint Advised="#146=M:[mscorlib]System.Threading.Monitor::Enter(System.Object, ref System.Boolean)" Advising="#147=T:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements" Description="#148=Intercepted by Enter_Object_Bool" Ordinal="175" LinesAvoided="2" />
-        <JoinPoint Advised="#149=M:[mscorlib]System.Threading.Monitor::Exit(System.Object)" Advising="#147" Description="#150=Intercepted by Exit" Ordinal="176" LinesAvoided="2" />
+      <Target Target="#143=A:PassiveClient">
+        <JoinPoint Advised="#144=M:[mscorlib]System.Threading.WaitHandle::WaitOne(System.Int32)" Advising="#145=T:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements" Description="#146=Intercepted by WaitOne_Int32" Ordinal="175" LinesAvoided="2" />
+        <JoinPoint Advised="#147=M:[mscorlib]System.Threading.Monitor::Enter(System.Object, ref System.Boolean)" Advising="#148=T:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements" Description="#149=Intercepted by Enter_Object_Bool" Ordinal="176" LinesAvoided="2" />
+        <JoinPoint Advised="#150=M:[mscorlib]System.Threading.Monitor::Exit(System.Object)" Advising="#148" Description="#151=Intercepted by Exit" Ordinal="177" LinesAvoided="2" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#1">
-    <Instance Declaration="#151=T:[PassiveClient]PassiveClient.AuthenticationClient" Id="a7e7e010573e8dba">
-      <Target Target="#152=M:[PassiveClient]PassiveClient.AuthenticationClient::Authenticate(System.String, System.String, out System.String, out System.String)">
+    <Instance Declaration="#152=T:[PassiveClient]PassiveClient.AuthenticationClient" Id="a7e7e010c72a98b4">
+      <Target Target="#153=M:[PassiveClient]PassiveClient.AuthenticationClient::Authenticate(System.String, System.String, out System.String, out System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="4" LinesAvoided="5" />
       </Target>
-      <Target Target="#153=M:[PassiveClient]PassiveClient.AuthenticationClient::Logout(System.String, out System.String)">
+      <Target Target="#154=M:[PassiveClient]PassiveClient.AuthenticationClient::Logout(System.String, out System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="5" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#154=T:[PassiveClient]PassiveClient.CallBack" Id="a7e7e0109678a49f">
-      <Target Target="#155=M:[PassiveClient]PassiveClient.CallBack::SetReliableSessionAndInactivityTimeoutAndReaderQuotas(System.ServiceModel.NetTcpBinding)">
+    <Instance Declaration="#155=T:[PassiveClient]PassiveClient.CallBack" Id="a7e7e0104c3a8a84">
+      <Target Target="#156=M:[PassiveClient]PassiveClient.CallBack::SetReliableSessionAndInactivityTimeoutAndReaderQuotas(System.ServiceModel.NetTcpBinding)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="7" LinesAvoided="5" />
       </Target>
-      <Target Target="#156=M:[PassiveClient]PassiveClient.CallBack::Initialize([PassiveClient]PassiveClient.Data.CallBackInitializeData)">
+      <Target Target="#157=M:[PassiveClient]PassiveClient.CallBack::Initialize([PassiveClient]PassiveClient.Data.CallBackInitializeData)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="8" LinesAvoided="5" />
       </Target>
-      <Target Target="#157=M:[PassiveClient]PassiveClient.CallBack::InitializeHardDiskInDirHeleper()">
+      <Target Target="#158=M:[PassiveClient]PassiveClient.CallBack::InitializeHardDiskInDirHeleper()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="9" LinesAvoided="5" />
       </Target>
-      <Target Target="#158=M:[PassiveClient]PassiveClient.CallBack::SendServerCallBack(System.String, System.String)">
+      <Target Target="#159=M:[PassiveClient]PassiveClient.CallBack::SendServerCallBack(System.String, System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="10" LinesAvoided="5" />
       </Target>
-      <Target Target="#159=M:[PassiveClient]PassiveClient.CallBack::CallBackFunction(System.String)">
+      <Target Target="#160=M:[PassiveClient]PassiveClient.CallBack::CallBackFunction(System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="11" LinesAvoided="5" />
       </Target>
-      <Target Target="#160=M:[PassiveClient]PassiveClient.CallBack::Dispose()">
+      <Target Target="#161=M:[PassiveClient]PassiveClient.CallBack::Dispose()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="12" LinesAvoided="5" />
       </Target>
-      <Target Target="#161=M:[PassiveClient]PassiveClient.CallBack::KeppAlive()">
+      <Target Target="#162=M:[PassiveClient]PassiveClient.CallBack::KeppAlive()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="13" LinesAvoided="5" />
       </Target>
-      <Target Target="#162=M:[PassiveClient]PassiveClient.CallBack::KeepCallbackALive()">
+      <Target Target="#163=M:[PassiveClient]PassiveClient.CallBack::KeepCallbackALive()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="14" LinesAvoided="5" />
       </Target>
-      <Target Target="#163=M:[PassiveClient]PassiveClient.CallBack::CheckMissions([PassiveClient]PassiveClient.Helpers.Interfaces.IShell)">
+      <Target Target="#164=M:[PassiveClient]PassiveClient.CallBack::CheckMissions([PassiveClient]PassiveClient.Helpers.Interfaces.IShell)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="15" LinesAvoided="5" />
       </Target>
-      <Target Target="#164=M:[PassiveClient]PassiveClient.CallBack::UploadCommandHendler()">
+      <Target Target="#165=M:[PassiveClient]PassiveClient.CallBack::UploadCommandHendler()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="16" LinesAvoided="5" />
       </Target>
-      <Target Target="#165=M:[PassiveClient]PassiveClient.CallBack::CheckIfHasUploadCommand()">
+      <Target Target="#166=M:[PassiveClient]PassiveClient.CallBack::CheckIfHasUploadCommand()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="17" LinesAvoided="5" />
       </Target>
-      <Target Target="#166=M:[PassiveClient]PassiveClient.CallBack::CheckIfHasDownloadCommand()">
+      <Target Target="#167=M:[PassiveClient]PassiveClient.CallBack::CheckIfHasDownloadCommand()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="18" LinesAvoided="5" />
       </Target>
-      <Target Target="#167=M:[PassiveClient]PassiveClient.CallBack::CheckIfHasShellCommand()">
+      <Target Target="#168=M:[PassiveClient]PassiveClient.CallBack::CheckIfHasShellCommand()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="19" LinesAvoided="5" />
       </Target>
-      <Target Target="#168=M:[PassiveClient]PassiveClient.CallBack::ShellCommandHendler([PassiveClient]PassiveClient.Helpers.Interfaces.IShell)">
+      <Target Target="#169=M:[PassiveClient]PassiveClient.CallBack::ShellCommandHendler([PassiveClient]PassiveClient.Helpers.Interfaces.IShell)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="20" LinesAvoided="5" />
       </Target>
-      <Target Target="#169=M:[PassiveClient]PassiveClient.CallBack::DownloadCommandHendler()">
+      <Target Target="#170=M:[PassiveClient]PassiveClient.CallBack::DownloadCommandHendler()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="21" LinesAvoided="5" />
       </Target>
-      <Target Target="#170=M:[PassiveClient]PassiveClient.CallBack::ProcessNextCommand([PassiveClient]PassiveClient.Helpers.Interfaces.IShell)">
+      <Target Target="#171=M:[PassiveClient]PassiveClient.CallBack::ProcessNextCommand([PassiveClient]PassiveClient.Helpers.Interfaces.IShell)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="22" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#171=T:[PassiveClient]PassiveClient.PassiveClient" Id="a7e7e010d3b7e5a0">
-      <Target Target="#172=M:[PassiveClient]PassiveClient.PassiveClient::Main(System.String[])">
+    <Instance Declaration="#172=T:[PassiveClient]PassiveClient.PassiveClient" Id="a7e7e0105b87d603">
+      <Target Target="#173=M:[PassiveClient]PassiveClient.PassiveClient::Main(System.String[])">
         <JoinPoint Advising="#1" Description="#3" Ordinal="24" LinesAvoided="5" />
       </Target>
-      <Target Target="#173=M:[PassiveClient]PassiveClient.PassiveClient::PrintArgsUsage()">
+      <Target Target="#174=M:[PassiveClient]PassiveClient.PassiveClient::PrintArgsUsage()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="25" LinesAvoided="5" />
       </Target>
-      <Target Target="#174=M:[PassiveClient]PassiveClient.PassiveClient::InitializeServiceAndWaitForCommands(System.String)">
+      <Target Target="#175=M:[PassiveClient]PassiveClient.PassiveClient::InitializeServiceAndWaitForCommands(System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="26" LinesAvoided="5" />
       </Target>
-      <Target Target="#175=M:[PassiveClient]PassiveClient.PassiveClient::CloseAllConnectionsAndDisposeTimers(System.Threading.Timer)">
+      <Target Target="#176=M:[PassiveClient]PassiveClient.PassiveClient::CloseAllConnectionsAndDisposeTimers(System.Threading.Timer)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="27" LinesAvoided="5" />
       </Target>
-      <Target Target="#176=M:[PassiveClient]PassiveClient.PassiveClient::WaitUntilActiveClientCloseOrLostConnections()">
+      <Target Target="#177=M:[PassiveClient]PassiveClient.PassiveClient::WaitUntilActiveClientCloseOrLostConnections()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="28" LinesAvoided="5" />
       </Target>
-      <Target Target="#177=M:[PassiveClient]PassiveClient.PassiveClient::WaitUntilSubscribed(System.String)">
+      <Target Target="#178=M:[PassiveClient]PassiveClient.PassiveClient::WaitUntilSubscribed(System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="29" LinesAvoided="5" />
       </Target>
-      <Target Target="#178=M:[PassiveClient]PassiveClient.PassiveClient::StartKeepAliveCallbackThread([PassiveClient]PassiveClient.CallBack, [PassiveClient]PassiveClient.StatusCallBack)">
+      <Target Target="#179=M:[PassiveClient]PassiveClient.PassiveClient::StartKeepAliveCallbackThread([PassiveClient]PassiveClient.CallBack, [PassiveClient]PassiveClient.StatusCallBack)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="30" LinesAvoided="5" />
       </Target>
-      <Target Target="#179=M:[PassiveClient]PassiveClient.PassiveClient::CleanPreviousPassiveClientId()">
+      <Target Target="#180=M:[PassiveClient]PassiveClient.PassiveClient::CleanPreviousPassiveClientId()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="31" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#180=T:[PassiveClient]PassiveClient.Shell" Id="a7e7e010eda6703e">
-      <Target Target="#181=M:[PassiveClient]PassiveClient.Shell::Run()">
+    <Instance Declaration="#181=T:[PassiveClient]PassiveClient.Shell" Id="a7e7e010795246f6">
+      <Target Target="#182=M:[PassiveClient]PassiveClient.Shell::Run()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="33" LinesAvoided="5" />
       </Target>
-      <Target Target="#182=M:[PassiveClient]PassiveClient.Shell::CloseShell()">
+      <Target Target="#183=M:[PassiveClient]PassiveClient.Shell::CloseShell()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="34" LinesAvoided="5" />
       </Target>
-      <Target Target="#183=M:[PassiveClient]PassiveClient.Shell::NextCommand(System.String)">
+      <Target Target="#184=M:[PassiveClient]PassiveClient.Shell::NextCommand(System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="35" LinesAvoided="5" />
       </Target>
-      <Target Target="#184=M:[PassiveClient]PassiveClient.Shell::GetStdOutString(System.IO.StreamWriter, out System.Text.StringBuilder, out System.String, System.String)">
+      <Target Target="#185=M:[PassiveClient]PassiveClient.Shell::GetStdOutString(System.IO.StreamWriter, out System.Text.StringBuilder, out System.String, System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="36" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#185=T:[PassiveClient]PassiveClient.StatusCallBack" Id="a7e7e010d7472ce6">
-      <Target Target="#186=M:[PassiveClient]PassiveClient.StatusCallBack::SetReliableSessionAndInactivityTimeoutAndReaderQuotas(System.ServiceModel.NetTcpBinding, System.String)">
+    <Instance Declaration="#186=T:[PassiveClient]PassiveClient.StatusCallBack" Id="a7e7e0107bf7d56a">
+      <Target Target="#187=M:[PassiveClient]PassiveClient.StatusCallBack::SetReliableSessionAndInactivityTimeoutAndReaderQuotas(System.ServiceModel.NetTcpBinding, System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="38" LinesAvoided="5" />
       </Target>
-      <Target Target="#187=M:[PassiveClient]PassiveClient.StatusCallBack::SendServerCallBack(System.String, System.String)">
+      <Target Target="#188=M:[PassiveClient]PassiveClient.StatusCallBack::SendServerCallBack(System.String, System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="39" LinesAvoided="5" />
       </Target>
-      <Target Target="#188=M:[PassiveClient]PassiveClient.StatusCallBack::CallBackFunction(System.String)">
+      <Target Target="#189=M:[PassiveClient]PassiveClient.StatusCallBack::CallBackFunction(System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="40" LinesAvoided="5" />
       </Target>
-      <Target Target="#189=M:[PassiveClient]PassiveClient.StatusCallBack::KeppAlive()">
+      <Target Target="#190=M:[PassiveClient]PassiveClient.StatusCallBack::KeppAlive()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="41" LinesAvoided="5" />
       </Target>
-      <Target Target="#190=M:[PassiveClient]PassiveClient.StatusCallBack::KeepCallbackALive()">
+      <Target Target="#191=M:[PassiveClient]PassiveClient.StatusCallBack::KeepCallbackALive()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="42" LinesAvoided="5" />
       </Target>
-      <Target Target="#191=M:[PassiveClient]PassiveClient.StatusCallBack::Dispose()">
+      <Target Target="#192=M:[PassiveClient]PassiveClient.StatusCallBack::Dispose()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="43" LinesAvoided="5" />
       </Target>
     </Instance>
   </Class>
-  <Annotation Target="#192=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MutexEnhancements::Release(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193=2" Description="#194=PostSharp estimates that 2 line(s) of code are saved every time this advice is applied. Use the [LinesOfCodeAvoided] attribute on the aspect or specify the LinesOfCodeAvoided property on the advice attribute to override this value." />
-  <Annotation Target="#195=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitOne(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#196=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitOne_Int32(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#197=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitOne_TimeSpan(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#198=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitOne_Int32_Boolean(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#199=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitOne_TimeSpan_Boolean(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#200=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitAll_WaitHandleArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#201=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitAll_WaitHandleArray_Int32(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#202=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitAll_WaitHandleArray_TimeSpan(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#203=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitAll_WaitHandleArray_Int32_Boolean(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#204=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitAll_WaitHandleArray_TimeSpan_Boolean(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#205=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::SignalAndWait_WaitHandle_WaitHandle(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#206=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::SignalAndWait_WaitHandle_WaitHandle_Int32_Boolean(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#207=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::SignalAndWait_WaitHandle_WaitHandle_TimeSpan_Boolean(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#208=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::HandleModification(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#209=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::Enter_Object(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#210=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::Enter_Object_Bool(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#211=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::TryEnter_Object(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#212=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::TryEnter_Object_Bool(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#213=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::TryEnter_Object_Int32(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#214=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::TryEnter_Object_TimeSpan(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#215=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::TryEnter_Object_Int32_Bool(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#216=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::TryEnter_Object_TimeSpan_Bool(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#217=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::Exit(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#218=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::ReaderLockEnter(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#219=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::UpgradeableReadEnter(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#220=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::WriterLockEnter(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#221=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::UpgradeToWriterLock(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#222=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::ReaderLockExit(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#223=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::UpgradeableReadLockExit(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#224=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::WriterLockExit(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#225=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::TryEnterReadLock(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#226=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::TryEnterUpgradeableReadLock(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#227=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::TryEnterWriteLock(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#228=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::ReleaseRestoreLock(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#229=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ThreadEnhancements::Join(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#230=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ThreadEnhancements::Join_Int32(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#231=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ThreadEnhancements::Join_TimeSpan(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#232=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Action(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#233=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Func(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#234=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Action_DispatcherPriority(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#235=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Func_DispatcherPriority(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#236=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Action_DispatcherPriority_CancellationToken(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#237=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Func_DispatcherPriority_CancellationToken(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#238=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Action_DispatcherPriority_CancellationToken_TimeSpan(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#239=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Func_DispatcherPriority_CancellationToken_TimeSpan(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#240=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Delegate_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#241=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_DispatcherPriority_Delegate(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#242=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::OnInvoke_Delegate_TimeSpan_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#243=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::OnInvoke_Delegate_DispatcherPriority_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#244=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_DispatcherPriority_Delegate_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#245=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_DispatcherPriority_TimeSpan_Delegate(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#246=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_DispatcherPriority_TimeSpan_Delegate_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#247=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_DispatcherPriority_Delegate_Object_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#248=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_DispatcherPriority_TimeSpan_Delegate_Object(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#249=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_DispatcherPriority_TimeSpan_Delegate_Object_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#250=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::InvokeAsync_Action(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#251=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::InvokeAsync_Func(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#252=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::InvokeAsync_Action_DispatcherPriority(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#253=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::InvokeAsync_Func_DispatcherPriority(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#254=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::InvokeAsync_Action_DispatcherPriority_CancellationToken(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#255=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::InvokeAsync_Func_DispatcherPriority_CancellationToken(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#256=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::BeginInvoke_Delegate_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#257=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::BeginInvoke_DispatcherPriority_Delegate(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#258=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::BeginInvoke_Delegate_DispatcherPriority_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#259=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::BeginInvoke_DispatcherPriority_Delegate_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#260=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::BeginInvoke_DispatcherPriority_Delegate_Object_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#261=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherOperationEnhancements::Wait(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#262=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherOperationEnhancements::Wait_TimeSpan(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#263=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+SynchronizationContextEnhancements::Post(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#264=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+SynchronizationContextEnhancements::Send(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#265=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+SynchronizationContextEnhancements::Wait(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#266=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherSynchronizationContextEnhancements::Post(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#267=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherSynchronizationContextEnhancements::Send(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
-  <Annotation Target="#268=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherSynchronizationContextEnhancements::Wait(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#193" Description="#194" />
+  <Annotation Target="#193=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MutexEnhancements::Release(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194=2" Description="#195=PostSharp estimates that 2 line(s) of code are saved every time this advice is applied. Use the [LinesOfCodeAvoided] attribute on the aspect or specify the LinesOfCodeAvoided property on the advice attribute to override this value." />
+  <Annotation Target="#196=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitOne(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#197=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitOne_Int32(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#198=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitOne_TimeSpan(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#199=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitOne_Int32_Boolean(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#200=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitOne_TimeSpan_Boolean(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#201=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitAll_WaitHandleArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#202=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitAll_WaitHandleArray_Int32(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#203=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitAll_WaitHandleArray_TimeSpan(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#204=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitAll_WaitHandleArray_Int32_Boolean(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#205=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::WaitAll_WaitHandleArray_TimeSpan_Boolean(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#206=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::SignalAndWait_WaitHandle_WaitHandle(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#207=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::SignalAndWait_WaitHandle_WaitHandle_Int32_Boolean(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#208=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::SignalAndWait_WaitHandle_WaitHandle_TimeSpan_Boolean(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#209=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+WaitHandleEnhancements::HandleModification(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#210=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::Enter_Object(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#211=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::Enter_Object_Bool(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#212=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::TryEnter_Object(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#213=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::TryEnter_Object_Bool(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#214=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::TryEnter_Object_Int32(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#215=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::TryEnter_Object_TimeSpan(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#216=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::TryEnter_Object_Int32_Bool(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#217=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::TryEnter_Object_TimeSpan_Bool(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#218=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+MonitorEnhancements::Exit(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#219=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::ReaderLockEnter(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#220=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::UpgradeableReadEnter(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#221=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::WriterLockEnter(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#222=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::UpgradeToWriterLock(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#223=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::ReaderLockExit(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#224=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::UpgradeableReadLockExit(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#225=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::WriterLockExit(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#226=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::TryEnterReadLock(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#227=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::TryEnterUpgradeableReadLock(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#228=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::TryEnterWriteLock(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#229=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ReaderWriterEnhancements::ReleaseRestoreLock(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#230=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ThreadEnhancements::Join(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#231=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ThreadEnhancements::Join_Int32(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#232=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+ThreadEnhancements::Join_TimeSpan(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#233=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Action(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#234=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Func(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#235=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Action_DispatcherPriority(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#236=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Func_DispatcherPriority(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#237=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Action_DispatcherPriority_CancellationToken(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#238=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Func_DispatcherPriority_CancellationToken(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#239=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Action_DispatcherPriority_CancellationToken_TimeSpan(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#240=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Func_DispatcherPriority_CancellationToken_TimeSpan(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#241=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_Delegate_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#242=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_DispatcherPriority_Delegate(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#243=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::OnInvoke_Delegate_TimeSpan_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#244=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::OnInvoke_Delegate_DispatcherPriority_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#245=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_DispatcherPriority_Delegate_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#246=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_DispatcherPriority_TimeSpan_Delegate(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#247=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_DispatcherPriority_TimeSpan_Delegate_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#248=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_DispatcherPriority_Delegate_Object_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#249=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_DispatcherPriority_TimeSpan_Delegate_Object(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#250=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::Invoke_DispatcherPriority_TimeSpan_Delegate_Object_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#251=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::InvokeAsync_Action(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#252=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::InvokeAsync_Func(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#253=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::InvokeAsync_Action_DispatcherPriority(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#254=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::InvokeAsync_Func_DispatcherPriority(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#255=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::InvokeAsync_Action_DispatcherPriority_CancellationToken(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#256=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::InvokeAsync_Func_DispatcherPriority_CancellationToken(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#257=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::BeginInvoke_Delegate_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#258=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::BeginInvoke_DispatcherPriority_Delegate(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#259=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::BeginInvoke_Delegate_DispatcherPriority_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#260=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::BeginInvoke_DispatcherPriority_Delegate_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#261=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherEnhancements::BeginInvoke_DispatcherPriority_Delegate_Object_ObjectArray(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#262=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherOperationEnhancements::Wait(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#263=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherOperationEnhancements::Wait_TimeSpan(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#264=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+SynchronizationContextEnhancements::Post(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#265=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+SynchronizationContextEnhancements::Send(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#266=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+SynchronizationContextEnhancements::Wait(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#267=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherSynchronizationContextEnhancements::Post(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#268=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherSynchronizationContextEnhancements::Send(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
+  <Annotation Target="#269=M:[PostSharp.Patterns.Threading]PostSharp.Patterns.Threading.DeadlockDetectionPolicy+DispatcherSynchronizationContextEnhancements::Wait(PostSharp.Aspects.MethodInterceptionArgs)" Arguments="#194" Description="#195" />
 </Symbols>
