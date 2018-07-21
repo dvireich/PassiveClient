@@ -20,11 +20,11 @@ namespace PassiveClient.Helpers
                          IFileInfoHelper fileHelper,
                          IHardDriveHelper hardDriveHelper)
         {
+            _hardDriveHelper = hardDriveHelper;
             _hardDrives = _hardDriveHelper.GetHardDrives();
             _directoryManager = directoryManager;
             _fIleManager = fIleManager;
             _fileHelper = fileHelper;
-            _hardDriveHelper = hardDriveHelper;
         }
 
         private static List<HardDrive> _hardDrives;

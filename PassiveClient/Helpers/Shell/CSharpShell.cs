@@ -21,6 +21,7 @@ namespace PassiveClient.Helpers
         public CSharpShell(IDirectoryManager directoryManager)
         {
             _directoryManager = directoryManager;
+            InitializeShellCommands();
         }
 
         public void CloseShell()
@@ -30,7 +31,6 @@ namespace PassiveClient.Helpers
 
         public string NextCommand(string commandToPerform)
         {
-            InitializeShellCommands();
             var command = _commands.FirstOrDefault(c => c.IsMatch(commandToPerform));
             if (command == null) throw new NotImplementedException($"The command {commandToPerform} is not supported");
             return command.PerformCommand();

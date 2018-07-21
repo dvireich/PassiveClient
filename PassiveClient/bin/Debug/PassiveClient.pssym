@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Symbols LinesOfCode="1537" PostSharpLinesOfCode="0" EnhancedTypesCount="42" SchemaVersion="1" PostSharpVersion="5.0.52.0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+<Symbols LinesOfCode="1539" PostSharpLinesOfCode="0" EnhancedTypesCount="42" SchemaVersion="1" PostSharpVersion="5.0.52.0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[PostSharp.Patterns.Diagnostics]PostSharp.Patterns.Diagnostics.LogAttribute">
     <Instance File="C:\Users\dvire\Documents\Visual Studio 2017\shell server\PassiveClient\\PassiveClient.pssln" Line="4" Column="6">
       <Target Target="#2=M:[PassiveClient]PassiveClient.AuthenticationClient::#ctor()">
@@ -509,7 +509,7 @@
     </Instance>
   </Class>
   <Class Class="#1">
-    <Instance Declaration="#178=T:[PassiveClient]PassiveClient.AuthenticationClient" Id="a7e7e01043486272">
+    <Instance Declaration="#178=T:[PassiveClient]PassiveClient.AuthenticationClient" Id="a7e7e01072d8fae4">
       <Target Target="#179=M:[PassiveClient]PassiveClient.AuthenticationClient::Authenticate(System.String, System.String, out System.String, out System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="3" LinesAvoided="5" />
       </Target>
@@ -517,7 +517,7 @@
         <JoinPoint Advising="#1" Description="#3" Ordinal="4" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#181=T:[PassiveClient]PassiveClient.CallBack" Id="a7e7e010d53ec685">
+    <Instance Declaration="#181=T:[PassiveClient]PassiveClient.CallBack" Id="a7e7e010554bab07">
       <Target Target="#182=M:[PassiveClient]PassiveClient.CallBack::SendServerCallBack(System.String, System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="14" LinesAvoided="5" />
       </Target>
@@ -549,7 +549,7 @@
         <JoinPoint Advising="#1" Description="#3" Ordinal="23" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#192=T:[PassiveClient]PassiveClient.PassiveClient" Id="a7e7e01020360de8">
+    <Instance Declaration="#192=T:[PassiveClient]PassiveClient.PassiveClient" Id="a7e7e010a6aa539d">
       <Target Target="#193=M:[PassiveClient]PassiveClient.PassiveClient::Main(System.String[])">
         <JoinPoint Advising="#1" Description="#3" Ordinal="24" LinesAvoided="5" />
       </Target>
@@ -578,7 +578,7 @@
         <JoinPoint Advising="#1" Description="#3" Ordinal="32" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#202=T:[PassiveClient]PassiveClient.Shell" Id="a7e7e0101b96de04">
+    <Instance Declaration="#202=T:[PassiveClient]PassiveClient.Shell" Id="a7e7e0100574439b">
       <Target Target="#203=M:[PassiveClient]PassiveClient.Shell::Run()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="34" LinesAvoided="5" />
       </Target>
@@ -592,7 +592,7 @@
         <JoinPoint Advising="#1" Description="#3" Ordinal="37" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#207=T:[PassiveClient]PassiveClient.Callback_Implementation.BaseCallBack" Id="a7e7e010fd73cac7">
+    <Instance Declaration="#207=T:[PassiveClient]PassiveClient.Callback_Implementation.BaseCallBack" Id="a7e7e010a8a3d56a">
       <Target Target="#208=M:[PassiveClient]PassiveClient.Callback_Implementation.BaseCallBack::SetReliableSessionAndInactivityTimeoutAndReaderQuotas(System.ServiceModel.NetTcpBinding)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="6" LinesAvoided="5" />
       </Target>
