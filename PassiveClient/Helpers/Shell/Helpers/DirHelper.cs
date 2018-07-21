@@ -1,4 +1,5 @@
 ﻿using PassiveClient.Helpers.Data;
+using PassiveClient.Helpers.Interfaces;
 using PassiveClient.Helpers.Shell.Interfaces;
 using PostSharp.Patterns.Diagnostics;
 using System;
@@ -14,82 +15,28 @@ namespace PassiveClient.Helpers
     [Log(AttributeExclude = true)]
     public class DirHelper : IDirHelper
     {
-        public DirHelper()
+        public DirHelper(IDirectoryManager directoryManager, 
+                         IFileManager fIleManager,
+                         IFileInfoHelper fileHelper,
+                         IHardDriveHelper hardDriveHelper)
         {
-            _hardDrives = GetHradDisksData();
+            _hardDrives = _hardDriveHelper.GetHardDrives();
+            _directoryManager = directoryManager;
+            _fIleManager = fIleManager;
+            _fileHelper = fileHelper;
+            _hardDriveHelper = hardDriveHelper;
         }
 
         private static List<HardDrive> _hardDrives;
-
-        private List<HardDrive> GetHradDisksData()
-        {
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive");
-            List<HardDrive> hdCollection = new List<HardDrive>();
-
-            foreach (ManagementObject wmi_HD in searcher.Get())
-            {
-                HardDrive hd = new HardDrive();
-                hd.Model = wmi_HD["Model"].ToString();
-                hd.Type = wmi_HD["InterfaceType"].ToString();
-                hdCollection.Add(hd);
-            }
-
-            int i = 0;
-            foreach (ManagementObject wmi_HD in searcher.Get())
-            {
-                // get the hard drive from collection
-                // using index
-                HardDrive hd = (HardDrive)hdCollection[i];
-
-                // get the hardware serial no.
-                if (wmi_HD["SerialNumber"] == null)
-                    hd.SerialNo = "None";
-                else
-                    hd.SerialNo = wmi_HD["SerialNumber"].ToString();
-
-                ++i;
-            }
-
-            return hdCollection;
-        }
-
-        private List<HardDrive> GetDriveLetterAndLabelFromID(List<HardDrive> drives)
-        {
-            foreach (var drive in drives)
-            {
-                ManagementClass devs = new ManagementClass(@"Win32_Diskdrive");
-                {
-                    ManagementObjectCollection moc = devs.GetInstances();
-                    foreach (ManagementObject mo in moc)
-                    {
-                        string serialNo = (string)mo["SerialNumber"];
-                        if (serialNo == drive.SerialNo)
-                        {
-                            foreach (ManagementObject b in mo.GetRelated("Win32_DiskPartition"))
-                            {
-                                foreach (ManagementBaseObject c in b.GetRelated("Win32_LogicalDisk"))
-                                {
-                                    drive.Name = c["VolumeName"].ToString();
-                                    drive.Letter = c["DeviceID"].ToString();
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            return drives;
-        }
-
-        private List<HardDrive> GetHardDrives()
-        {
-            return GetDriveLetterAndLabelFromID(GetHradDisksData());
-        }
+        private IDirectoryManager _directoryManager;
+        private IFileManager _fIleManager;
+        private IFileInfoHelper _fileHelper;
+        private IHardDriveHelper _hardDriveHelper;
 
         private string GetDriveLetter()
         {
-            var currentDriveLetter = Directory.GetCurrentDirectory().Split(':').First() + ":";
-            _hardDrives = _hardDrives ?? GetHardDrives();
+            var currentDriveLetter = _directoryManager.GetCurrentDirectory().Split(':').First() + ":";
+            _hardDrives = _hardDrives ?? _hardDriveHelper. GetHardDrives();
             var drive = _hardDrives.FirstOrDefault(d => d.Letter == currentDriveLetter);
             if (drive == null) return string.Empty;
 
@@ -98,8 +45,8 @@ namespace PassiveClient.Helpers
 
         private string GetDriveName()
         {
-            var currentDriveLetter = Directory.GetCurrentDirectory().Split(':').First() + ":";
-            _hardDrives = _hardDrives ?? GetHardDrives();
+            var currentDriveLetter = _directoryManager.GetCurrentDirectory().Split(':').First() + ":";
+            _hardDrives = _hardDrives ?? _hardDriveHelper.GetHardDrives();
             var drive = _hardDrives.FirstOrDefault(d => d.Letter == currentDriveLetter);
             if (drive == null) return string.Empty;
 
@@ -108,8 +55,8 @@ namespace PassiveClient.Helpers
 
         private string GetDrivSerialNumber()
         {
-            var currentDriveLetter = Directory.GetCurrentDirectory().Split(':').First() + ":";
-            _hardDrives = _hardDrives ?? GetHardDrives();
+            var currentDriveLetter = _directoryManager.GetCurrentDirectory().Split(':').First() + ":";
+            _hardDrives = _hardDrives ?? _hardDriveHelper.GetHardDrives();
             var drive = _hardDrives.FirstOrDefault(d => d.Letter == currentDriveLetter);
             if (drive == null) return string.Empty;
 
@@ -120,7 +67,7 @@ namespace PassiveClient.Helpers
         {
             var sb = new StringBuilder();
 
-            sb.AppendLine(Directory.GetCurrentDirectory());
+            sb.AppendLine(_directoryManager.GetCurrentDirectory());
             sb.AppendLine();
             var volLetterAndName = $" Volume in drive {GetDriveLetter()} is {GetDriveName()}";
             var volSerialNum = $" Volume Serial Number is {GetDrivSerialNumber()}";
@@ -129,7 +76,7 @@ namespace PassiveClient.Helpers
             sb.AppendLine(volSerialNum);
             sb.AppendLine();
 
-            var path = $" Directory of {Directory.GetCurrentDirectory()}";
+            var path = $" Directory of {_directoryManager.GetCurrentDirectory()}";
             sb.AppendLine(path);
             sb.AppendLine();
 
@@ -159,55 +106,55 @@ namespace PassiveClient.Helpers
             sb.AppendLine($"{numberOfFiles} File(s)");
             sb.AppendLine($"{numberOfDir} Dir(s)");
             sb.AppendLine();
-            sb.AppendLine(Directory.GetCurrentDirectory());
+            sb.AppendLine(_directoryManager.GetCurrentDirectory());
             return sb.ToString();
         }
 
         public string GenerateBareFormatAllFileAndFolderString()
         {
             return string.Concat(Environment.NewLine,
-                                 Directory.GetCurrentDirectory(),
+                                 _directoryManager.GetCurrentDirectory(),
                                  Environment.NewLine,
                                  string.Join(Environment.NewLine, GetDirectories().Select(dir => dir.Split('\\').Last()).ToList()),
                                  string.Join(Environment.NewLine, GetFiles().Select(file => file.Split('\\').Last()).ToList()),
                                  Environment.NewLine,
                                  Environment.NewLine,
-                                 Directory.GetCurrentDirectory());
+                                 _directoryManager.GetCurrentDirectory());
         }
 
         public string GenerateBareFormatFolderString()
         {
-            return string.Concat(Directory.GetCurrentDirectory(),
+            return string.Concat(_directoryManager.GetCurrentDirectory(),
                                  Environment.NewLine,
                                  string.Join(Environment.NewLine, GetDirectories().Select(dir => dir.Split('\\').Last()).ToList()),
                                  Environment.NewLine,
                                  Environment.NewLine,
-                                 Directory.GetCurrentDirectory());
+                                 _directoryManager.GetCurrentDirectory());
         }
 
         private string[] GetDirectories()
         {
-            return Directory.GetDirectories(Directory.GetCurrentDirectory());
+            return _directoryManager.GetDirectories(_directoryManager.GetCurrentDirectory());
         }
 
         private string[] GetFiles()
         {
-            return Directory.GetFiles(Directory.GetCurrentDirectory());
+            return _directoryManager.GetFiles(_directoryManager.GetCurrentDirectory());
         }
 
         private string GetFileSize(string path)
         {
-            return new FileInfo(path).Length.ToString();
+            return _fileHelper.GetFileLength(path).ToString();
         }
 
         private string GetModificationDate(string path)
         {
-            return File.GetLastWriteTime(path).Date.ToString("dd/MM/yyyy");
+            return _fIleManager.GetLastWriteTime(path).Date.ToString("dd/MM/yyyy");
         }
 
         private string GetModificationTime(string path)
         {
-            return File.GetLastWriteTime(path).ToString("HH:mm");
+            return _fIleManager.GetLastWriteTime(path).ToString("HH:mm");
         }
 
         private string CreateDirStringLine(string modificationDate, string modificationTime, bool directory, string size, string name)

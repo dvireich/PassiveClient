@@ -1,4 +1,6 @@
 ﻿using PassiveClient.Helpers;
+using PassiveClient.Helpers.Interfaces;
+using PassiveClient.Helpers.Shell.Interfaces;
 using PassiveShell;
 using System;
 using System.IO;
@@ -10,36 +12,48 @@ namespace PassiveClient
     {
         private readonly ICommunicationExceptionHandler _communicationExceptionHandler;
         private readonly IPassiveShell _sellService;
+        private readonly IFileInfoHelper _fileHelper;
+        private readonly IFileManager _fileManager;
+        private readonly IDirectoryManager _directoryManager;
 
-        public TransferDataHelper(ICommunicationExceptionHandler communicationExceptionHandler, IPassiveShell sellService)
+        private const int chunkSize = 999999;
+
+        public TransferDataHelper(ICommunicationExceptionHandler communicationExceptionHandler, 
+                                  IPassiveShell sellService,
+                                  IFileInfoHelper fileInfoHelper,
+                                  IFileManager fileManager,
+                                  IDirectoryManager directoryManager)
         {
             _communicationExceptionHandler = communicationExceptionHandler;
             _sellService = sellService;
+            _fileHelper = fileInfoHelper;
+            _fileManager = fileManager;
+            _directoryManager = directoryManager;
         }
 
         public void DownloadFile(DownloadFileData downloadFileData)
         {
             var path = Path.Combine(downloadFileData.Directory, downloadFileData.FileName);
-            FileInfo fileInfo = new FileInfo(path);
-            RemoteFileInfo uploadRequestInfo = new RemoteFileInfo();
-            uploadRequestInfo.FileName = downloadFileData.FileName;
-            uploadRequestInfo.Length = fileInfo.Length;
-            uploadRequestInfo.PathToSaveOnServer = downloadFileData.PathToSaveOnServer;
-            uploadRequestInfo.taskId = downloadFileData.TasktId;
-            uploadRequestInfo.id = downloadFileData.Id;
+            var uploadRequestInfo = new RemoteFileInfo
+            {
+                FileName = downloadFileData.FileName,
+                Length = _fileHelper.GetFileLength(path),
+                PathToSaveOnServer = downloadFileData.PathToSaveOnServer,
+                taskId = downloadFileData.TasktId,
+                id = downloadFileData.Id
+            };
 
-            using (var file = File.OpenRead(path))
+            using (var file = _fileManager.OpenRead(path))
             {
                 uploadRequestInfo.FileSize = file.Length.ToString();
                 int bytesRead;
-                var chunk = 999999;
-                var byteStream = new byte[chunk * 10];
+                var byteStream = new byte[chunkSize * 10];
                 while ((bytesRead = file.Read(byteStream, 0, byteStream.Length)) > 0)
                 {
 
-                    for (var i = 0; i < bytesRead; i = i + chunk)
+                    for (var i = 0; i < bytesRead; i = i + chunkSize)
                     {
-                        uploadRequestInfo.FileByteStream = byteStream.Skip(i).Take(chunk).ToArray();
+                        uploadRequestInfo.FileByteStream = byteStream.Skip(i).Take(chunkSize).ToArray();
                         uploadRequestInfo.FileEnded = false;
                         _communicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                         {
@@ -60,9 +74,11 @@ namespace PassiveClient
 
         public void UploadFile(UploadFileData uploadFileData)
         {
-            DownloadRequest requestData = new DownloadRequest();
-            requestData.taskId = uploadFileData.TaskId;
-            requestData.id = uploadFileData.Request.id;
+            var requestData = new DownloadRequest
+            {
+                taskId = uploadFileData.TaskId,
+                id = uploadFileData.Request.id
+            };
             var endDownload = false;
             using (var fileStrem = CreateNewFile(uploadFileData.Request.FileName, uploadFileData.Request.PathToSaveOnServer))
             {
@@ -70,7 +86,9 @@ namespace PassiveClient
                 {
                     _communicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                     {
-                        _sellService.ErrorUploadDownload(uploadFileData.Id, uploadFileData.Request.taskId, string.Format("Fail to create File in your computer {0}", uploadFileData.Request.FileName));
+                        _sellService.ErrorUploadDownload(uploadFileData.Id, 
+                                                         uploadFileData.Request.taskId, 
+                                                         string.Format("Fail to create File in your computer {0}", uploadFileData.Request.FileName));
                     });
                     return;
                 }
@@ -104,7 +122,7 @@ namespace PassiveClient
             }
         }
 
-        private FileStream CreateNewFile(string fileName, string pathTosave)
+        private Stream CreateNewFile(string fileName, string pathTosave)
         {
             var dirPath = pathTosave;
             var path = Path.Combine(dirPath, fileName);
@@ -113,20 +131,20 @@ namespace PassiveClient
             {
 
                 // Delete the file if it exists.
-                if (File.Exists(path))
+                if (_fileManager.Exists(path))
                 {
                     // Note that no lock is put on the
                     // file and the possibility exists
                     // that another process could do
                     // something with it between
                     // the calls to Exists and Delete.
-                    File.Delete(path);
+                    _fileManager.Delete(path);
                 }
 
                 // Create the file.
-                if (!Directory.Exists(dirPath))
-                    Directory.CreateDirectory(dirPath);
-                FileStream fs = File.Create(path);
+                if (!_directoryManager.Exists(dirPath))
+                    _directoryManager.CreateDirectory(dirPath);
+                var fs = _fileManager.Create(path);
                 return fs;
             }
             catch (Exception)

@@ -1,5 +1,4 @@
 ﻿using PassiveClient.Clients;
-using PassiveClient.Data;
 using PassiveShell;
 using PostSharp.Extensibility;
 using PostSharp.Patterns.Diagnostics;
@@ -12,8 +11,6 @@ namespace PassiveClient
     public class CommunicationClient : BaseClient
     {
         protected IPassiveShell _shelService;
-        protected CallBack callback = null;
-        protected StatusCallBack status = null;
         protected string _wcfServicesPathId;
 
         protected object initializeServiceReferences<T>(string path = null)
@@ -39,38 +36,6 @@ namespace PassiveClient
             var shellChannel = new ChannelFactory<T>(shellBinding, shellEndpointAddress);
             var shelService = shellChannel.CreateChannel();
             return shelService;
-        }
-
-        protected void InitializeCallBackCommunicationClient(string nickName, Object programLock, Action<string> onContinuationError)
-        {
-            var succeed = false;
-            while (!succeed)
-            {
-                try
-                {
-                    status = new StatusCallBack();
-                    callback = new CallBack();
-                    callback.Initialize(new CallBackInitializeData()
-                    {
-                        Proxy = _shelService,
-                        ProgramLock = programLock,
-                        StatusCallBack = status,
-                        ContinuationError = onContinuationError
-                    });
-
-                    status.SendServerCallBack(_wcfServicesPathId, id.ToString());
-                    callback.SendServerCallBack(_wcfServicesPathId, id.ToString());
-                    succeed = true;
-                }
-                catch
-                {
-                    if (callback != null)
-                        callback.Dispose();
-                    if (status != null)
-                        status.Dispose();
-                    Console.WriteLine("Error Register CallBacks, Disposing and trying again");
-                }
-            }
         }
     }
 }

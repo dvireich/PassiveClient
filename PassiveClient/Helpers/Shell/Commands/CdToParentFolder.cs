@@ -13,6 +13,13 @@ namespace PassiveClient.Helpers.Shell.Commands
     {
         private string _command;
 
+        private IDirectoryManager _directoryManager;
+
+        public CdToParentFolder(IDirectoryManager directoryManager)
+        {
+            _directoryManager = directoryManager;
+        }
+
         [Log(AttributeExclude = true)]
         public bool IsMatch(string command)
         {
@@ -24,8 +31,8 @@ namespace PassiveClient.Helpers.Shell.Commands
 
         public string PerformCommand()
         {
-            Directory.SetCurrentDirectory(Directory.GetParent(Directory.GetCurrentDirectory()).FullName);
-            return Directory.GetCurrentDirectory();
+            _directoryManager.SetCurrentDirectory(Directory.GetParent(_directoryManager.GetCurrentDirectory()).FullName);
+            return _directoryManager.GetCurrentDirectory();
         }
     }
 }

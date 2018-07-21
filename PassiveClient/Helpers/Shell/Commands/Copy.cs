@@ -13,6 +13,15 @@ namespace PassiveClient.Helpers.Shell.Commands
     {
         private string _command;
 
+        private IDirectoryManager _directoryManager;
+        private IFileManager _fileManager;
+
+        public Copy(IDirectoryManager directoryManager , IFileManager fileManager)
+        {
+            _directoryManager = directoryManager;
+            _fileManager = fileManager;
+        }
+
         [Log(AttributeExclude = true)]
         public bool IsMatch(string command)
         {
@@ -26,9 +35,9 @@ namespace PassiveClient.Helpers.Shell.Commands
             if (args.Length < 2) throw new ArgumentException($"The copy command need at least 2 argumenrs");
 
             GetArgs(_command, out string copyFrom, out string copyTo);
-            File.Copy(copyFrom, copyTo);
+            _fileManager.Copy(copyFrom, copyTo);
 
-            return Directory.GetCurrentDirectory();
+            return _directoryManager.GetCurrentDirectory();
         }
 
         private void GetArgs(string command, out string copyFrom, out string copyTo)

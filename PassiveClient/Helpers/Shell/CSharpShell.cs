@@ -1,16 +1,12 @@
-﻿using PassiveClient.Helpers.Data;
-using PassiveClient.Helpers.Interfaces;
+﻿using PassiveClient.Helpers.Interfaces;
 using PassiveClient.Helpers.Shell.Commands;
+using PassiveClient.Helpers.Shell.Helpers;
 using PassiveClient.Helpers.Shell.Interfaces;
 using PostSharp.Patterns.Diagnostics;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Management;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PassiveClient.Helpers
 {
@@ -19,11 +15,12 @@ namespace PassiveClient.Helpers
     {
 
         private List<IShellCommand> _commands;
-        private IDirHelper _dirHelper;
+        private readonly IDirHelper _dirHelper;
+        private readonly IDirectoryManager _directoryManager;
 
-        public CSharpShell(IDirHelper dirHelper)
+        public CSharpShell(IDirectoryManager directoryManager)
         {
-            _dirHelper = dirHelper;
+            _directoryManager = directoryManager;
         }
 
         public void CloseShell()
@@ -41,21 +38,21 @@ namespace PassiveClient.Helpers
 
         public string Run()
         {
-            return Directory.GetCurrentDirectory();
+            return _directoryManager.GetCurrentDirectory();
         }
 
         private void InitializeShellCommands()
         {
             _commands = new List<IShellCommand>
             {
-                new Dir(_dirHelper),
-                new DirBareFolder(_dirHelper),
-                new DirBareFormat(_dirHelper),
-                new Cd(),
-                new CdToParentFolder(),
-                new Copy(),
-                new Delete(),
-                new Rename()
+                new Dir(new DirHelper(new DirectoryManager(), new FileManager(), new FileInfoHelper(), new HardDriveHelper())),
+                new DirBareFolder(new DirHelper(new DirectoryManager(), new FileManager(), new FileInfoHelper(), new HardDriveHelper())),
+                new DirBareFormat(new DirHelper(new DirectoryManager(), new FileManager(), new FileInfoHelper(), new HardDriveHelper())),
+                new Cd(new DirectoryManager()),
+                new CdToParentFolder(new DirectoryManager()),
+                new Copy(new DirectoryManager() ,new FileManager()),
+                new Delete(new DirectoryManager() ,new FileManager()),
+                new Rename(new DirectoryManager() ,new FileManager())
             };
         }
     }

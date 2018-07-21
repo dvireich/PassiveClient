@@ -12,6 +12,14 @@ namespace PassiveClient.Helpers.Shell.Commands
     public class Delete : IShellCommand
     {
         private string _command;
+        private IDirectoryManager _directoryManager;
+        private IFileManager _fileManager;
+
+        public Delete(IDirectoryManager directoryManager, IFileManager fileManager)
+        {
+            _directoryManager = directoryManager;
+            _fileManager = fileManager;
+        }
 
         [Log(AttributeExclude = true)]
         public bool IsMatch(string command)
@@ -28,18 +36,18 @@ namespace PassiveClient.Helpers.Shell.Commands
             pathToDel = pathToDel.Replace("\"", "");
 
             var path = string.Empty;                                              
-            if(File.Exists(pathToDel) || Directory.Exists(pathToDel))
+            if(_fileManager.Exists(pathToDel) || _directoryManager.Exists(pathToDel))
             {
                 path = pathToDel;
             }
-            else if(File.Exists(Path.Combine(Directory.GetCurrentDirectory(), pathToDel)) ||
-                    Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), pathToDel)))
+            else if(_fileManager.Exists(Path.Combine(_directoryManager.GetCurrentDirectory(), pathToDel)) ||
+                    _directoryManager.Exists(Path.Combine(_directoryManager.GetCurrentDirectory(), pathToDel)))
             {
-                path = Path.Combine(Directory.GetCurrentDirectory(), pathToDel);
+                path = Path.Combine(_directoryManager.GetCurrentDirectory(), pathToDel);
             }
-            File.Delete(path);
+            _fileManager.Delete(path);
 
-            return Directory.GetCurrentDirectory();
+            return _directoryManager.GetCurrentDirectory();
         }
     }
 }

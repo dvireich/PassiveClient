@@ -1,44 +1,51 @@
-﻿using AlertCallBack;
-using PassiveClient.Callback_Implementation;
-using PassiveClient.Data;
+﻿using PassiveClient.Callback_Implementation;
+using PassiveClient.Callback_interfaces_and_Implementation;
 using PassiveClient.Helpers;
 using PassiveClient.Helpers.Interfaces;
-using PassiveClient.Helpers.Shell.Interfaces;
 using PassiveShell;
 using PostSharp.Extensibility;
 using PostSharp.Patterns.Diagnostics;
 using System;
 using System.Linq;
-using System.ServiceModel;
 using System.Threading;
 
 namespace PassiveClient
 {
     [Log(AttributeTargetElements = MulticastTargets.Method, AttributeTargetTypeAttributes = MulticastAttributes.Public, AttributeTargetMemberAttributes = MulticastAttributes.Private | MulticastAttributes.Public)]
-    public class CallBack : BaseCallBack
+    public class CallBack : BaseCallBack, ICallBack
     {
-       
         private Action<string> _onError;
-        private StatusCallBack _statusCallBack;
         private string _currentTasktId;
         private Object _programLock;
         private string _nickName;
 
         private IPassiveShell _shelService;
-        private IShell _shell;
+        private IStatusCallBack _statusCallBack;
+        private readonly IShell _shell;
         private ICommunicationExceptionHandler _communicationExceptionHandler;
         private ITransferDataHelper _transferDataHelper;
+        private readonly IMonitorHelper _monitorHelper;
 
-        public void Initialize(CallBackInitializeData data)
+        public CallBack(IPassiveShell shelService,
+                        IStatusCallBack statusCallBack,
+                        IShell shell,
+                        ICommunicationExceptionHandler communicationExceptionHandler,
+                        ITransferDataHelper transferDataHelper,
+                        IMonitorHelper monitorHelper,
+                        string nickName,
+                        Object programLock,
+                        Action<string> errorHandler)
         {
-            _statusCallBack = data.StatusCallBack;
-            _shelService = data.Proxy;
-            _onError = data.ContinuationError;
-            _programLock = data.ProgramLock;
-            _nickName = data.NickName;
-             _shell = new CSharpShell(new DirHelper());
-            _communicationExceptionHandler = new CommunicationExceptionHandler();
-            _transferDataHelper = new TransferDataHelper(_communicationExceptionHandler, _shelService);
+            _shelService = shelService;
+            _statusCallBack = statusCallBack;
+            _shell = shell;
+            _communicationExceptionHandler = communicationExceptionHandler;
+            _transferDataHelper = transferDataHelper;
+            _monitorHelper = monitorHelper;
+            _shell = shell;
+            _nickName = nickName;
+            _programLock = programLock;
+            _onError = errorHandler;
         }
 
         public void SendServerCallBack(string wcfServicesPathId, string id)
@@ -88,10 +95,11 @@ namespace PassiveClient
             try
             {
                 var currentId = _id;
-                var uploadCommand = _communicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => _shelService.PassiveGetUploadFile(new DownloadRequest
-                {
-                    id = currentId.ToString()
-                }));
+                var uploadCommand = _communicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
+                        _shelService.PassiveGetUploadFile(new DownloadRequest
+                                                                            {
+                                                                                id = currentId.ToString()
+                                                                            }));
                 //In case that between the has command to the get command the task has been deleted
                 //the sign is the empty Guid
                 if (uploadCommand.taskId == Guid.Empty.ToString())
@@ -148,7 +156,8 @@ namespace PassiveClient
             try
             {
                 var currentId = _id;
-                var downloadCommand = _communicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() => _shelService.PassiveGetDownloadFile(new DownloadRequest
+                var downloadCommand = _communicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
+                _shelService.PassiveGetDownloadFile(new DownloadRequest
                 {
                     id = currentId.ToString()
                 }));
@@ -198,7 +207,7 @@ namespace PassiveClient
                         _shelService.CommandResponse(_id, _currentTasktId, "EndProg"));
                     lock (_programLock)
                     {
-                        Monitor.PulseAll(_programLock);
+                        _monitorHelper.PulseAll(_programLock);
                     }
                     break;
                 //In case that between the has command to the get command the task has been deleted

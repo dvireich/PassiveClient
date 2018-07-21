@@ -12,6 +12,14 @@ namespace PassiveClient.Helpers.Shell.Commands
     public class Rename : IShellCommand
     {
         private string _command;
+        private IDirectoryManager _directoryManager;
+        private IFileManager _fileManager;
+
+        public Rename(IDirectoryManager directoryManager, IFileManager fileManager)
+        {
+            _directoryManager = directoryManager;
+            _fileManager = fileManager;
+        }
 
         [Log(AttributeExclude = true)]
         public bool IsMatch(string command)
@@ -28,9 +36,9 @@ namespace PassiveClient.Helpers.Shell.Commands
             var oldFileName = args[0].Replace("\"","");
             var newFileName = args[1].Replace("\"", "");
 
-            File.Move(oldFileName, newFileName);
+            _fileManager.Move(oldFileName, newFileName);
 
-            return Directory.GetCurrentDirectory();
+            return _directoryManager.GetCurrentDirectory();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AlertCallBack;
+using PassiveClient.Callback_interfaces_and_Implementation;
 using PostSharp.Extensibility;
 using PostSharp.Patterns.Diagnostics;
 using System;
@@ -12,7 +13,7 @@ namespace PassiveClient.Callback_Implementation
 {
 
     [Log(AttributeTargetElements = MulticastTargets.Method, AttributeTargetTypeAttributes = MulticastAttributes.Public, AttributeTargetMemberAttributes = MulticastAttributes.Private | MulticastAttributes.Public)]
-    public abstract class BaseCallBack : IAletCallBackCallback, IDisposable
+    public abstract class BaseCallBack : IBaseCallBack
     {
         public static AletCallBackClient proxy;
         private bool isDead;

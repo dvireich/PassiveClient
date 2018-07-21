@@ -1,4 +1,7 @@
-﻿using PassiveShell;
+﻿using PassiveClient.Callback_interfaces_and_Implementation;
+using PassiveClient.Helpers;
+using PassiveClient.Helpers.Shell.Helpers;
+using PassiveShell;
 using PostSharp.Extensibility;
 using PostSharp.Patterns.Diagnostics;
 using System;
@@ -14,13 +17,18 @@ namespace PassiveClient
     [Log(AttributeTargetElements= MulticastTargets.Method, AttributeTargetTypeAttributes= MulticastAttributes.Public, AttributeTargetMemberAttributes= MulticastAttributes.Private | MulticastAttributes.Public)]
     public class PassiveClient : AuthenticationClient
     {
-        
+        private ICallBack callback;
+        private IStatusCallBack status;
+        private IMonitorHelper _monitorHelper;
+
         private bool _firstTimeSucceededToSubscribe = true;
         private readonly Object _endProgram = new Object();
         private bool _shouldRestartConnections = false;
 
         public void Main(string[] args)
         {
+            _monitorHelper = new MonitorHelper();
+
             string nickName = string.Empty;
 
             PrintArgsUsage();
@@ -138,7 +146,7 @@ namespace PassiveClient
             lock (_endProgram)
             {
                 _shouldRestartConnections = false;
-                Monitor.Wait(_endProgram);
+                _monitorHelper.Wait(_endProgram);
             }
         }
 
@@ -154,7 +162,7 @@ namespace PassiveClient
             _firstTimeSucceededToSubscribe = false;
         }
 
-        private Timer StartKeepAliveCallbackThread(CallBack callback, StatusCallBack statusCallback)
+        private Timer StartKeepAliveCallbackThread(ICallBack callback, IStatusCallBack statusCallback)
         {
             var startTimeSpan = TimeSpan.Zero;
             var periodTimeSpan = TimeSpan.FromSeconds(45);
@@ -184,7 +192,7 @@ namespace PassiveClient
                     _shouldRestartConnections = true;
                     lock (_endProgram)
                     {
-                        Monitor.PulseAll(_endProgram);
+                        _monitorHelper.PulseAll(_endProgram);
                     }
                 }
 
@@ -208,6 +216,37 @@ namespace PassiveClient
                 {
                     Console.WriteLine("Server not responding. Waiting tor server to respond...");
                     Thread.Sleep(1000);
+                }
+            }
+        }
+
+        private void InitializeCallBackCommunicationClient(string nickName, Object programLock, Action<string> onContinuationError)
+        {
+            var succeed = false;
+            while (!succeed)
+            {
+                try
+                {
+                    status = new StatusCallBack();
+                    callback = new CallBack(_shelService,
+                                            status,
+                                            new CSharpShell(new DirectoryManager()),
+                                            new CommunicationExceptionHandler(),
+                                            new TransferDataHelper(new CommunicationExceptionHandler(), _shelService, new FileInfoHelper(), new FileManager(), new DirectoryManager()),
+                                            new MonitorHelper(),
+                                            nickName,
+                                            programLock,
+                                            onContinuationError);
+
+                    status.SendServerCallBack(_wcfServicesPathId, id.ToString());
+                    callback.SendServerCallBack(_wcfServicesPathId, id.ToString());
+                    succeed = true;
+                }
+                catch
+                {
+                    if (callback != null) callback.Dispose();
+                    if (status != null)   status.Dispose();
+                    Console.WriteLine("Error Register CallBacks, Disposing and trying again");
                 }
             }
         }

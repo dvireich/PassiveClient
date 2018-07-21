@@ -108,18 +108,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Callback Implementation\BaseCallBack.cs" />
+    <Compile Include="Callback interfaces and Implementation\BaseCallBack.cs" />
+    <Compile Include="Callback interfaces and Implementation\IBaseCallBack.cs" />
+    <Compile Include="Callback interfaces and Implementation\ICallBack.cs" />
+    <Compile Include="Callback interfaces and Implementation\IStatusCallBack.cs" />
     <Compile Include="Clients\AuthenticationClient.cs" />
-    <Compile Include="Callback Implementation\CallBack.cs" />
+    <Compile Include="Callback interfaces and Implementation\CallBack.cs" />
     <Compile Include="Clients\BaseClient.cs" />
     <Compile Include="Clients\CommunicationClient.cs" />
-    <Compile Include="Data\CallBackInitializeData.cs" />
     <Compile Include="Helpers\CommunicationExceptionHandler.cs" />
     <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\DownloadFileData.cs" />
     <Compile Include="Clients\PassiveClient.cs" />
-    <Compile Include="Helpers\ICommunicationExceptionHandler.cs" />
-    <Compile Include="Helpers\ITransferDataHelper.cs" />
+    <Compile Include="Helpers\FileInfoHelper.cs" />
+    <Compile Include="Helpers\Interfaces\ICommunicationExceptionHandler.cs" />
+    <Compile Include="Helpers\Interfaces\IFileInfoHelper.cs" />
+    <Compile Include="Helpers\Interfaces\IMonitorHelper.cs" />
+    <Compile Include="Helpers\Interfaces\ITransferDataHelper.cs" />
+    <Compile Include="Helpers\MonitorHelper.cs" />
     <Compile Include="Helpers\Shell\Commands\Cd.cs" />
     <Compile Include="Helpers\Shell\Commands\CdToParentFolder.cs" />
     <Compile Include="Helpers\Shell\Commands\Copy.cs" />
@@ -130,8 +136,14 @@
     <Compile Include="Helpers\Shell\Commands\Rename.cs" />
     <Compile Include="Helpers\Shell\CSharpShell.cs" />
     <Compile Include="Helpers\Shell\Data\HardDrive.cs" />
+    <Compile Include="Helpers\Shell\Helpers\DirectoryManager.cs" />
     <Compile Include="Helpers\Shell\Helpers\DirHelper.cs" />
+    <Compile Include="Helpers\Shell\Helpers\FileManager.cs" />
+    <Compile Include="Helpers\Shell\Helpers\HardDriveHelper.cs" />
+    <Compile Include="Helpers\Shell\Interfaces\IDirectoryManager.cs" />
     <Compile Include="Helpers\Shell\Interfaces\IDirHelper.cs" />
+    <Compile Include="Helpers\Shell\Interfaces\IFileManager.cs" />
+    <Compile Include="Helpers\Shell\Interfaces\IHardDriveHelper.cs" />
     <Compile Include="Helpers\Shell\Interfaces\IShell.cs" />
     <Compile Include="Helpers\Shell\Interfaces\IShellCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -152,7 +164,7 @@
     </Compile>
     <Compile Include="Helpers\Shell\Shell.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Callback Implementation\StatusCallBack.cs" />
+    <Compile Include="Callback interfaces and Implementation\StatusCallBack.cs" />
     <Compile Include="Helpers\TransferDataHelper.cs" />
     <Compile Include="Data\UploadFileData.cs" />
   </ItemGroup>

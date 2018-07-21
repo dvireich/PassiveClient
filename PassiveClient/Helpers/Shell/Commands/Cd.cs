@@ -14,6 +14,13 @@ namespace PassiveClient.Helpers.Shell.Commands
     {
         private string _command;
 
+        private IDirectoryManager _directoryManager;
+
+        public Cd(IDirectoryManager directoryManager)
+        {
+            _directoryManager = directoryManager;
+        }
+
         [Log(AttributeExclude = true)]
         public bool IsMatch(string command)
         {
@@ -25,10 +32,10 @@ namespace PassiveClient.Helpers.Shell.Commands
         public string PerformCommand()
         {
             var arg = string.Join(" ", _command.Split(' ').Skip(1)).Replace("\"","");
-            var path = Directory.Exists(arg) ? arg : Path.Combine(Directory.GetCurrentDirectory(), arg);
-            Directory.SetCurrentDirectory(path);
+            var path = _directoryManager.Exists(arg) ? arg : Path.Combine(_directoryManager.GetCurrentDirectory(), arg);
+            _directoryManager.SetCurrentDirectory(path);
 
-            return Directory.GetCurrentDirectory();
+            return _directoryManager.GetCurrentDirectory();
         }
     }
 }
