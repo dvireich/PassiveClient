@@ -1,8 +1,7 @@
 ﻿using Authentication;
 using PassiveClient.Callback_interfaces_and_Implementation;
 using PassiveClient.Helpers;
-using PassiveClient.Helpers.Shell.Helpers;
-using PassiveClient.Helpers.Shell.Interfaces;
+using PassiveClient.Helpers.Interfaces;
 using PassiveShell;
 using PostSharp.Extensibility;
 using PostSharp.Patterns.Diagnostics;
@@ -23,6 +22,9 @@ namespace PassiveClient
         private ICallBack callback;
         private IStatusCallBack status;
         private IMonitorHelper monitorHelper;
+        private readonly IShell shell;
+        private readonly ICommunicationExceptionHandler communicationExceptionHandler;
+        private ITransferDataHelper transferDataHelper;
 
         private bool _firstTimeSucceededToSubscribe = true;
         private readonly Object _endProgram = new Object();
@@ -33,6 +35,9 @@ namespace PassiveClient
                              IMonitorHelper monitorHelper,
                              IPassiveShell passiveShell,
                              IAuthentication authentication,
+                             IShell shell,
+                             ICommunicationExceptionHandler communicationExceptionHandler,
+                             ITransferDataHelper transferDataHelper,
                              Guid id) : base(passiveShell,
                                              authentication,
                                              id)
@@ -40,11 +45,16 @@ namespace PassiveClient
             this.callback = callback;
             this.status = status;
             this.monitorHelper = monitorHelper;
+            this.shell = shell;
+            this.communicationExceptionHandler = communicationExceptionHandler;
+            this.transferDataHelper = transferDataHelper;
         }
 
         public PassiveClient()
         {
             monitorHelper = new MonitorHelper();
+            shell = new CSharpShell();
+            communicationExceptionHandler = new CommunicationExceptionHandler();
         }
         
         public void Main(string[] args)
@@ -101,6 +111,7 @@ namespace PassiveClient
                     }
 
                     ShelService = ShelService ?? (IPassiveShell)InitializeServiceReferences<IPassiveShell>();
+                    transferDataHelper = transferDataHelper ?? new TransferDataHelper(ShelService);
 
                     CleanPreviousPassiveClientId();
 
@@ -125,8 +136,11 @@ namespace PassiveClient
                 catch (Exception e)
                 {
                     Console.WriteLine($"Server is not responding with this error: {e.Message}");
+
                     CloseAllConnectionsAndDisposeTimers(timerThread);
+
                     Thread.Sleep(1000);
+
                     _shouldRestartConnections = true;
                 }
             } while (_shouldRestartConnections);
@@ -256,10 +270,10 @@ namespace PassiveClient
                     status = new StatusCallBack();
                     callback = new CallBack(ShelService,
                                             status,
-                                            new CSharpShell(),
-                                            new CommunicationExceptionHandler(),
+                                            shell,
+                                            communicationExceptionHandler,
                                             new TransferDataHelper(ShelService),
-                                            new MonitorHelper(),
+                                            monitorHelper,
                                             nickName,
                                             programLock,
                                             onContinuationError);
