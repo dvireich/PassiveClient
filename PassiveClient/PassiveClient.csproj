@@ -118,6 +118,7 @@
     <Compile Include="Clients\CommunicationClient.cs" />
     <Compile Include="Clients\IBaseClient.cs" />
     <Compile Include="Clients\ICommunicationClient.cs" />
+    <Compile Include="Clients\TestablePassiveClient.cs" />
     <Compile Include="Helpers\CommunicationExceptionHandler.cs" />
     <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\DownloadFileData.cs" />

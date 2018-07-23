@@ -15,35 +15,33 @@ using System.Threading;
 
 namespace PassiveClient
 {
-    [Log(AttributeTargetElements= MulticastTargets.Method, AttributeTargetTypeAttributes= MulticastAttributes.Public, AttributeTargetMemberAttributes= MulticastAttributes.Private | MulticastAttributes.Public)]
+    [Log(AttributeTargetElements = MulticastTargets.Method, AttributeTargetTypeAttributes = MulticastAttributes.Public, AttributeTargetMemberAttributes = MulticastAttributes.Private | MulticastAttributes.Public)]
     public class PassiveClient : AuthenticationClient
     {
 
-        private ICallBack callback;
-        private IStatusCallBack status;
-        private IMonitorHelper monitorHelper;
-        private readonly IShell shell;
-        private readonly ICommunicationExceptionHandler communicationExceptionHandler;
-        private ITransferDataHelper transferDataHelper;
+        protected ICallBack callback;
+        protected IStatusCallBack status;
+        protected IMonitorHelper monitorHelper;
+        protected IShell shell;
+        protected ICommunicationExceptionHandler communicationExceptionHandler;
+        protected ITransferDataHelper transferDataHelper;
 
         private bool _firstTimeSucceededToSubscribe = true;
         private readonly Object _endProgram = new Object();
         private bool _shouldRestartConnections = false;
 
-        public PassiveClient(ICallBack callback,
-                             IStatusCallBack status,
-                             IMonitorHelper monitorHelper,
-                             IPassiveShell passiveShell,
-                             IAuthentication authentication,
-                             IShell shell,
-                             ICommunicationExceptionHandler communicationExceptionHandler,
-                             ITransferDataHelper transferDataHelper,
-                             Guid id) : base(passiveShell,
-                                             authentication,
-                                             id)
+        protected PassiveClient(IPassiveShell passiveShell,
+                                IAuthentication authentication,
+                                Guid id) : base(passiveShell,
+                                                authentication,
+                                                id)
+        { }
+
+        public PassiveClient(IMonitorHelper monitorHelper,
+                         IShell shell,
+                         ICommunicationExceptionHandler communicationExceptionHandler,
+                         ITransferDataHelper transferDataHelper)
         {
-            this.callback = callback;
-            this.status = status;
             this.monitorHelper = monitorHelper;
             this.shell = shell;
             this.communicationExceptionHandler = communicationExceptionHandler;
@@ -56,7 +54,7 @@ namespace PassiveClient
             shell = new CSharpShell();
             communicationExceptionHandler = new CommunicationExceptionHandler();
         }
-        
+
         public void Main(string[] args)
         {
             string nickName = string.Empty;
@@ -146,7 +144,7 @@ namespace PassiveClient
             } while (_shouldRestartConnections);
         }
 
-        private void CloseAllConnectionsAndDisposeTimers(Timer timerThread)
+        protected virtual void CloseAllConnectionsAndDisposeTimers(Timer timerThread)
         {
             try
             {
@@ -159,17 +157,17 @@ namespace PassiveClient
                 {
                     Console.WriteLine(error);
                 }
-                if(callback != null)
+                if (callback != null)
                 {
                     callback.Dispose();
                     callback = null;
                 }
-                if(status != null)
+                if (status != null)
                 {
                     status.Dispose();
                     status = null;
                 }
-               if(timerThread != null)
+                if (timerThread != null)
                 {
                     timerThread.Dispose();
                     timerThread = null;
@@ -260,23 +258,24 @@ namespace PassiveClient
         private void InitializeCallBackCommunicationClient(string nickName, Object programLock, Action<string> onContinuationError)
         {
 
-            if (callback != null && status != null) return;
-
             var succeed = false;
             while (!succeed)
             {
                 try
                 {
-                    status = new StatusCallBack();
-                    callback = new CallBack(ShelService,
-                                            status,
-                                            shell,
-                                            communicationExceptionHandler,
-                                            new TransferDataHelper(ShelService),
-                                            monitorHelper,
-                                            nickName,
-                                            programLock,
-                                            onContinuationError);
+                    if (callback == null && status == null)
+                    {
+                        status = new StatusCallBack();
+                        callback = new CallBack(ShelService,
+                                                status,
+                                                shell,
+                                                communicationExceptionHandler,
+                                                transferDataHelper,
+                                                monitorHelper,
+                                                nickName,
+                                                programLock,
+                                                onContinuationError);
+                    }
 
                     status.SendServerCallBack(_wcfServicesPathId, Id.ToString());
                     callback.SendServerCallBack(_wcfServicesPathId, Id.ToString());
@@ -285,7 +284,7 @@ namespace PassiveClient
                 catch
                 {
                     if (callback != null) callback.Dispose();
-                    if (status != null)   status.Dispose();
+                    if (status != null) status.Dispose();
                     Console.WriteLine("Error Register CallBacks, Disposing and trying again");
                 }
             }
