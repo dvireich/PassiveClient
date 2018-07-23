@@ -1,5 +1,6 @@
 ﻿using PassiveClient.Helpers;
 using PassiveClient.Helpers.Interfaces;
+using PassiveClient.Helpers.Shell.Helpers;
 using PassiveClient.Helpers.Shell.Interfaces;
 using PassiveShell;
 using System;
@@ -29,6 +30,14 @@ namespace PassiveClient
             _fileHelper = fileInfoHelper;
             _fileManager = fileManager;
             _directoryManager = directoryManager;
+        }
+
+        public TransferDataHelper(IPassiveShell sellService) : this(new CommunicationExceptionHandler(), 
+                                                                    sellService, 
+                                                                    new FileInfoHelper(), 
+                                                                    new FileManager(), 
+                                                                    new DirectoryManager())
+        {
         }
 
         public void DownloadFile(DownloadFileData downloadFileData)

@@ -1,6 +1,8 @@
-﻿using PassiveClient.Callback_interfaces_and_Implementation;
+﻿using Authentication;
+using PassiveClient.Callback_interfaces_and_Implementation;
 using PassiveClient.Helpers;
 using PassiveClient.Helpers.Shell.Helpers;
+using PassiveClient.Helpers.Shell.Interfaces;
 using PassiveShell;
 using PostSharp.Extensibility;
 using PostSharp.Patterns.Diagnostics;
@@ -17,18 +19,36 @@ namespace PassiveClient
     [Log(AttributeTargetElements= MulticastTargets.Method, AttributeTargetTypeAttributes= MulticastAttributes.Public, AttributeTargetMemberAttributes= MulticastAttributes.Private | MulticastAttributes.Public)]
     public class PassiveClient : AuthenticationClient
     {
+
         private ICallBack callback;
         private IStatusCallBack status;
-        private IMonitorHelper _monitorHelper;
+        private IMonitorHelper monitorHelper;
 
         private bool _firstTimeSucceededToSubscribe = true;
         private readonly Object _endProgram = new Object();
         private bool _shouldRestartConnections = false;
 
+        public PassiveClient(ICallBack callback,
+                             IStatusCallBack status,
+                             IMonitorHelper monitorHelper,
+                             IPassiveShell passiveShell,
+                             IAuthentication authentication,
+                             Guid id) : base(passiveShell,
+                                             authentication,
+                                             id)
+        {
+            this.callback = callback;
+            this.status = status;
+            this.monitorHelper = monitorHelper;
+        }
+
+        public PassiveClient()
+        {
+            monitorHelper = new MonitorHelper();
+        }
+        
         public void Main(string[] args)
         {
-            _monitorHelper = new MonitorHelper();
-
             string nickName = string.Empty;
 
             PrintArgsUsage();
@@ -80,7 +100,7 @@ namespace PassiveClient
                         throw new Exception(string.Format("Could not Authenticate username {0} and pssword {1} with the following error {2}", _username, _password, error));
                     }
 
-                    _shelService = (IPassiveShell)initializeServiceReferences<IPassiveShell>();
+                    ShelService = ShelService ?? (IPassiveShell)InitializeServiceReferences<IPassiveShell>();
 
                     CleanPreviousPassiveClientId();
 
@@ -94,7 +114,7 @@ namespace PassiveClient
 
                     timerThread = StartKeepAliveCallbackThread(callback, status);
 
-                    Console.WriteLine(string.Format("Subscribed with id: {0}", id));
+                    Console.WriteLine(string.Format("Subscribed with id: {0}", Id));
                     Console.WriteLine("Wating for command");
 
                     //Make this thrad wait untill there is a CloseClient command from the active client
@@ -116,10 +136,10 @@ namespace PassiveClient
         {
             try
             {
-                if (_shelService != null)
+                if (ShelService != null)
                 {
-                    ((ICommunicationObject)_shelService).Close();
-                    _shelService = null;
+                    ((ICommunicationObject)ShelService).Close();
+                    ShelService = null;
                 }
                 if (!Logout(_username, out string error))
                 {
@@ -128,14 +148,17 @@ namespace PassiveClient
                 if(callback != null)
                 {
                     callback.Dispose();
+                    callback = null;
                 }
                 if(status != null)
                 {
                     status.Dispose();
+                    status = null;
                 }
                if(timerThread != null)
                 {
                     timerThread.Dispose();
+                    timerThread = null;
                 }
             }
             catch { }
@@ -146,18 +169,18 @@ namespace PassiveClient
             lock (_endProgram)
             {
                 _shouldRestartConnections = false;
-                _monitorHelper.Wait(_endProgram);
+                monitorHelper.Wait(_endProgram);
             }
         }
 
         private void WaitUntilSubscribed(string nickName)
         {
-            while (!_shelService.Subscribe(id.ToString(), Constants.virsion, nickName))
+            while (!ShelService.Subscribe(Id.ToString(), Constants.virsion, nickName))
             {
-                Console.WriteLine(string.Format("Wasn't able to connect with {0} id, tring diffrent one...", id));
+                Console.WriteLine(string.Format("Wasn't able to connect with {0} id, tring diffrent one...", Id));
                 CleanPreviousPassiveClientId();
                 //maybe this guid is taken, try new one
-                id = Guid.NewGuid();
+                Id = Guid.NewGuid();
             }
             _firstTimeSucceededToSubscribe = false;
         }
@@ -192,7 +215,7 @@ namespace PassiveClient
                     _shouldRestartConnections = true;
                     lock (_endProgram)
                     {
-                        _monitorHelper.PulseAll(_endProgram);
+                        monitorHelper.PulseAll(_endProgram);
                     }
                 }
 
@@ -209,7 +232,7 @@ namespace PassiveClient
             {
                 try
                 {
-                    _shelService.RemoveId(id.ToString());
+                    ShelService.RemoveId(Id.ToString());
                     succeeded = true;
                 }
                 catch
@@ -222,24 +245,27 @@ namespace PassiveClient
 
         private void InitializeCallBackCommunicationClient(string nickName, Object programLock, Action<string> onContinuationError)
         {
+
+            if (callback != null && status != null) return;
+
             var succeed = false;
             while (!succeed)
             {
                 try
                 {
                     status = new StatusCallBack();
-                    callback = new CallBack(_shelService,
+                    callback = new CallBack(ShelService,
                                             status,
-                                            new CSharpShell(new DirectoryManager()),
+                                            new CSharpShell(),
                                             new CommunicationExceptionHandler(),
-                                            new TransferDataHelper(new CommunicationExceptionHandler(), _shelService, new FileInfoHelper(), new FileManager(), new DirectoryManager()),
+                                            new TransferDataHelper(ShelService),
                                             new MonitorHelper(),
                                             nickName,
                                             programLock,
                                             onContinuationError);
 
-                    status.SendServerCallBack(_wcfServicesPathId, id.ToString());
-                    callback.SendServerCallBack(_wcfServicesPathId, id.ToString());
+                    status.SendServerCallBack(_wcfServicesPathId, Id.ToString());
+                    callback.SendServerCallBack(_wcfServicesPathId, Id.ToString());
                     succeed = true;
                 }
                 catch

@@ -8,12 +8,23 @@ using System.ServiceModel;
 namespace PassiveClient
 {
     [Log(AttributeTargetElements = MulticastTargets.Method, AttributeTargetTypeAttributes = MulticastAttributes.Public, AttributeTargetMemberAttributes = MulticastAttributes.Private | MulticastAttributes.Public)]
-    public class CommunicationClient : BaseClient
+    public class CommunicationClient : BaseClient , ICommunicationClient
     {
-        protected IPassiveShell _shelService;
+        public CommunicationClient(IPassiveShell shelService,
+                                    Guid id) : base(id)
+        {
+            ShelService = shelService;
+        }
+
+        public CommunicationClient()
+        {
+        }
+
         protected string _wcfServicesPathId;
 
-        protected object initializeServiceReferences<T>(string path = null)
+        public IPassiveShell ShelService { get; set; }
+
+        public object InitializeServiceReferences<T>(string path = null)
         {
             if (string.IsNullOrEmpty(path))
             {

@@ -116,6 +116,8 @@
     <Compile Include="Callback interfaces and Implementation\CallBack.cs" />
     <Compile Include="Clients\BaseClient.cs" />
     <Compile Include="Clients\CommunicationClient.cs" />
+    <Compile Include="Clients\IBaseClient.cs" />
+    <Compile Include="Clients\ICommunicationClient.cs" />
     <Compile Include="Helpers\CommunicationExceptionHandler.cs" />
     <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\DownloadFileData.cs" />

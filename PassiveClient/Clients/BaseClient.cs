@@ -6,8 +6,18 @@ using System.Threading.Tasks;
 
 namespace PassiveClient.Clients
 {
-    public class BaseClient
+    public class BaseClient : IBaseClient
     {
-        protected Guid id = Guid.NewGuid();
+        public BaseClient()
+        {
+            Id = Guid.NewGuid();
+        }
+
+        public BaseClient(Guid id)
+        {
+            Id = id;
+        }
+
+        public Guid Id { get; set; }
     }
 }

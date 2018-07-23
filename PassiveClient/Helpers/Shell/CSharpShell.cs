@@ -15,13 +15,24 @@ namespace PassiveClient.Helpers
     {
 
         private List<IShellCommand> _commands;
-        private readonly IDirHelper _dirHelper;
-        private readonly IDirectoryManager _directoryManager;
+        private readonly IDirHelper dirHelper;
+        private readonly IDirectoryManager directoryManager;
+        private readonly IFileManager fileManager;
 
-        public CSharpShell(IDirectoryManager directoryManager)
+        public CSharpShell(IDirectoryManager directoryManager,
+                           IFileManager fileManager,
+                           IDirHelper dirHelper)
         {
-            _directoryManager = directoryManager;
+            this.fileManager = fileManager;
+            this.dirHelper = dirHelper;
+            this.directoryManager = directoryManager;
             InitializeShellCommands();
+        }
+
+        public CSharpShell() : this(new DirectoryManager(), new FileManager(),
+                                    new DirHelper(new DirectoryManager(), new FileManager(), new FileInfoHelper(), new HardDriveHelper()))
+        {
+            
         }
 
         public void CloseShell()
@@ -38,21 +49,21 @@ namespace PassiveClient.Helpers
 
         public string Run()
         {
-            return _directoryManager.GetCurrentDirectory();
+            return directoryManager.GetCurrentDirectory();
         }
 
         private void InitializeShellCommands()
         {
             _commands = new List<IShellCommand>
             {
-                new Dir(new DirHelper(new DirectoryManager(), new FileManager(), new FileInfoHelper(), new HardDriveHelper())),
-                new DirBareFolder(new DirHelper(new DirectoryManager(), new FileManager(), new FileInfoHelper(), new HardDriveHelper())),
-                new DirBareFormat(new DirHelper(new DirectoryManager(), new FileManager(), new FileInfoHelper(), new HardDriveHelper())),
-                new Cd(new DirectoryManager()),
-                new CdToParentFolder(new DirectoryManager()),
-                new Copy(new DirectoryManager() ,new FileManager()),
-                new Delete(new DirectoryManager() ,new FileManager()),
-                new Rename(new DirectoryManager() ,new FileManager())
+                new Dir(dirHelper),
+                new DirBareFolder(dirHelper),
+                new DirBareFormat(dirHelper),
+                new Cd(directoryManager),
+                new CdToParentFolder(directoryManager),
+                new Copy(directoryManager ,fileManager),
+                new Delete(directoryManager ,fileManager),
+                new Rename(directoryManager ,fileManager)
             };
         }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PassiveClient.Callback_interfaces_and_Implementation
 {
-    interface ICallBack : IBaseCallBack
+    public interface ICallBack : IBaseCallBack
     {
        void SendServerCallBack(string wcfServicesPathId, string id);
     }
