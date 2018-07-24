@@ -33,7 +33,7 @@ namespace PassiveClient.Helpers.Shell.Commands
             var pathToDel = _command.Split(' ').Skip(1).FirstOrDefault();
             if (pathToDel == null) throw new ArgumentNullException($"The command should not get null argument: {_command} ");
 
-            pathToDel = pathToDel.Replace("\"", "");
+            GetArgs(_command, out pathToDel);
 
             var path = string.Empty;                                              
             if(_fileManager.Exists(pathToDel) || _directoryManager.Exists(pathToDel))
@@ -48,6 +48,31 @@ namespace PassiveClient.Helpers.Shell.Commands
             _fileManager.Delete(path);
 
             return _directoryManager.GetCurrentDirectory();
+        }
+
+        private void GetArgs(string command, out string pathDoDelete)
+        {
+            int pathDoDeleteStart = -1, pathDoDeleteEnd = -1;
+            int count = 0;
+
+            for (int i = 0; i < command.Length; i++)
+            {
+                if (command[i] != '"') continue;
+
+                switch (count)
+                {
+                    case 0:
+                        pathDoDeleteStart = i;
+                        count++;
+                        break;
+                    case 1:
+                        pathDoDeleteEnd = i;
+                        count++;
+                        break;
+                }
+            }
+
+            pathDoDelete = command.Substring(pathDoDeleteStart, pathDoDeleteEnd - pathDoDeleteStart).Replace("\"", "");
         }
     }
 }

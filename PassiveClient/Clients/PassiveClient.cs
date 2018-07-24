@@ -257,7 +257,6 @@ namespace PassiveClient
 
         private void InitializeCallBackCommunicationClient(string nickName, Object programLock, Action<string> onContinuationError)
         {
-
             var succeed = false;
             while (!succeed)
             {
