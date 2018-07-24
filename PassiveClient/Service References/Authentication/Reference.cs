@@ -15,19 +15,33 @@ namespace Authentication {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Authentication.IAuthentication")]
     public interface IAuthentication {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/AuthenticateAndSignIn", ReplyAction="http://tempuri.org/IAuthentication/AuthenticateAndSignInResponse")]
-        Authentication.AuthenticateAndSignInResponse AuthenticateAndSignIn(Authentication.AuthenticateAndSignInRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/AuthenticatePassiveClientAndSignIn", ReplyAction="http://tempuri.org/IAuthentication/AuthenticatePassiveClientAndSignInResponse")]
+        Authentication.AuthenticatePassiveClientAndSignInResponse AuthenticatePassiveClientAndSignIn(Authentication.AuthenticatePassiveClientAndSignInRequest request);
         
         // CODEGEN: Generating message contract since the operation has multiple return values.
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/AuthenticateAndSignIn", ReplyAction="http://tempuri.org/IAuthentication/AuthenticateAndSignInResponse")]
-        System.Threading.Tasks.Task<Authentication.AuthenticateAndSignInResponse> AuthenticateAndSignInAsync(Authentication.AuthenticateAndSignInRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/AuthenticatePassiveClientAndSignIn", ReplyAction="http://tempuri.org/IAuthentication/AuthenticatePassiveClientAndSignInResponse")]
+        System.Threading.Tasks.Task<Authentication.AuthenticatePassiveClientAndSignInResponse> AuthenticatePassiveClientAndSignInAsync(Authentication.AuthenticatePassiveClientAndSignInRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/Logout", ReplyAction="http://tempuri.org/IAuthentication/LogoutResponse")]
-        Authentication.LogoutResponse Logout(Authentication.LogoutRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/AuthenticateActiveClientAndSignIn", ReplyAction="http://tempuri.org/IAuthentication/AuthenticateActiveClientAndSignInResponse")]
+        Authentication.AuthenticateActiveClientAndSignInResponse AuthenticateActiveClientAndSignIn(Authentication.AuthenticateActiveClientAndSignInRequest request);
         
         // CODEGEN: Generating message contract since the operation has multiple return values.
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/Logout", ReplyAction="http://tempuri.org/IAuthentication/LogoutResponse")]
-        System.Threading.Tasks.Task<Authentication.LogoutResponse> LogoutAsync(Authentication.LogoutRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/AuthenticateActiveClientAndSignIn", ReplyAction="http://tempuri.org/IAuthentication/AuthenticateActiveClientAndSignInResponse")]
+        System.Threading.Tasks.Task<Authentication.AuthenticateActiveClientAndSignInResponse> AuthenticateActiveClientAndSignInAsync(Authentication.AuthenticateActiveClientAndSignInRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/ActiveLogout", ReplyAction="http://tempuri.org/IAuthentication/ActiveLogoutResponse")]
+        Authentication.ActiveLogoutResponse ActiveLogout(Authentication.ActiveLogoutRequest request);
+        
+        // CODEGEN: Generating message contract since the operation has multiple return values.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/ActiveLogout", ReplyAction="http://tempuri.org/IAuthentication/ActiveLogoutResponse")]
+        System.Threading.Tasks.Task<Authentication.ActiveLogoutResponse> ActiveLogoutAsync(Authentication.ActiveLogoutRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/PassiveLogout", ReplyAction="http://tempuri.org/IAuthentication/PassiveLogoutResponse")]
+        Authentication.PassiveLogoutResponse PassiveLogout(Authentication.PassiveLogoutRequest request);
+        
+        // CODEGEN: Generating message contract since the operation has multiple return values.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/PassiveLogout", ReplyAction="http://tempuri.org/IAuthentication/PassiveLogoutResponse")]
+        System.Threading.Tasks.Task<Authentication.PassiveLogoutResponse> PassiveLogoutAsync(Authentication.PassiveLogoutRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthentication/SignUp", ReplyAction="http://tempuri.org/IAuthentication/SignUpResponse")]
         Authentication.SignUpResponse SignUp(Authentication.SignUpRequest request);
@@ -71,52 +85,88 @@ namespace Authentication {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="AuthenticateAndSignIn", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class AuthenticateAndSignInRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AuthenticatePassiveClientAndSignIn", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AuthenticatePassiveClientAndSignInRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
         public string userName;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public string userType;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
         public string password;
         
-        public AuthenticateAndSignInRequest() {
+        public AuthenticatePassiveClientAndSignInRequest() {
         }
         
-        public AuthenticateAndSignInRequest(string userName, string userType, string password) {
+        public AuthenticatePassiveClientAndSignInRequest(string userName, string password) {
             this.userName = userName;
-            this.userType = userType;
             this.password = password;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="AuthenticateAndSignInResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class AuthenticateAndSignInResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AuthenticatePassiveClientAndSignInResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AuthenticatePassiveClientAndSignInResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public string AuthenticateAndSignInResult;
+        public string AuthenticatePassiveClientAndSignInResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public string error;
         
-        public AuthenticateAndSignInResponse() {
+        public AuthenticatePassiveClientAndSignInResponse() {
         }
         
-        public AuthenticateAndSignInResponse(string AuthenticateAndSignInResult, string error) {
-            this.AuthenticateAndSignInResult = AuthenticateAndSignInResult;
+        public AuthenticatePassiveClientAndSignInResponse(string AuthenticatePassiveClientAndSignInResult, string error) {
+            this.AuthenticatePassiveClientAndSignInResult = AuthenticatePassiveClientAndSignInResult;
             this.error = error;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="Logout", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class LogoutRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AuthenticateActiveClientAndSignIn", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AuthenticateActiveClientAndSignInRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string userName;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public string password;
+        
+        public AuthenticateActiveClientAndSignInRequest() {
+        }
+        
+        public AuthenticateActiveClientAndSignInRequest(string userName, string password) {
+            this.userName = userName;
+            this.password = password;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AuthenticateActiveClientAndSignInResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AuthenticateActiveClientAndSignInResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string AuthenticateActiveClientAndSignInResult;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public string error;
+        
+        public AuthenticateActiveClientAndSignInResponse() {
+        }
+        
+        public AuthenticateActiveClientAndSignInResponse(string AuthenticateActiveClientAndSignInResult, string error) {
+            this.AuthenticateActiveClientAndSignInResult = AuthenticateActiveClientAndSignInResult;
+            this.error = error;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ActiveLogout", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ActiveLogoutRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
         public string userName;
@@ -124,10 +174,10 @@ namespace Authentication {
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public string userType;
         
-        public LogoutRequest() {
+        public ActiveLogoutRequest() {
         }
         
-        public LogoutRequest(string userName, string userType) {
+        public ActiveLogoutRequest(string userName, string userType) {
             this.userName = userName;
             this.userType = userType;
         }
@@ -135,20 +185,60 @@ namespace Authentication {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="LogoutResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class LogoutResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ActiveLogoutResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ActiveLogoutResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public bool LogoutResult;
+        public bool ActiveLogoutResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public string error;
         
-        public LogoutResponse() {
+        public ActiveLogoutResponse() {
         }
         
-        public LogoutResponse(bool LogoutResult, string error) {
-            this.LogoutResult = LogoutResult;
+        public ActiveLogoutResponse(bool ActiveLogoutResult, string error) {
+            this.ActiveLogoutResult = ActiveLogoutResult;
+            this.error = error;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="PassiveLogout", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class PassiveLogoutRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string userName;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public string userType;
+        
+        public PassiveLogoutRequest() {
+        }
+        
+        public PassiveLogoutRequest(string userName, string userType) {
+            this.userName = userName;
+            this.userType = userType;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="PassiveLogoutResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class PassiveLogoutResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool PassiveLogoutResult;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public string error;
+        
+        public PassiveLogoutResponse() {
+        }
+        
+        public PassiveLogoutResponse(bool PassiveLogoutResult, string error) {
+            this.PassiveLogoutResult = PassiveLogoutResult;
             this.error = error;
         }
     }
@@ -389,40 +479,75 @@ namespace Authentication {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Authentication.AuthenticateAndSignInResponse Authentication.IAuthentication.AuthenticateAndSignIn(Authentication.AuthenticateAndSignInRequest request) {
-            return base.Channel.AuthenticateAndSignIn(request);
+        Authentication.AuthenticatePassiveClientAndSignInResponse Authentication.IAuthentication.AuthenticatePassiveClientAndSignIn(Authentication.AuthenticatePassiveClientAndSignInRequest request) {
+            return base.Channel.AuthenticatePassiveClientAndSignIn(request);
         }
         
-        public string AuthenticateAndSignIn(string userName, string userType, string password, out string error) {
-            Authentication.AuthenticateAndSignInRequest inValue = new Authentication.AuthenticateAndSignInRequest();
+        public string AuthenticatePassiveClientAndSignIn(string userName, string password, out string error) {
+            Authentication.AuthenticatePassiveClientAndSignInRequest inValue = new Authentication.AuthenticatePassiveClientAndSignInRequest();
             inValue.userName = userName;
-            inValue.userType = userType;
             inValue.password = password;
-            Authentication.AuthenticateAndSignInResponse retVal = ((Authentication.IAuthentication)(this)).AuthenticateAndSignIn(inValue);
+            Authentication.AuthenticatePassiveClientAndSignInResponse retVal = ((Authentication.IAuthentication)(this)).AuthenticatePassiveClientAndSignIn(inValue);
             error = retVal.error;
-            return retVal.AuthenticateAndSignInResult;
+            return retVal.AuthenticatePassiveClientAndSignInResult;
         }
         
-        public System.Threading.Tasks.Task<Authentication.AuthenticateAndSignInResponse> AuthenticateAndSignInAsync(Authentication.AuthenticateAndSignInRequest request) {
-            return base.Channel.AuthenticateAndSignInAsync(request);
+        public System.Threading.Tasks.Task<Authentication.AuthenticatePassiveClientAndSignInResponse> AuthenticatePassiveClientAndSignInAsync(Authentication.AuthenticatePassiveClientAndSignInRequest request) {
+            return base.Channel.AuthenticatePassiveClientAndSignInAsync(request);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Authentication.LogoutResponse Authentication.IAuthentication.Logout(Authentication.LogoutRequest request) {
-            return base.Channel.Logout(request);
+        Authentication.AuthenticateActiveClientAndSignInResponse Authentication.IAuthentication.AuthenticateActiveClientAndSignIn(Authentication.AuthenticateActiveClientAndSignInRequest request) {
+            return base.Channel.AuthenticateActiveClientAndSignIn(request);
         }
         
-        public bool Logout(string userName, string userType, out string error) {
-            Authentication.LogoutRequest inValue = new Authentication.LogoutRequest();
+        public string AuthenticateActiveClientAndSignIn(string userName, string password, out string error) {
+            Authentication.AuthenticateActiveClientAndSignInRequest inValue = new Authentication.AuthenticateActiveClientAndSignInRequest();
+            inValue.userName = userName;
+            inValue.password = password;
+            Authentication.AuthenticateActiveClientAndSignInResponse retVal = ((Authentication.IAuthentication)(this)).AuthenticateActiveClientAndSignIn(inValue);
+            error = retVal.error;
+            return retVal.AuthenticateActiveClientAndSignInResult;
+        }
+        
+        public System.Threading.Tasks.Task<Authentication.AuthenticateActiveClientAndSignInResponse> AuthenticateActiveClientAndSignInAsync(Authentication.AuthenticateActiveClientAndSignInRequest request) {
+            return base.Channel.AuthenticateActiveClientAndSignInAsync(request);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Authentication.ActiveLogoutResponse Authentication.IAuthentication.ActiveLogout(Authentication.ActiveLogoutRequest request) {
+            return base.Channel.ActiveLogout(request);
+        }
+        
+        public bool ActiveLogout(string userName, string userType, out string error) {
+            Authentication.ActiveLogoutRequest inValue = new Authentication.ActiveLogoutRequest();
             inValue.userName = userName;
             inValue.userType = userType;
-            Authentication.LogoutResponse retVal = ((Authentication.IAuthentication)(this)).Logout(inValue);
+            Authentication.ActiveLogoutResponse retVal = ((Authentication.IAuthentication)(this)).ActiveLogout(inValue);
             error = retVal.error;
-            return retVal.LogoutResult;
+            return retVal.ActiveLogoutResult;
         }
         
-        public System.Threading.Tasks.Task<Authentication.LogoutResponse> LogoutAsync(Authentication.LogoutRequest request) {
-            return base.Channel.LogoutAsync(request);
+        public System.Threading.Tasks.Task<Authentication.ActiveLogoutResponse> ActiveLogoutAsync(Authentication.ActiveLogoutRequest request) {
+            return base.Channel.ActiveLogoutAsync(request);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Authentication.PassiveLogoutResponse Authentication.IAuthentication.PassiveLogout(Authentication.PassiveLogoutRequest request) {
+            return base.Channel.PassiveLogout(request);
+        }
+        
+        public bool PassiveLogout(string userName, string userType, out string error) {
+            Authentication.PassiveLogoutRequest inValue = new Authentication.PassiveLogoutRequest();
+            inValue.userName = userName;
+            inValue.userType = userType;
+            Authentication.PassiveLogoutResponse retVal = ((Authentication.IAuthentication)(this)).PassiveLogout(inValue);
+            error = retVal.error;
+            return retVal.PassiveLogoutResult;
+        }
+        
+        public System.Threading.Tasks.Task<Authentication.PassiveLogoutResponse> PassiveLogoutAsync(Authentication.PassiveLogoutRequest request) {
+            return base.Channel.PassiveLogoutAsync(request);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

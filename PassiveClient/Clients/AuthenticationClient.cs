@@ -32,29 +32,28 @@ namespace PassiveClient
 
         public bool Authenticate(string userName, string password, out string error, out string result)
         {
-            var resp = authentication.AuthenticateAndSignIn(new AuthenticateAndSignInRequest()
+            var resp = authentication.AuthenticatePassiveClientAndSignIn(new AuthenticatePassiveClientAndSignInRequest()
             {
                 userName = userName,
-                password = password,
-                userType = userType
+                password  = password
             });
             
             error = resp.error;
-            result = resp.AuthenticateAndSignInResult;
-            return !string.IsNullOrEmpty(resp.AuthenticateAndSignInResult);
+            result = resp.AuthenticatePassiveClientAndSignInResult;
+            return !string.IsNullOrEmpty(resp.AuthenticatePassiveClientAndSignInResult);
         }
 
         public bool Logout(string userName, out string error)
         {
             try
             {
-                var resp = authentication.Logout(new LogoutRequest()
+                var resp = authentication.PassiveLogout(new PassiveLogoutRequest()
                 {
                     userName = userName,
                     userType = userType
                 });
                 error = resp.error;
-                return resp.LogoutResult;
+                return resp.PassiveLogoutResult;
             }
             catch (Exception)
             {
