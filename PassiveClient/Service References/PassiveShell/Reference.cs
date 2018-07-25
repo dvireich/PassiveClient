@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using PostSharp.Patterns.Diagnostics;
+
 namespace PassiveShell {
     
     
@@ -163,7 +165,7 @@ namespace PassiveShell {
             this.FileByteStream = FileByteStream;
         }
     }
-    
+    [Log(AttributeExclude = true)]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
