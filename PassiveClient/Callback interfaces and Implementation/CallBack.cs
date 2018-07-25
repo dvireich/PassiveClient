@@ -118,9 +118,9 @@ namespace PassiveClient
 
             catch (Exception e)
             {
+                _transferDataHelper.SetProxy(_shelService);
                 _communicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                 _shelService.ErrorUploadDownload(_id, _currentTasktId, e.Message));
-                throw e;
             }
         }
 
@@ -147,9 +147,9 @@ namespace PassiveClient
             }
             catch (Exception e)
             {
+                _transferDataHelper.SetProxy(_shelService);
                 _communicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                     _shelService.ErrorNextCommand(_id, _currentTasktId, string.Format("Error Next-Command: {0}", e.Message)));
-                throw e;
             }
         }
 
@@ -184,9 +184,9 @@ namespace PassiveClient
             }
             catch (Exception e)
             {
+                _transferDataHelper.SetProxy(_shelService);
                 _communicationExceptionHandler.SendRequestAndTryAgainIfTimeOutOrEndpointNotFound(() =>
                     _shelService.ErrorUploadDownload(_id, _currentTasktId, e.Message));
-                throw e;
             }
         }
 

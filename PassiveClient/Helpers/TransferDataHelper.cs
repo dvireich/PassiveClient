@@ -12,7 +12,7 @@ namespace PassiveClient
     public class TransferDataHelper : ITransferDataHelper
     {
         private readonly ICommunicationExceptionHandler _communicationExceptionHandler;
-        private readonly IPassiveShell _sellService;
+        private IPassiveShell _sellService;
         private readonly IFileInfoHelper _fileHelper;
         private readonly IFileManager _fileManager;
         private readonly IDirectoryManager _directoryManager;
@@ -160,6 +160,11 @@ namespace PassiveClient
             {
                 return null;
             }
+        }
+
+        public void SetProxy(IPassiveShell proxy)
+        {
+            _sellService = proxy;
         }
     }
 }
