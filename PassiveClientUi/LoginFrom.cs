@@ -85,16 +85,15 @@ namespace PassiveClientUi
         private bool Authenticate(string userName, string password)
         {
             var auth = (IAuthentication)initializeServiceReferences<IAuthentication>("Authentication");
-            var resp = auth.AuthenticateAndSignIn(new AuthenticateAndSignInRequest()
+            var resp = auth.AuthenticatePassiveClientAndSignIn(new AuthenticatePassiveClientAndSignInRequest()
             {
                 userName = userName,
-                password = password,
-                userType = _userType
+                password = password
             });
             //We do not want the server add this passiveClient yet, when we will open the PassiveClient.exe then 
             //He will signin. 
             //So we will logout now
-            auth.Logout(new LogoutRequest()
+            auth.PassiveLogout(new PassiveLogoutRequest()
             {
                 userName = userName,
                 userType = _userType
@@ -103,7 +102,7 @@ namespace PassiveClientUi
             {
                 ((ICommunicationObject)auth).Close();
             }
-            return !string.IsNullOrEmpty(resp.AuthenticateAndSignInResult);
+            return !string.IsNullOrEmpty(resp.AuthenticatePassiveClientAndSignInResult);
         }
 
         private object initializeServiceReferences<T>(string path)

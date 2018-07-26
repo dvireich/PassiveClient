@@ -587,7 +587,7 @@
     </Instance>
   </Class>
   <Class Class="#1">
-    <Instance Declaration="#204=T:[PassiveClient]PassiveClient.AuthenticationClient" Id="a7e7e0103e83f462">
+    <Instance Declaration="#204=T:[PassiveClient]PassiveClient.AuthenticationClient" Id="a7e7e010c8d217c6">
       <Target Target="#205=M:[PassiveClient]PassiveClient.AuthenticationClient::Authenticate(System.String, System.String, out System.String, out System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="11" LinesAvoided="5" />
       </Target>
@@ -598,7 +598,7 @@
         <JoinPoint Advising="#1" Description="#3" Ordinal="13" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#208=T:[PassiveClient]PassiveClient.CallBack" Id="a7e7e01057d36c5d">
+    <Instance Declaration="#208=T:[PassiveClient]PassiveClient.CallBack" Id="a7e7e01036647cfb">
       <Target Target="#209=M:[PassiveClient]PassiveClient.CallBack::SendServerCallBack(System.String, System.String)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="22" LinesAvoided="5" />
       </Target>
@@ -630,7 +630,7 @@
         <JoinPoint Advising="#1" Description="#3" Ordinal="31" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#219=T:[PassiveClient]PassiveClient.CommunicationClient" Id="a7e7e010c10f782f">
+    <Instance Declaration="#219=T:[PassiveClient]PassiveClient.CommunicationClient" Id="a7e7e01087bf7a50">
       <Target Target="#220=M:[PassiveClient]PassiveClient.CommunicationClient::get_ShelService()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="6" LinesAvoided="5" />
       </Target>
@@ -641,7 +641,7 @@
         <JoinPoint Advising="#1" Description="#3" Ordinal="8" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#223=T:[PassiveClient]PassiveClient.PassiveClient" Id="a7e7e0106f64e63f">
+    <Instance Declaration="#223=T:[PassiveClient]PassiveClient.PassiveClient" Id="a7e7e0104a34c460">
       <Target Target="#224=M:[PassiveClient]PassiveClient.PassiveClient::Main(System.String[])">
         <JoinPoint Advising="#1" Description="#3" Ordinal="35" LinesAvoided="5" />
       </Target>
@@ -667,7 +667,7 @@
         <JoinPoint Advising="#1" Description="#3" Ordinal="43" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#232=T:[PassiveClient]PassiveClient.Shell" Id="a7e7e01006e9eaef">
+    <Instance Declaration="#232=T:[PassiveClient]PassiveClient.Shell" Id="a7e7e01061a37b56">
       <Target Target="#233=M:[PassiveClient]PassiveClient.Shell::Run()">
         <JoinPoint Advising="#1" Description="#3" Ordinal="44" LinesAvoided="5" />
       </Target>
@@ -681,7 +681,7 @@
         <JoinPoint Advising="#1" Description="#3" Ordinal="47" LinesAvoided="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#237=T:[PassiveClient]PassiveClient.Callback_Implementation.BaseCallBack" Id="a7e7e010b159985a">
+    <Instance Declaration="#237=T:[PassiveClient]PassiveClient.Callback_Implementation.BaseCallBack" Id="a7e7e010115a39be">
       <Target Target="#238=M:[PassiveClient]PassiveClient.Callback_Implementation.BaseCallBack::SetReliableSessionAndInactivityTimeoutAndReaderQuotas(System.ServiceModel.NetTcpBinding)">
         <JoinPoint Advising="#1" Description="#3" Ordinal="14" LinesAvoided="5" />
       </Target>

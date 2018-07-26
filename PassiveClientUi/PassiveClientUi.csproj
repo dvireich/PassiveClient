@@ -81,7 +81,13 @@
     <None Include="Connected Services\Authentication\Authentication1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\Authentication\PassiveClientUi.Authentication.AuthenticateAndSignInResponse.datasource">
+    <None Include="Connected Services\Authentication\PassiveClientUi.Authentication.ActiveLogoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Authentication\PassiveClientUi.Authentication.AuthenticateActiveClientAndSignInResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Authentication\PassiveClientUi.Authentication.AuthenticatePassiveClientAndSignInResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\Authentication\PassiveClientUi.Authentication.ChangeUserPasswordResponse.datasource">
@@ -90,7 +96,7 @@
     <None Include="Connected Services\Authentication\PassiveClientUi.Authentication.GetSecurityQuestionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\Authentication\PassiveClientUi.Authentication.LogoutResponse.datasource">
+    <None Include="Connected Services\Authentication\PassiveClientUi.Authentication.PassiveLogoutResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\Authentication\PassiveClientUi.Authentication.RestorePasswordFromUserNameAndSecurityQuestionResponse.datasource">
